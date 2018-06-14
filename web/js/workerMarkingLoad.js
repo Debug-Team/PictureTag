@@ -63,7 +63,10 @@ var loadPicture = function (hot_x,hot_y,length_x,length_y) {
         // canvas_img_ctx.rect(hot_x,hot_y,length_x,length_y);
         // canvas_img_ctx.fill();
         // canvas_img_ctx.closePath();
-        loadMarkedHotArea(picname);
+        if(project_detail.type==1){
+            loadMarkedHotArea(picname);
+        }
+
 
         // canvas_img_ctx.scale(570/img.height,570/img.height);
     }

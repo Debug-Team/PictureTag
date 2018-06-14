@@ -240,7 +240,7 @@ public class ProjectDaoImpl implements ProjectDao {
         if(aveGapDate != 0 && aveNeededMarkerRate != 0)
             rank = gapDate/aveGapDate + neededMarkerRate/aveNeededMarkerRate;
 
-        if(neededMarkerRate != 1)
+        if(neededMarkerRate != 0)
             return rank < 1 ? 0.65:
                     rank < 1.5 ? 0.70:
                             rank < 2 ? 0.75:

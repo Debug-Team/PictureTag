@@ -483,6 +483,7 @@ public class ProjectController {
         }else if(state==2){
             ret = projectService.getAllProject().stream()
                     .filter((p) -> !p.getMarkerList().contains(phonenum))
+                    .filter((p) -> p.getMarkedPersonNum() > p.getMarkerList().size())
                     .filter((p) -> !p.isEnded());
         //我的项目
         }else if(state==3){
