@@ -95,8 +95,8 @@ public class ProjectDaoImpl implements ProjectDao {
             for(String phoneNum : markerList) {
                 Marker marker = userDao.getMarker(phoneNum);
                 //标记者奖励
-                int award = (int)marker.getMarkerJob(project.getId()).getCurrentCut()
-                        * project.getAward();
+                int award = (int)(marker.getMarkerJob(project.getId()).getCurrentCut()
+                        * project.getAward());
                 //平台分得
                 platformEarned += project.getAward() - award;
 
