@@ -37,11 +37,14 @@ public class MissonController {
     public @ResponseBody
     String getWantedList(@RequestParam("phonenum") String phonenum){
 
-        Project projects[] = projectService.getAllProject().stream()
+        ArrayList<Project> allproject = projectService.getAllProject();
+        int limitSize = allproject.size() / 20;
+
+        Project projects[] = allproject.stream()
                 .filter((p) -> !p.getMarkerList().contains(phonenum))
                 .filter((p) -> !p.isEnded())
                 .sorted((p1,p2) -> p1.getRankCredit()>p2.getRankCredit() ? 1 : 0)
-                .limit(10)
+                .limit(limitSize)
                 .toArray(Project[]::new);
 
         Map<String,Project[]> map = new HashMap<>();
