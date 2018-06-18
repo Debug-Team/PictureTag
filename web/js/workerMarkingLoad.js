@@ -308,7 +308,7 @@ var loadMarksInfo = function () {
 
     }else if(project_type==2){          //标框标注
 
-        document.getElementById("pro_type").innerHTML = "整体标注";
+        document.getElementById("pro_type").innerHTML = "标框标注";
 
         var parent_div = document.getElementById("tools");
         var revoke_div1 = document.createElement("div");
