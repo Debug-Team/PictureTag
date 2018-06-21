@@ -47,6 +47,20 @@ public class ProjectController {
     private final String proPath = "data"+File.separator+"project";
 
     /**
+     * 得到所有项目
+     * @return json
+     */
+    @PostMapping(value = "/allprojects", produces="application/text; charset=utf-8")
+    public @ResponseBody
+    String allprojects(){
+        ArrayList<Project> projects = projectService.getAllProject();
+        Optional<String> ret = projects
+                .stream()
+                .map((p) -> JSON.toJSONString(p))
+                .reduce((p1,p2) -> p1 + "-;-" + p2);
+        return ret.orElse("");
+    }
+    /**
      * 得到当日上传的项目
      * @param date 时间
      * @return json
