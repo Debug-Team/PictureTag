@@ -1,5 +1,6 @@
 package com.debugTeam.web;
 
+import com.debugTeam.entity.Administrator;
 import com.debugTeam.entity.Marker;
 import com.debugTeam.entity.MarkerJob;
 import com.debugTeam.entity.Project;
@@ -63,6 +64,9 @@ public class LoginController {
                 if(!kickOut(userphone))
                     System.out.println("kickout fail");
             }
+            Administrator administrator = administratorService.getAdministrator();
+            administrator.setLoginDetail(userphone);
+            administratorService.updateAdministrator(administrator);
 
             retJson = new ResponseObject(1,"登陆成功", usertype).toString();
         } catch (UserWrongPasswordException e) {
@@ -105,6 +109,9 @@ public class LoginController {
                     administratorService.updateDailyMarkerRegisterNum();
                     administratorService.updateDailyMarkerLoginNum();
                 }
+                Administrator administrator = administratorService.getAdministrator();
+                administrator.setSignupDetail(phone);
+                administratorService.updateAdministrator(administrator);
                 retjson = new ResponseObject(1,"注册成功").toString();
             }
         } catch (UserDuplicateException e) {

@@ -16,6 +16,8 @@ public class Administrator implements Serializable {
     private HashMap<String, Integer> dailyMarkerLoginNum;  //每日标记者登录记录
     private HashMap<String, Integer> dailyUploaderRegisterNum;  //每日上传者注册记录
     private HashMap<String, Integer> dailyUploaderLoginNum;  //每日上传者登录记录
+    private HashMap<String, String> signupDetail; //注册表
+    private HashMap<String, String> loginDetail; //登录表
 
     private HashMap<String, Integer> dailyProjectUpload;  //每日项目上传数
     private HashMap<String, Integer> dailyProjectAccept;  //每日项目接受数
@@ -35,6 +37,20 @@ public class Administrator implements Serializable {
         this.creditsHistory = new HashMap<>();
         this.dailycreditsHistory = new HashMap<>();
         this.totalDailyCreditsHistory = new HashMap<>();
+        this.signupDetail = new HashMap<>();
+        this.loginDetail = new HashMap<>();
+    }
+
+    public void setSignupDetail(String id){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = df.format(new Date());
+        signupDetail.put(date, id);
+    }
+
+    public void setLoginDetail(String id){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = df.format(new Date());
+        loginDetail.put(date, id);
     }
 
     //记录平台总盈利
@@ -145,5 +161,13 @@ public class Administrator implements Serializable {
 
     public Map<String, Integer> getTotalDailyCreditsHistory() {
         return totalDailyCreditsHistory;
+    }
+
+    public HashMap<String, String> getSignupDetail() {
+        return signupDetail;
+    }
+
+    public HashMap<String, String> getLoginDetail() {
+        return loginDetail;
     }
 }

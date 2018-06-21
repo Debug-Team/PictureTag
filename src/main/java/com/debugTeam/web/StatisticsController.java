@@ -39,6 +39,34 @@ public class StatisticsController {
     private AdministratorService administratorService;
 
     /**
+     * 得到当日注册明细
+     * @param date 时间
+     * @return json
+     */
+    @PostMapping(value = "/dailySignUpDetail", produces="application/text; charset=utf-8")
+    public @ResponseBody
+    String dailySignUpDetail(@RequestParam("date") String date){
+        Administrator administrator = new Administrator();
+        Map<String, String> map = administrator.getSignupDetail();
+
+        return daliyData2json(map, date);
+    }
+
+    /**
+     * 得到当日登录明细
+     * @param date 时间
+     * @return json
+     */
+    @PostMapping(value = "/dailyLoginDetail", produces="application/text; charset=utf-8")
+    public @ResponseBody
+    String dailyLoginDetail(@RequestParam("date") String date){
+        Administrator administrator = new Administrator();
+        Map<String, String> map = administrator.getLoginDetail();
+
+        return daliyData2json(map, date);
+    }
+
+    /**
      * 得到当日平台积分明细
      * @param date 时间
      * @return json
@@ -518,4 +546,47 @@ public class StatisticsController {
         return jsonObject.toJSONString();
     }
 
+    /**
+     * 每日登录注册数据的统计
+     * @param map 统计map
+     * @param date 日期
+     * @return json
+     */
+    private String daliyData2json(Map<String, String> map, String date){
+
+        ArrayList<String> time = new ArrayList<>();
+        ArrayList<String> username = new ArrayList<>();
+        ArrayList<String> userphone = new ArrayList<>();
+        ArrayList<Integer> usertype = new ArrayList<>();
+
+        List<Map.Entry<String, String>> list = new ArrayList<>(map.entrySet());
+        for (Map.Entry<String, String> entry : list){
+            if(!entry.getKey().substring(5,10).equals(date)){
+                continue;
+            }
+            time.add(entry.getKey());
+            String phone = entry.getValue();
+            //上传者
+            if (userSevice.getMarker(phone)==null){
+                Uploader uploader = userSevice.getUploader(phone);
+                username.add(uploader.getUserName());
+                userphone.add(phone);
+                usertype.add(1);
+            }
+            else {
+                Marker marker = userSevice.getMarker(phone);
+                username.add(marker.getUserName());
+                userphone.add(phone);
+                usertype.add(0);
+            }
+        }
+
+        JSONObject json = new JSONObject();
+        json.put("time", time);
+        json.put("username", username);
+        json.put("userphone", userphone);
+        json.put("usertype", usertype);
+
+        return json.toString();
+    }
 }
