@@ -15,7 +15,8 @@ import java.util.Date;
  * @Data: Create in 20:52 2018/4/1
  * @Modified By:
  */
-public class Project implements Serializable {
+public class
+Project implements Serializable {
 
     private static final long serialVersionUID = -5809782578272943999L;
 

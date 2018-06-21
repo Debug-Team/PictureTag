@@ -46,7 +46,7 @@ public class StatisticsController {
     @PostMapping(value = "/dailySignUpDetail", produces="application/text; charset=utf-8")
     public @ResponseBody
     String dailySignUpDetail(@RequestParam("date") String date){
-        Administrator administrator = new Administrator();
+        Administrator administrator = administratorService.getAdministrator();
         Map<String, String> map = administrator.getSignupDetail();
 
         return daliyData2json(map, date);
@@ -60,7 +60,7 @@ public class StatisticsController {
     @PostMapping(value = "/dailyLoginDetail", produces="application/text; charset=utf-8")
     public @ResponseBody
     String dailyLoginDetail(@RequestParam("date") String date){
-        Administrator administrator = new Administrator();
+        Administrator administrator = administratorService.getAdministrator();
         Map<String, String> map = administrator.getLoginDetail();
 
         return daliyData2json(map, date);
@@ -445,7 +445,7 @@ public class StatisticsController {
         //设定初始时间为当前时间-6天
         Calendar celender = Calendar.getInstance();
         celender.setTime(new Date());
-        celender.add(Calendar.DATE, -(days-1));
+        celender.add(Calendar.DATE, -(days));
 
         for(int i = 0; i<days; i++){
             celender.add(Calendar.DATE,+1);
@@ -488,7 +488,7 @@ public class StatisticsController {
         //设定初始时间为当前时间-6天
         Calendar celender = Calendar.getInstance();
         celender.setTime(new Date());
-        celender.add(Calendar.DATE,-(days-1));
+        celender.add(Calendar.DATE,-(days));
 
         for(int i = 0; i<days; i++){
             celender.add(Calendar.DATE,+1);
@@ -524,7 +524,7 @@ public class StatisticsController {
         //设定初始时间为当前时间-6天
         Calendar celender = Calendar.getInstance();
         celender.setTime(new Date());
-        celender.add(Calendar.DATE,-(days-1));
+        celender.add(Calendar.DATE,-(days));
 
         for(int i = 0; i<days; i++){
             celender.add(Calendar.DATE,+1);

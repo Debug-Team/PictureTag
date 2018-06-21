@@ -18,8 +18,12 @@ public class AdministratorDaoImpl implements AdministratorDao {
         File dataFile = new File("data");
         if(!dataFile.exists())
             dataFile.mkdir();
-        Administrator administrator = new Administrator();
-        updateAdministrator(administrator);
+
+        File adminFile = new File(administratorPath);
+        if(!adminFile.exists()) {
+            Administrator administrator = new Administrator();
+            updateAdministrator(administrator);
+        }
     }
 
     @Override
