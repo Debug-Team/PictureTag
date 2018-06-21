@@ -13,7 +13,8 @@ import com.debugTeam.util.ClassificationHelper;
 import com.debugTeam.util.JsonHelper;
 import com.debugTeam.util.ResponseObject;
 import com.debugTeam.util.ZipHelper;
-import org.apache.commons.math3.analysis.function.Max;
+import com.debugTeam.util.dbscan.DBScan;
+import com.debugTeam.util.dbscan.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,10 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.*;
-import java.awt.image.AreaAveragingScaleFilter;
 import java.io.*;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
@@ -146,6 +144,7 @@ public class ProjectController {
         String tagPath = "data"+File.separator+"project"+File.separator+id+File.separator+ "tags";
         ArrayList<String> markerList = projectService.getProject(id).getMarkerList();
         ArrayList<String> tags = new ArrayList<>();
+        int x1=0, y1=0, z1=0, n1=0, num=0;
 
         for (int i=0; i<markerList.size(); i++){
             String makerName = markerList.get(i);
@@ -161,9 +160,60 @@ public class ProjectController {
             }
         }
 
-        HashMap<String,ArrayList<String>> map = new HashMap<>();
-        map.put("data",tags);
-        return JSON.toJSONString(map);
+        ArrayList<Point> points = new ArrayList<>();
+        for (String text : tags){
+            JSONObject json = JSONObject.parseObject(text);
+            JSONObject coordinates = (JSONObject) json.get("coordinates");
+            double x = coordinates.getDouble("start_x");
+            double y = coordinates.getDouble("start_y");
+            double z = coordinates.getDouble("end_x");
+            double n = coordinates.getDouble("end_y");
+            Point point = new Point(x,y,z,n);
+            points.add(point);
+        }
+
+        //聚类
+        DBScan dbScan = new DBScan(100,3);
+        dbScan.process(points);
+        //找最大簇
+        int maxCluster = 0, max = 0;
+        Map<Integer, Integer> table = new HashMap<>();
+        for (Point p:points) {
+            if (table.containsKey(p.getCluster())){
+                table.put(p.getCluster(), 1);
+            }
+            else{
+                table.put(p.getCluster(), table.get(p.getCluster())+1);
+            }
+        }
+        for (Integer key : table.keySet()){
+            if (table.get(key) > max){
+                maxCluster = key;
+            }
+        }
+        //找质心
+        for (Point p : points){
+            if (p.getCluster() == maxCluster){
+                num++;
+                x1+=p.x;
+                y1+=p.y;
+                z1+=p.z;
+                n1+=p.n;
+            }
+        }
+        if (num!=0){
+            x1/=num; y1/=num; z1/=num; n1/=num;
+        }
+
+//        HashMap<String,ArrayList<String>> map = new HashMap<>();
+//        map.put("data",tags);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("sx",x1);
+        jsonObject.put("sy",y1);
+        jsonObject.put("ex",z1);
+        jsonObject.put("ey",n1);
+
+        return jsonObject.toString();
     }
 
     /**
