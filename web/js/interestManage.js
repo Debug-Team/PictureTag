@@ -259,6 +259,24 @@ function loadInterests(mySelect,mySelect2,mySelect3){
     var classificationList = interests_json.classificationList;
     var interestType = interests_json.type;
 
+    switch (interestNum){
+        case 25:
+            interestNum = 1;
+            break;
+        case 75:
+            interestNum =2;
+            break;
+        case 150:
+            interestNum = 3;
+            break;
+        case 300:
+            interestNum = 4;
+            break;
+        default:
+            break;
+    }
+
+
     console.log(333,interests_json)
 
     mySelect2.setResult(interestType);

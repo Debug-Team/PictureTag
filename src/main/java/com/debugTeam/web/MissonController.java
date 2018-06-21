@@ -123,7 +123,8 @@ public class MissonController {
             DailyMission mission = missions.get(i);
             if (mission.getType() == type){
                 mission.setIsAwarded(true);
-                marker.setCredits(marker.getCredits()+mission.getAwardCredits());
+                marker.setCredits(mission.getAwardCredits()
+                        , "完成每日任务 " + mission.getType() + " 奖励");
                 marker.setEmpiricalValue(marker.getEmpiricalValue()+mission.getAwardEmpiricalValue());
                 userSevice.updateUser(marker);
                 return new ResponseObject(1,"领取成功").toString();

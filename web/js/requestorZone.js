@@ -25,10 +25,9 @@ var header = new Vue({
         credits:0
     },
     created:function () {
-        this.username = userphone;
+        this.username = getUserName();
         this.userphone = userphone;
         this.credits = getUserCredits();
-        this.credits = getUserName();
     }
 });
 

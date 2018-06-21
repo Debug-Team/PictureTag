@@ -39,4 +39,11 @@ public interface UserSevice {
      * @return 更新是否成功
      */
     public boolean updateUser(Marker marker);
+
+    /**
+     * 更新上传者对象
+     * @param uploader 新上传者
+     * @return 更新是否成功
+     */
+    public boolean updateUser(Uploader uploader);
 }

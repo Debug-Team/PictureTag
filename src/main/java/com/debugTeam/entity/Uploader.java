@@ -1,7 +1,11 @@
 package com.debugTeam.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author: Cauchy-Ny
@@ -23,6 +27,8 @@ public class Uploader implements Serializable {
     private ArrayList<String> projectList;  //上传者发布的项目列表
     private ArrayList<String> markerList;  //给自己标记过的标记者列表
 
+    private Map<String, String> creditsHistory;  //积分获取记录<date, credits-cause>
+
     public Uploader(String phoneNum, String userName, String password) {
         this.phoneNum = phoneNum;
         this.userName = userName;
@@ -33,6 +39,8 @@ public class Uploader implements Serializable {
 
         this.projectList = new ArrayList<>();
         this.markerList = new ArrayList<>();
+
+        this.creditsHistory = new HashMap<>();
     }
 
     //添加新的标记者
@@ -45,8 +53,21 @@ public class Uploader implements Serializable {
         this.markerList.remove(markerPhoneNum);
     }
 
+    //更新经验值和经验值记录表
+    public void setCredits(int credits, String cause) {
+        this.credits += credits;
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = df.format(new Date());
+        creditsHistory.put(date, credits + "!" + cause);
+    }
+
     public void setProject(String project) {
         this.projectList.add(project);
+    }
+
+    public Map<String, String> getCreditsHistory() {
+        return creditsHistory;
     }
 
     public int getEmpiricalValue() {
@@ -59,10 +80,6 @@ public class Uploader implements Serializable {
 
     public void setEmpiricalValue(int empiricalValue) {
         this.empiricalValue += empiricalValue;
-    }
-
-    public void setCredits(int credits) {
-        this.credits += credits;
     }
 
     public String getUserName() {

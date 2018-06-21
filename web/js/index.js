@@ -37,12 +37,14 @@ $(".module-nav a").click(function(e) {
  * 点击登录注册按钮，显示登录
  */
 function showLogin() {
-    $(".login").show()
+    $(".overlay").show();
+    $(".login").show();
 }
 
 /**
  * 关闭登录
  */
 function closeLogin(){
+    $(".overlay").hide();
     $(".login").hide();
 }

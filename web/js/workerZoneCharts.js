@@ -5,6 +5,7 @@ initalDayTime();
 initCreditsCharts();
 initLinearRegression();
 initRadar();
+initCreditsBoxPlot();
 function initalThreeTagPieCharts() {
     var classify = worker_info_json.jobTypeNum[0];
     var rect = worker_info_json.jobTypeNum[1];
@@ -432,6 +433,11 @@ function initCreditsCharts() {
             }
         ]
     };
+    myChart.on('click', function (params) {
+        if(params.seriesName == '自己'){
+            window.location.href = "../html/markerCreditDetail.html";
+        }
+    })
     ;
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
@@ -769,6 +775,7 @@ function initRadar() {
     var phonenum = getUserPhone();
     var result_json;
     var capacity = [];
+    var total_capacity = [];
     $.ajax({
         url:'/get5Dstatistics',
         type:'post',
@@ -791,11 +798,18 @@ function initRadar() {
     capacity.push(result_json.credits);
     capacity.push(result_json.ratings);
 
+    total_capacity.push(result_json.total_reputation);
+    total_capacity.push(result_json.total_work);
+    total_capacity.push(result_json.total_empiricalValue);
+    total_capacity.push(result_json.total_credits);
+    total_capacity.push(result_json.total_ratings);
+
+
     console.log(capacity)
     option = {
         tooltip: {},
         legend: {
-            data: ['个人能力']
+            data: ['个人能力','网站平均']
         },
         radar: {
             // shape: 'circle',
@@ -823,11 +837,108 @@ function initRadar() {
                 {
                     value : capacity,
                     name : '个人能力'
+                },
+                {
+                    value : total_capacity,
+                    name : '网站平均'
                 }
             ]
         }]
     };
 
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+}
+
+function initCreditsBoxPlot() {
+    var userphone = getUserPhone();
+    $.ajax({
+        url:'/makerHistoryRating',
+        type:'post',
+        async:false,
+        data:{
+            userphone:userphone
+        },
+        success:function (data) {
+            result_json = JSON.parse(data);
+            // console.log(result_json)
+        },
+        error:function () {
+            alert("fuck1")
+        }
+    });
+    var mydata = result_json.data;
+    var othersdata = result_json.others;
+
+    var dom = document.getElementById("creditsBoxPlotChart");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    var data = echarts.dataTool.prepareBoxplotData([
+        mydata,
+        othersdata
+         ]);
+
+    option = {
+        tooltip: {
+            trigger: 'item',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        grid: {
+            left: '10%',
+            right: '10%',
+            bottom: '15%'
+        },
+        xAxis: {
+            type: 'category',
+            data: data.axisData,
+            boundaryGap: true,
+            nameGap: 30,
+            splitArea: {
+                show: false
+            },
+            axisLabel: {
+                formatter: '{value}'
+            },
+            splitLine: {
+                show: false
+            }
+        },
+        yAxis: {
+            type: 'value',
+            name: '评分',
+            splitArea: {
+                show: true
+            }
+        },
+        series: [
+            {
+                name: 'boxplot',
+                type: 'boxplot',
+                data: data.boxData,
+                tooltip: {
+                    formatter: function (param) {
+                        return [
+                            (param.name==0)?'自己':'网站',
+                            'upper: ' + param.data[5],
+                            'Q3: ' + param.data[4],
+                            'median: ' + param.data[3],
+                            'Q1: ' + param.data[2],
+                            'lower: ' + param.data[1]
+                        ].join('<br/>')
+                    }
+                }
+            },
+            {
+                name: 'outlier',
+                type: 'scatter',
+                data: data.outliers
+            }
+        ]
+    };;
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
     }

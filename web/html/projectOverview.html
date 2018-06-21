@@ -67,7 +67,7 @@
                             <div class="block__cell" id ="accept">
                                 <a  class="btn btn--activate" id="btnActivation">
                                     <span class="btn__icon"></span>
-                                    <span class="btn__text" data-wait="waiting" data-after="Accepted">Accept</span>
+                                    <span class="btn__text" data-wait="waiting" data-after="Accepted" id="isAcceptOrEnd">Accept</span>
                                 </a>
                             </div>
                             <p class="_3uPxv _27Bp2 _1iWCF" style="margin-top: 5px;margin-bottom: 5px;" id = "discription"></p>
@@ -321,10 +321,34 @@
     $(document).ready(function(){
         if(isMypro()){
 
-            $('#btnActivation').removeClass('btn--activate');
-            $('#btnActivation').addClass('btn--activated');
-            $("#btnActivation").attr("disabled",true);
-            $("#btnActivation").css("pointer-events","none");
+            // $('#btnActivation').removeClass('btn--activate');
+            // $('#btnActivation').addClass('btn--activated');
+            // $("#btnActivation").attr("disabled",true);
+            // $("#btnActivation").css("pointer-events","none");
+            document.getElementById("isAcceptOrEnd").innerText = "End";
+            document.getElementById("isAcceptOrEnd").setAttribute("data-after","Ended");
+            $('#btnActivation').click(function(){
+                var json_temp = finishMarkerJob();
+
+               if(json_temp.state==1){
+                   if(!$('#btnActivation').hasClass(('btn--activated'))){
+                       $('#btnActivation').removeClass('btn--activate');
+                       $('#btnActivation').addClass('btn--waiting');
+
+                       setTimeout(function(){
+                           removeWaiting();
+                       }, 500);
+
+                   }
+
+                   $("#btnActivation").attr("disabled",true);
+                   $("#btnActivation").css("pointer-events","none");
+
+               }
+               alert(json_temp.retMessage);
+
+            });
+
 
         }else {
 

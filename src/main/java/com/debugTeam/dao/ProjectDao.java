@@ -56,6 +56,13 @@ public interface ProjectDao {
     public boolean kickOut(String phoneNum, String id);
 
     /**
+     * 计算当前接取该项目应该有多少分成
+     * @param id 项目编号
+     * @return 当前接取项目的分成
+     */
+    public double calculateCurrentCut(String id);
+
+    /**
      * 更新项目信息
      * @param project
      * @return 返回是否成功

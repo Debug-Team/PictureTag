@@ -1,12 +1,12 @@
 package com.debugTeam.web;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.debugTeam.dao.ProjectDao;
 import com.debugTeam.dao.UserDao;
 import com.debugTeam.dto.ResProject;
-import com.debugTeam.entity.Marker;
-import com.debugTeam.entity.MarkerJob;
-import com.debugTeam.entity.Project;
+import com.debugTeam.entity.*;
+import com.debugTeam.service.AdministratorService;
 import com.debugTeam.service.ProjectService;
 import com.debugTeam.service.UserSevice;
 import com.debugTeam.util.ClassificationHelper;
@@ -39,9 +39,61 @@ public class ProjectController {
     private ProjectService projectService;
     @Autowired
     private UserSevice userSevice;
+    @Autowired
+    private AdministratorService administratorService;
 
     private final String tmppath = "data"+File.separator+"tmp";
     private final String proPath = "data"+File.separator+"project";
+
+    /**
+     * 标注者判断项目是否已完成
+     * @param phonenum 手机号
+     * @param id 项目
+     * @return
+     */
+    @PostMapping(value = "/markerJobIsFinished", produces="application/text; charset=utf-8")
+    public @ResponseBody
+    String markerJobIsFinished(@RequestParam("phonenum") String phonenum, @RequestParam("id") String id){
+        Marker marker = userSevice.getMarker(phonenum);
+        MarkerJob job = marker.getMarkerJob(id);
+        boolean flag = false;
+
+        if (job!=null){
+            flag = job.getIsFinished();
+        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("isFinished", flag);
+        return jsonObject.toString();
+    }
+
+    /**
+     * 得到项目评分
+     * @param id 项目id
+     * @return
+     */
+    @PostMapping(value = "/getProjectRate", produces="application/text; charset=utf-8")
+    public @ResponseBody
+    String getProjectRate(@RequestParam("id") String id){
+        Project project = projectService.getProject(id);
+
+        ArrayList<String> markers = project.getMarkerList();
+        ArrayList<Double> scorelist = new ArrayList<>();
+
+        for(int i=0; i<markers.size(); i++) {
+            Marker marker = userSevice.getMarker(markers.get(i));
+            for (int j = 0; j < marker.getJobList().size(); j++) {
+                MarkerJob job = marker.getMarkerJobList().get(j);
+                if (id.equals(marker.getJobList().get(j))) {
+                    scorelist.add(job.getScore());
+                    break;
+                }
+            }
+        }
+
+        JSONObject json = new JSONObject();
+        json.put("scorelist", scorelist);
+        return json.toString();
+    }
 
     /**
      * 热点区域提示，得到该图片的其他人的标注数据
@@ -129,8 +181,8 @@ public class ProjectController {
 
         for(int i = 0; i<projects.size(); i++){
             Project project = projects.get(i);
-            double credits = (double) project.getAward() / (project.getPicList().size() * project.getMarkedPersonNum());
-            double distribute = countDistribute(project, type, amounts, classificationList);
+            double credits = (double) project.getAward() / (project.getPicList().size());
+            double distribute = countDistribute(project, type, amounts, ClassificationHelper.converToIntArray(new ArrayList<>(classificationList)));
 
             map.put(project, distribute);
             sumDistribute += distribute;
@@ -142,7 +194,7 @@ public class ProjectController {
 
         for (Map.Entry<Project, Double> entry : map.entrySet()) {
             Project p = entry.getKey();
-            recommandcredits += (p.getAward() * 1.0 / (p.getPicList().size()*p.getMarkedPersonNum())) * entry.getValue();
+            recommandcredits += (p.getAward() * 1.0 / (p.getPicList().size())) * entry.getValue();
         }
 
         recommandcredits = sumDistribute != 0 ? recommandcredits / sumDistribute : 0;
@@ -160,30 +212,32 @@ public class ProjectController {
     }
 
     //计算项目相似度，标注类型,种类的权重均为1,数量权重为0.5
-    private static double countDistribute(Project project, int type, int amounts, List<String> classificationList){
+    private static double countDistribute(Project project, double type, double amounts, double[] classificationList){
 
         //类型
-        double distribute = 0;
+        double distribute = 0.0;
         if (project.getType() == type) distribute += 1;
 
         //数据量
-        double t = (double) amounts/project.getPicList().size();
+        double t = amounts/project.getPicList().size();
         distribute += (t <= 1 ? t : 1/t) * 0.5;
 
         //种类
-        int t1[] = ClassificationHelper.converToIntArray(project.getClassificationList());
-        int t2[] = ClassificationHelper.converToIntArray(new ArrayList<>(classificationList));
+        double t1[] = ClassificationHelper.converToIntArray(project.getClassificationList());
+        double t2[] = classificationList;
 
-        double c1 = 0, c2 = 0, c3 = 0;
+        double c1 = 0.0, c2 = 0.0, c3 = 0.0;
         for (int i=0; i<t1.length; i++){
             c1 += t1[i]*t2[i];
             c2 += t1[i]*t1[i];
             c3 += t2[i]*t2[i];
         }
-        distribute += c1 / (Math.sqrt(c2)*Math.sqrt(c3));
-
+        if ((Math.sqrt(c2)*Math.sqrt(c3) == 0)) return 0.0;
+        distribute += (c1 / (Math.sqrt(c2)*Math.sqrt(c3)));
         return distribute;
     }
+
+
 
     /**
      * 得到所有分类信息
@@ -198,6 +252,47 @@ public class ProjectController {
     }
 
     /**
+     * 标注者结束markerjob
+     * @param phonenum 标注者
+     * @param id 项目id
+     * @return
+     */
+    @PostMapping(value = "/finishMakerJob", produces="application/text; charset=utf-8")
+    public @ResponseBody
+    String finishMakerJob(@RequestParam("phonenum") String phonenum, @RequestParam("id") String id){
+        Marker marker = userSevice.getMarker(phonenum);
+        MarkerJob job = marker.getMarkerJob(id);
+
+        if (job.getMarkedPicList().size() < job.getPicList().size()){
+            return new ResponseObject(-1, "项目没有全部标注完毕").toString();
+        }
+        marker.getMarkerJob(id).setIsFinished(true);
+        userSevice.updateUser(marker);
+
+        return new ResponseObject(1,"结束成功").toString();
+    }
+
+    /**
+     * 从悬赏榜开始新的标注任务
+     * @param phonenum 标注者手机号
+     * @param id 项目id
+     * @return 状态信息
+     */
+    @PostMapping(value = "/startNewWantedJob", produces="application/text; charset=utf-8")
+    public @ResponseBody
+    String startNewWantedJob(@RequestParam("phonenum") String phonenum, @RequestParam("id") String id){
+        if(projectService.startNewJob(phonenum,id)){
+            Marker marker = userSevice.getMarker(phonenum);
+            marker.setCredits(25, "接受悬赏任务");
+            userSevice.updateUser(marker);
+            administratorService.updateDailyProjectAccept();
+            return new ResponseObject(1,"成功").toString();
+        }
+        else
+            return new ResponseObject(0,"失败").toString();
+    }
+
+    /**
      * 标注开始新的标注任务
      * @param phonenum 标注者手机号
      * @param id 项目id
@@ -206,8 +301,10 @@ public class ProjectController {
     @PostMapping(value = "/startNewJob", produces="application/text; charset=utf-8")
     public @ResponseBody
     String startNewJob(@RequestParam("phonenum") String phonenum, @RequestParam("id") String id){
-        if(projectService.startNewJob(phonenum,id))
+        if(projectService.startNewJob(phonenum,id)){
+            administratorService.updateDailyProjectAccept();
             return new ResponseObject(1,"成功").toString();
+        }
         else
             return new ResponseObject(0,"失败").toString();
     }
@@ -281,22 +378,14 @@ public class ProjectController {
      */
     @PostMapping(value = "/getprojectlist", produces="application/text; charset=utf-8")
     public @ResponseBody
-    String getProjtreamectlist(@RequestParam("phonenum") String phonenum, @RequestParam("state") int state){
+    String getprojectlist(@RequestParam("phonenum") String phonenum, @RequestParam("state") int state){
 
         System.out.println(phonenum+state);
-        //推荐项目数最大为16
-        final int Max_TuiJian_Number = 16;
         Stream<Project> ret = null;
 
         //推荐项目，迭代3智能推荐
         if(state==1){
-            ArrayList<Project> pros = projectService.getAllProject();
-            Collections.shuffle(pros);
-            ret = pros.stream()
-                    .filter((p) -> !p.getMarkerList().contains(phonenum))
-                    .filter((p) -> p.getMarkedPersonNum() > p.getMarkerList().size())
-                    .filter((p) -> !p.isEnded())
-                    .limit(Max_TuiJian_Number);
+            ret = recommandProject(phonenum).stream();
         //全部项目
         }else if(state==2){
             ret = projectService.getAllProject().stream()
@@ -309,8 +398,8 @@ public class ProjectController {
                     .map((id) -> projectService.getProject(id));
         }
 
-        String str = ret.map((p) -> new ResProject(p).toString())
-                .reduce((p1,p2) -> p1 + '-' + p2)
+        String str = ret.map((p) -> JSON.toJSONString(p))
+                .reduce((p1,p2) -> p1 + "-;-" + p2)
                 .orElse("");
 
         System.out.println(str);
@@ -346,6 +435,11 @@ public class ProjectController {
 
         if (categories.isEmpty()){
             return new ResponseObject(-4,"未填写分类！如无合适分类请填写其他").toString();
+        }
+
+        Uploader uploader = userSevice.getUploader(owner);
+        if (uploader.getCredits() < markedPersonNum*award){
+            return new ResponseObject(-4,"积分不足，请积分页面充值！").toString();
         }
 
         try{
@@ -405,13 +499,14 @@ public class ProjectController {
             }
 
             ArrayList<String> tagArr = new ArrayList<>(Arrays.asList(tags.split("；")));
-            Project project = new Project(projectname,type,projectId,cut,award,description,owner,markedPersonNum,tagArr,picNames,tagcolor,tagState);
+            Project project = new Project(projectname,type,projectId,0.25,award,description,owner,markedPersonNum,tagArr,picNames,tagcolor,tagState);
             project.setClassificationList(new ArrayList<>(categories));
-            System.out.println(JSON.toJSON(project));
             projectService.startNewProject(project);
             //测试
             System.out.println(JsonHelper.project2json(projectService.getProject(projectId)));
             //测试end
+
+            administratorService.updateDailyProjectUpload();
             return new ResponseObject(1,"上传成功").toString();
 
         }catch (Exception e){
@@ -421,6 +516,10 @@ public class ProjectController {
         }
     }
 
+    /**
+     * 递归删除文件
+     * @param dir
+     */
     public static void deleteDir(File dir){
         if(dir.isDirectory()){
             File[] files = dir.listFiles();
@@ -430,4 +529,239 @@ public class ProjectController {
         }
         dir.delete();
     }
+
+    /**
+     * 个性化推荐项目
+     *
+        方案：基于内容（用户本身） + 协同过滤（用户）
+
+             基于内容：
+             - 用户填写的兴趣
+             - 用户实际的选择
+
+             协同过滤：
+             - 相似用户的选择
+
+     * @param phonenum 标注者手机号
+     * @return 推荐项目列表
+     */
+    private List<Project> recommandProject(String phonenum){
+
+        Map<String, Double> contentMap = contentRecommand(phonenum);
+        Map<String, Double> collabrativeMap = collabrativeFilter(phonenum);
+
+        for (String key : collabrativeMap.keySet()){
+            if (contentMap.containsKey(key)){
+                contentMap.replace(key, contentMap.get(key)+collabrativeMap.get(key));
+            }
+            else{
+                contentMap.put(key, collabrativeMap.get(key));
+            }
+        }
+
+        //降序比较器
+        Comparator<Map.Entry<String, Double>> valueComparator = new Comparator<Map.Entry<String, Double>>() {
+            @Override
+            public int compare(Map.Entry<String, Double> o1,
+                               Map.Entry<String, Double> o2) {
+                return (int) (o2.getValue()-o1.getValue());
+            }
+        };
+        List<Map.Entry<String, Double>> list = new ArrayList<>(contentMap.entrySet());
+        Collections.sort(list,valueComparator);
+
+        List<Project> resProjects = list
+                .stream()
+                .map(entry -> projectService.getProject(entry.getKey()))
+                .collect(Collectors.toList());
+
+        return resProjects;
+    }
+
+    /**
+     * 基于内容
+     * @param phonenum
+     */
+    private Map<String, Double> contentRecommand(String phonenum){
+
+        Marker marker = userSevice.getMarker(phonenum);
+        double[] data = userLikeCount(marker);
+
+        //初始化数据
+        double final_num = data[0];
+        double final_type = data[1];
+        double[] final_classfications = new double[data.length-2];
+        System.arraycopy(data, 2, final_classfications, 0, final_classfications.length);
+
+        //计算
+        final int Max_Campare_Number = 1000;
+        Map<String, Double> map = new HashMap<>();
+        List<Project> projects = projectService.getAllProject()
+                .stream()
+                .filter((p) -> !p.getMarkerList().contains(phonenum))
+                .filter((p) -> p.getMarkedPersonNum() > p.getMarkerList().size())
+                .filter((p) -> !p.isEnded())
+                .limit(Max_Campare_Number)
+                .collect(Collectors.toList());
+
+        for (int i=0; i<projects.size(); i++){
+            Project p = projects.get(i);
+            map.put(p.getId(), countDistribute(p, final_type, final_num, final_classfications));
+        }
+
+        return map;
+    }
+
+
+    /**
+     * 协同过滤
+     * @param phonenum
+     * @return
+     */
+    private Map<String, Double> collabrativeFilter(String phonenum){
+
+        final int k_near_number = 10;
+        Map<String, Double> resMap = new HashMap<>();
+        Marker this_marker = userSevice.getMarker(phonenum);
+        ArrayList<Marker> markers = userSevice.getMarkerList();
+        Map<Marker, Double> simiMap = new HashMap<>();
+
+        for (Marker marker : markers){
+            double similarity = campareMarkerSimilarity(this_marker, marker);
+            simiMap.put(marker, similarity);
+        }
+
+        //降序比较器
+        Comparator<Map.Entry<Marker, Double>> valueComparator = new Comparator<Map.Entry<Marker, Double>>() {
+            @Override
+            public int compare(Map.Entry<Marker, Double> o1,
+                               Map.Entry<Marker, Double> o2) {
+                return (int) (o2.getValue()-o1.getValue());
+            }
+        };
+        List<Map.Entry<Marker, Double>> list = new ArrayList<>(simiMap.entrySet());
+        Collections.sort(list,valueComparator);
+
+        //选出相似最高的k个标注者
+        List<Marker> wait_markers = list.stream()
+                .limit(k_near_number)
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList());
+
+        for (Marker marker : wait_markers){
+            List<Project> projects = marker.getJobList().stream()
+                    .map(id -> projectService.getProject(id))
+                    .filter((p) -> !p.getMarkerList().contains(phonenum))
+                    .filter((p) -> p.getMarkedPersonNum() > p.getMarkerList().size())
+                    .filter((p) -> !p.isEnded())
+                    .collect(Collectors.toList());
+
+            for (Project p : projects){
+                resMap.put(p.getId(), 0.5);
+            }
+        }
+        return resMap;
+    }
+
+    /**
+     * 计算两个用户间的相似度
+     * @param m1
+     * @param m2
+     * @return 相似度 0~1
+     */
+    private double campareMarkerSimilarity(Marker m1, Marker m2){
+
+        double[] likecount1 = userLikeCount(m1);
+        double[] likecount2 = userLikeCount(m2);
+
+        double[] fiveD1 = m1.getFiveDimension();
+        double[] fiveD2 = m2.getFiveDimension();
+
+        double c1 = 0, c2 = 0, c3 = 0;
+        for (int i=0; i<likecount1.length; i++){
+            c1 += likecount1[i]*likecount2[i];
+            c2 += likecount1[i]*likecount2[i];
+            c3 += likecount1[i]*likecount2[i];
+        }
+        for (int i=0; i<fiveD1.length; i++){
+            c1 += fiveD1[i]*fiveD2[i];
+            c2 += fiveD1[i]*fiveD2[i];
+            c3 += fiveD1[i]*fiveD2[i];
+        }
+
+        if (Math.sqrt(c2)*Math.sqrt(c3)==0) return 0;
+        return  c1 / (Math.sqrt(c2)*Math.sqrt(c3));
+    }
+
+    /**
+     * 计算出用户兴趣和实际选择整合和的选择倾向
+     * @param marker
+     * @return
+     */
+    private double[] userLikeCount(Marker marker){
+
+        //用户填写兴趣
+        int num = marker.getInterestNum();
+        int type = marker.getInterestType();
+        double[] categories = ClassificationHelper.converToIntArray(marker.getInterestClassification());
+
+        //用户实际偏好
+        List<Project> userProjects = marker.getMarkerJobList()
+                .stream()
+                .map(job -> projectService.getProject(job.getId()))
+                .collect(Collectors.toList());
+        int pSize = userProjects.size();
+
+        //获取用户实际偏好数据
+        double realNum = 0;
+        double realType[] = new double[4];
+        double realCategories[] = new double[ClassificationHelper.getClassfications().size()];
+        for(int i=0; i<pSize; i++){
+            Project p = userProjects.get(i);
+            realNum += p.getPicList().size();
+            realType[p.getType()]++;
+            double[] tmp = ClassificationHelper.converToIntArray(p.getClassificationList());
+            for (int j=0; j<tmp.length; j++){
+                if (tmp[j]==1){
+                    realCategories[j]++;
+                }
+            }
+        }
+
+        //标准化
+        double rNum = pSize == 0 ? 0 : realNum / pSize;
+        int rType = 1;
+        if (realType[rType]<realType[2]){
+            rType = 2;
+        }
+        if (realType[rType]<realType[3]){
+            rType = 3;
+        }
+
+        //实际与兴趣加权整合
+        final double const_Contri = 20;
+        double final_num = 0, final_type = 0;
+        double[] final_classfications = new double[ClassificationHelper.getClassfications().size()];
+
+        final_num = (const_Contri*num + rNum*pSize) / (const_Contri+pSize);
+
+        if (realType[rType] >= const_Contri){
+            final_type = rType;
+        }
+        else{
+            final_type = type;
+        }
+
+        for (int i=0; i<categories.length; i++){
+            final_classfications[i] = (realCategories[i]+categories[i]*pSize) / (const_Contri+pSize);
+        }
+
+        double[] res = new double[final_classfications.length+2];
+        res[0] = final_num;
+        res[1] = final_type;
+        System.arraycopy(final_classfications, 0, res, 2, final_classfications.length);
+
+        return res;
+    }
+
 }

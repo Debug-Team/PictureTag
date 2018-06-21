@@ -119,7 +119,7 @@ public class ZipHelper {
                     continue;
                 }
                 bis = new BufferedInputStream(zipFile.getInputStream(entry));
-                file = new File(destDir +File.separator+ entry.getName().replaceAll(" ","#"));
+                file = new File(destDir +File.separator+ entry.getName().replaceAll(" ",""));
                 parentFile = file.getParentFile();
                 if (parentFile != null && (!parentFile.exists())) {
                     parentFile.mkdirs();

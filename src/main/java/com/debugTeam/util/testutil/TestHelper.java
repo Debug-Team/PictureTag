@@ -1,5 +1,6 @@
 package com.debugTeam.util.testutil;
 
+import com.debugTeam.dao.AdministratorDao;
 import com.debugTeam.dao.ProjectDao;
 import com.debugTeam.dao.TagDao;
 import com.debugTeam.dao.UserDao;
@@ -22,6 +23,7 @@ public class TestHelper {
     public static final ProjectDao PROJECT_DAO;
     public static final TagDao TAG_DAO;
     public static final UserDao USER_DAO;
+    public static final AdministratorDao ADMINISTRATOR_DAO;
 
 
     static {
@@ -34,5 +36,6 @@ public class TestHelper {
         PROJECT_DAO = applicationContext.getBean(ProjectDao.class);
         TAG_DAO = applicationContext.getBean(TagDao.class);
         USER_DAO = applicationContext.getBean(UserDao.class);
+        ADMINISTRATOR_DAO = applicationContext.getBean(AdministratorDao.class);
     }
 }

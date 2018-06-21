@@ -1,12 +1,10 @@
 package com.debugTeam.util;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.debugTeam.entity.Project;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class JsonHelper {
 
@@ -19,6 +17,42 @@ public class JsonHelper {
 
         return JSON.toJSONString(project);
 
+    }
+
+    /**
+     * 将积分历史转换为json
+     * @param map
+     * @return
+     */
+    public static String creditsHistory2json(Map<String, String> map){
+
+        ArrayList<String> time = new ArrayList<>();
+        ArrayList<String> detail = new ArrayList<>();
+        ArrayList<String> credits = new ArrayList<>();
+
+        List<Map.Entry<String, String>> list = new ArrayList<>(map.entrySet());
+        //升序比较器
+        Comparator<Map.Entry<String, String>> valueComparator = new Comparator<Map.Entry<String, String>>() {
+            @Override
+            public int compare(Map.Entry<String, String> o1,
+                               Map.Entry<String, String> o2) {
+                return o1.getKey().compareTo(o2.getKey());
+            }
+        };
+        Collections.sort(list, valueComparator);
+
+        for (Map.Entry<String, String> entry : list){
+            time.add(entry.getKey());
+            credits.add(entry.getValue().split("!")[0]);
+            detail.add(entry.getValue().split("!")[1]);
+        }
+
+        JSONObject json = new JSONObject();
+        json.put("time", time);
+        json.put("detail", detail);
+        json.put("credits", credits);
+
+        return json.toJSONString();
     }
 
     /**

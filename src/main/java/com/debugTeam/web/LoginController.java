@@ -3,6 +3,7 @@ package com.debugTeam.web;
 import com.debugTeam.entity.Marker;
 import com.debugTeam.entity.MarkerJob;
 import com.debugTeam.entity.Project;
+import com.debugTeam.service.AdministratorService;
 import com.debugTeam.service.LoginService;
 import com.debugTeam.service.ProjectService;
 import com.debugTeam.service.UserSevice;
@@ -33,6 +34,8 @@ public class LoginController {
     private UserSevice userSevice;
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private AdministratorService administratorService;
 
     /**
      * 登陆验证
@@ -50,10 +53,13 @@ public class LoginController {
         try {
             if(userphone.equals("admin")&&password.equals("admin"))
                 usertype = -1;
-            else if(loginService.login(userphone,password)==1)
+            else if(loginService.login(userphone,password)==1){
                 usertype = 1;
+                administratorService.updateDailyUploaderLoginNum();
+            }
             else {
                 usertype = 0;
+                administratorService.updateDailyMarkerLoginNum();
                 if(!kickOut(userphone))
                     System.out.println("kickout fail");
             }
@@ -91,6 +97,14 @@ public class LoginController {
                 retjson = new ResponseObject(-1,"注册失败，不符合规则的账户名或密码").toString();
             else{
                 loginService.signup(username,password,phone,type);
+                if (type.equals("1")){
+                    administratorService.updateDailyUploaderRegisterNum();
+                    administratorService.updateDailyUploaderLoginNum();
+                }
+                else if(type.equals("0")){
+                    administratorService.updateDailyMarkerRegisterNum();
+                    administratorService.updateDailyMarkerLoginNum();
+                }
                 retjson = new ResponseObject(1,"注册成功").toString();
             }
         } catch (UserDuplicateException e) {

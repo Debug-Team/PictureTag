@@ -1,8 +1,163 @@
+initUserRegister();
+initUserLogin();
 initWholeProjectPie();
 initDoingProjectPie();
 initFinishedProjectPie();
 initTagAndWorkerNumChart();
 setTagAndWorkerNumChart(1);
+initProjectUpGetChart();
+initPlatformProfitsChart();
+initplatformStatusChart();
+function initUserRegister() {
+    var result = {};
+    $.ajax({
+        url:'/loginSignupCheck',
+        type:'post',
+        async:false,
+        success: function (data) {
+            result = JSON.parse(data);
+
+        },
+        error: function () {
+            alert("fail");
+        }
+    })
+    // console.log(result);
+    var date_array = result.dateList;
+
+    var requestor_data = result.uploaderSignup;
+    var marker_data = result.markerSignup;
+    var dom = document.getElementById("UserResgisterChart");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        title: {
+            text: '用户注册情况表'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['上传者','标记者']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: date_array
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:'上传者',
+                type:'line',
+                stack: '总量',
+                data:requestor_data,
+                smooth:true
+            },
+            {
+                name:'标记者',
+                type:'line',
+                stack: '总量',
+                data:marker_data,
+                smooth:true
+            }
+        ]
+    };
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+
+}
+
+function initUserLogin() {
+    var result = {};
+    $.ajax({
+        url:'/loginSignupCheck',
+        type:'post',
+        async:false,
+        success: function (data) {
+            result = JSON.parse(data);
+
+        },
+        error: function () {
+            alert("fail");
+        }
+    })
+    // console.log(result);
+    var date_array = result.dateList;
+
+    var requestor_data = result.uploaderLogin;
+    var marker_data = result.markerLogin;
+
+    var dom = document.getElementById("UserLoginChart");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        title: {
+            text: '用户登录情况表'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['上传者','标记者']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: date_array
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:'上传者',
+                type:'line',
+                stack: '总量',
+                data:requestor_data,
+                smooth:true
+            },
+            {
+                name:'标记者',
+                type:'line',
+                stack: '总量',
+                data:marker_data,
+                smooth:true
+            }
+        ]
+    };
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+
+}
 
 /**
  * 初始化总任务统计图
@@ -518,3 +673,251 @@ function setTagAndWorkerNumChart(type) {
         });
     }
 }
+
+function initProjectUpGetChart() {
+    var result = {};
+    $.ajax({
+        url:'/ProjectUploadAccept',
+        type:'post',
+        async:false,
+        success: function (data) {
+            result = JSON.parse(data);
+
+        },
+        error: function () {
+            alert("fail");
+        }
+    })
+
+    var date_array  = result.dateList;
+
+    var projectUpload = result.projectUpload;
+    var projectAccept = result.projectAccept;
+
+    var dom = document.getElementById("projextUpGet");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        title: {
+            text: '今日网站项目上传接受情况'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['上传数量','接受数量']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: date_array
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:'上传数量',
+                type:'line',
+                stack: '总量',
+                data:projectUpload
+            },
+            {
+                name:'接受数量',
+                type:'line',
+                stack: '总量',
+                data:projectAccept
+            }
+        ]
+    };
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+}
+
+function initPlatformProfitsChart() {
+    var result = {};
+    $.ajax({
+        url:'/platformProfits',
+        type:'post',
+        async:false,
+        success: function (data) {
+            result = JSON.parse(data);
+
+        },
+        error: function () {
+            alert("fail");
+        }
+    })
+
+    var date_array  = result.dateList;
+
+    var creditsList = result.creditsList;
+    var cutList = result.cutList;
+
+    // for(var i= 0;i<cutList.length;i++){
+    //     cutList[i] = cutList[i] * creditsList[i];
+    // }
+
+    var dom = document.getElementById("platformProfitsChart");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        title: {
+            text: '7日平台盈利情况表'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['赚取积分总量','积分分成率']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: date_array
+        },
+        yAxis:[
+            {
+                name:'积分量',
+                type:'value'
+            },
+            {
+                name:'利率',
+                type:'value'
+            }
+        ],
+        series: [
+            {
+                name:'赚取积分总量',
+                yAxisIndex:0,
+                type:'line',
+                stack: '总量',
+                data:creditsList,
+                smooth:true,
+
+            },
+            {
+                name:'积分分成率',
+                yAxisIndex:1,
+                type:'line',
+                stack: '总量',
+                data:cutList,
+                smooth:true
+            }
+        ]
+    };
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+}
+
+function initplatformStatusChart() {
+
+    var result = {};
+    $.ajax({
+        url:'/platformStatus',
+        type:'post',
+        async:false,
+        success: function (data) {
+            result = JSON.parse(data);
+
+        },
+        error: function () {
+            alert("fail");
+        }
+    });
+
+    var dom = document.getElementById("platformStatusCharts");
+    var myChart = echarts.init(dom);
+    var app = {};
+    var dataList = new Array();
+    dataList.push(result.loginRate);
+    dataList.push(result.signupRate);
+    dataList.push(result.uploadRate);
+    dataList.push(result.acceptRate);
+    dataList.push(result.creditsRate);
+    dataList.push(result.cutRate);
+
+    option = null;
+    app.title = '得分：'+result.score;
+
+    document.getElementById("recommand").innerText = result.recommand;
+
+    option = {
+        title: {
+            text: '得分：'+result.score
+        },
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        legend: {
+            data:['变化量']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        yAxis : [
+            {
+                type : 'category',
+                axisTick : {show: false},
+                data : ['登录','注册','上传项目','接受项目','积分','分成率']
+            }
+        ],
+        series : [
+            {
+                name:'变化量',
+                type:'bar',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside'
+                    }
+                },
+                data:dataList
+            }
+        ]
+    };
+    ;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+
+
+}
+

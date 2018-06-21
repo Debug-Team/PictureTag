@@ -280,7 +280,7 @@ function acceptWantedTask(obj) {
     var phonenum = getUserPhone();
     var result_jsons = null;
     $.ajax({
-        url:'/startNewJob',
+        url:'/startNewWantedJob',
         type:'post',
         async:false,
         data:{

@@ -19,9 +19,9 @@ public class ClassificationHelper {
         return Arrays.asList(classifications);
     }
 
-    public static int[] converToIntArray(ArrayList<String> categories){
+    public static double[] converToIntArray(ArrayList<String> categories){
         HashMap<String,Integer> map = getClassficationMap();
-        int res[] = new int[classifications.length];
+        double res[] = new double[classifications.length];
 
         for (String s: categories){
             res[map.get(s)] = 1;

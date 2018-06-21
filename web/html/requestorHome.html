@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300, 400, 500" rel="stylesheet">
     <link href="../css/requestorHome.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/main.840c01.css">
+    <link rel="stylesheet" href="../css/requestorUtil.css">
 
 </head>
 <body>
@@ -50,8 +51,13 @@
                             </a>
                         </li>
                         <li class="_29OpZ xLon9" >
-                            <a class="_3t5Ep _1CBrG" id="credits">
+                            <a class="_3t5Ep _1CBrG" id="credits" href="requestorCreditDetail.html">
                                 积分:
+                            </a>
+                        </li>
+                        <li class="_29OpZ xLon9" >
+                            <a class="_3t5Ep _1CBrG" onclick="buyCredit()" style="cursor: pointer;">
+                                充值积分
                             </a>
                         </li>
                         <li class="_29OpZ xLon9" >
@@ -162,10 +168,20 @@
         <!--</div>-->
     <!--</div>-->
 
-    <script src="../js/requestorHome.js"></script>
-    <script src="../js/requestorUtil.js"></script>
-    <script src="../js/util.js"></script>
-
+    <!--遮罩-->
+    <!--<div id="overlay_credit" class="overlay_credit"></div>-->
+    <!--<div id="container_credit" class="container_credit">-->
+        <!--<form class="credit_form">-->
+            <!--<img src="../image/close.gif" class="closeImg" onclick="closeForm()">-->
+            <!--<h2>积分充值</h2>-->
+            <!--<label>充值金额：</label>-->
+            <!--<input id="num_buyCredit" type="number" min="1" class="inputArea" required/>-->
+            <!--<div>-->
+                <!--<button type="button" onclick="closeForm()">取消</button>-->
+                <!--<button type="submit">充值</button>-->
+            <!--</div>-->
+        <!--</form>-->
+    <!--</div>-->
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
@@ -183,6 +199,11 @@
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script src="../js/jquery.easing.min.js"></script>
     <script src="../js/jquery.scrollify.min.js"></script>
+
+    <script src="../js/requestorHome.js"></script>
+    <script src="../js/requestorUtil.js"></script>
+    <script src="../js/util.js"></script>
+
     <script>
         // $(function() {
         //

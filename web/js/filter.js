@@ -5,7 +5,7 @@ var filter = new Vue({
         conditionList:[
             {title:"类型", items:["分类标注", "标框标注", "边界标注"]},
             {title:"分类", items:getCategoriesList()},
-            {title:"是否结束", items:["已结束", "未结束"]}],
+            {title:"是否结束", items:["已结束", "进行中"]}],
         totalSize: 0
     },
     methods:{

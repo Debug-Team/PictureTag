@@ -40,6 +40,11 @@
 							<!--<input type="button" value="点击弹出框" id="btn1">-->
 						</a>
 					</li>
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="markerCreditDetail.html">
+                            个人积分
+                        </a>
+                    </li>
 					<li class="_29OpZ xLon9" >
 						<a class="_3t5Ep _1CBrG" href="workerHome.html">
 							主页
@@ -174,6 +179,18 @@
 	<div class="clearfix"></div>
 </div>
 <div  class="about">
+    <div class="container">
+        <h3 class="tittle">完成项目评分情况</h3>
+        <!--<p class="abt-para">Sed ut perspiciatis unde omnis iste natus error sit-->
+        <!--voluptatem accusantium doloremque laudantium, totam-->
+        <!--rem aperiam, eaque ipsa quae ab illo inventore veritatis-->
+        <!--et quasi architecto beatae vitae dicta sunt explicabo.-->
+        <!--Nemo enim ipsam voluptatem quia voluptas sit aspernatur . </p>-->
+    </div>
+    <div id ="creditsBoxPlotChart"  style="margin: auto;width: 1200px; height:400px;"></div>
+    <div class="clearfix"></div>
+</div>
+<div  class="about">
 	<div class="container">
 		<h3 class="tittle">平均标记时间变化线性回归</h3>
 		<!--<p class="abt-para">Sed ut perspiciatis unde omnis iste natus error sit-->
@@ -196,7 +213,7 @@
             <h2>成就等级</h2>
         </div>
         <div style="margin:20px 0;vertical-align: middle">
-            <h3 style="float: left;width: 100px;text-align: center;margin-top: 80px;margin-left: 10px;color: rgba(99,184,255);">整体标注</h3>
+            <h3 style="float: left;width: 100px;text-align: center;margin-top: 80px;margin-left: 10px;color: #63b8ff;">整体标注</h3>
             <div style="width: 100px" class="mature-progress">
                 <div class="mature-progress-bottom">
                     <!-- 等级样式  v0 v1 v2 v3 v4 v5 -->
@@ -241,7 +258,7 @@
             </div>
         </div>
         <div style="margin:20px 0;vertical-align: middle">
-            <h3 style="float: left;width: 100px;text-align: center;margin-top: 80px;margin-left: 10px;color: rgba(99,184,255);">标框标注</h3>
+            <h3 style="float: left;width: 100px;text-align: center;margin-top: 80px;margin-left: 10px;color: #63b8ff;">标框标注</h3>
             <div style="width: 100px" class="mature-progress">
                 <div class="mature-progress-bottom">
                     <!-- 等级样式  v0 v1 v2 v3 v4 v5 -->
@@ -286,7 +303,7 @@
             </div>
         </div>
         <div style="margin:20px 0;vertical-align: middle">
-            <h3 style="float: left;width: 100px;text-align: center;margin-top: 80px;margin-left: 10px;color: rgba(99,184,255);">边界标注</h3>
+            <h3 style="float: left;width: 100px;text-align: center;margin-top: 80px;margin-left: 10px;color: #63b8ff;">边界标注</h3>
             <div style="width: 100px" class="mature-progress">
                 <div class="mature-progress-bottom">
                     <!-- 等级样式  v0 v1 v2 v3 v4 v5 -->
@@ -359,8 +376,9 @@
 <div id="mask_shadow"></div>
 
 <script src="../js/echarts.js"></script>
-<script src="../js/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>	<!--scrolling js-->
+<script src="../js/dataTool.min.js"></script>
+<script src="../js/jquery-1.11.0.min.js"></script>
+<script src="../js/bootstrap.js"></script>	<!--scrolling js-->
 <script src="../js/util.js"></script>
 <script src="../js/workerZone.js"></script>
 <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>

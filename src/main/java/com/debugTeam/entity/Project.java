@@ -1,8 +1,12 @@
 package com.debugTeam.entity;
 
+import com.debugTeam.util.SimpleHelper;
+
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -20,7 +24,7 @@ public class Project implements Serializable {
     private String owner;  //项目发起者手机号
     private int type;  //项目类型 1-整体标注 2-标框标注 3-轮廓标注
     private double cut;  //项目平台分成，取值范围0-1
-    private int award;  //给所有标记者的奖励
+    private int award;  //给每个标记者的奖励
     private boolean isEnded;  //项目是否结束
     private boolean isFull;  //选这个项目的是否满员
     private int markedPersonNum;  //这个项目需要多少人进行重复标记
@@ -71,12 +75,18 @@ public class Project implements Serializable {
     //获取悬赏榜单排名分
     public double getRankCredit() {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-        String date = df.format(new Date());
-        long remainTime = Long.parseLong(startTime) - Long.parseLong(date);  //剩余时间
+        Date startDate = null;
+        try {
+            startDate = df.parse(startTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date currentDate = new Date();
+        int remainTime = SimpleHelper.daysBetween(startDate, currentDate);  //剩余时间
         int picNum = this.picList.size();  //数据量
         int markerNum = markerList.size();
         int neededMarkerRate = (markedPersonNum - markerNum) / markedPersonNum;  // 剩余需要人数/总人数
-        return (remainTime / 1000000) + picNum + (neededMarkerRate * 100);
+        return remainTime + picNum + (neededMarkerRate * 100);
     }
 
     //添加标记者

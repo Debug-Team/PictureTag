@@ -37,6 +37,7 @@ public class Marker implements Serializable {
     private int[] jobTypeNum;  //三类标注的数量，依次为：整体标注、标框标注、轮廓标注
     private int[] timeMarkNum;  //每个小时段标注的图片数量统计
     private int kickOutCount;  //被踢出数
+    private Map<String, String> creditsHistory;  //积分获取记录<date, credits-cause>
 
     //每日任务
     private String lastLoginTime;  //最后登录时间
@@ -81,6 +82,7 @@ public class Marker implements Serializable {
         this.interestClassification = new ArrayList<>();
 
         this.kickOutCount = 0;
+        this.creditsHistory = new HashMap<>();
     }
 
     //获取五维数据 0-信誉度 1-勤劳 2-经验 3-积分 4-评分 均为100分制
@@ -88,7 +90,7 @@ public class Marker implements Serializable {
         double[] result = new double[5];
 
         //计算信誉
-        result[0] = 100 - kickOutCount > 0 ? 100 - kickOutCount : 0;
+        result[0] = 80 - kickOutCount > 0 ? 80 - kickOutCount : 0;
 
         //计算勤劳
         double industriousScore = 0;
@@ -99,7 +101,7 @@ public class Marker implements Serializable {
             industriousScore = industriousScore/hotMap.size() + 50;
         if(industriousScore > 100)  //懒得想好的平均标记张数map到100分区间
             industriousScore = 100;
-        result[1] = industriousScore;
+        result[1] = industriousScore==0 ? 70 : industriousScore;
 
         //计算经验
         double empiricalValueScore = 0;
@@ -122,7 +124,7 @@ public class Marker implements Serializable {
         result[3] = creditsScore;
 
         //计算评分
-        result[4] = 100;
+        result[4] = 80;
         for(MarkerJob job: jobList) {
             if(job.getScore() != 0) {
                 result[4] = jobList.stream()
@@ -240,6 +242,14 @@ public class Marker implements Serializable {
         return result;
     }
 
+    public MarkerJob getMarkerJob(String id) {
+        for(MarkerJob mj : jobList) {
+            if (mj.getId().equals(id))
+                return mj;
+        }
+        return null;
+    }
+
     //更新已标记未标记列表
     public void updateList(String id, String picName) {
         for(MarkerJob mj : jobList) {
@@ -284,6 +294,15 @@ public class Marker implements Serializable {
             empiricalValueMap.put(date, empiricalValueMap.get(date) + empiricalValue);
         else
             empiricalValueMap.put(date, empiricalValue);
+    }
+
+    //更新经验值和经验值记录表
+    public void setCredits(int credits, String cause) {
+        this.credits += credits;
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = df.format(new Date());
+        creditsHistory.put(date, credits + "!" + cause);
     }
 
     public ArrayList<Integer> getAveMarkTimeList() {
@@ -349,6 +368,10 @@ public class Marker implements Serializable {
         return hotMap;
     }
 
+    public Map<String, String> getCreditsHistory() {
+        return creditsHistory;
+    }
+
     public Map<String, Integer> getCreditsMap() {
         return creditsMap;
     }
@@ -383,9 +406,5 @@ public class Marker implements Serializable {
 
     public void setEmpiricalValue(int empiricalValue) {
         this.empiricalValue += empiricalValue;
-    }
-
-    public void setCredits(int credits) {
-        this.credits += credits;
     }
 }

@@ -70,7 +70,7 @@ function loadProInfo() {
     projectTitle.innerHTML = titleMessage;
 
     var award = document.getElementById("award");
-    award.innerHTML = "奖励积分：🎁" + project_json.award;
+    award.innerHTML = "奖励积分：🎁" + parseInt(project_json.award*(1-project_json.cut));
 
     var discription = document.getElementById("discription");
     discription.innerHTML = "项目描述：" + project_json.description;
@@ -233,7 +233,7 @@ function startNewJob() {
     });
     // alert((result_json.state==1)?"成功":"失败");
     if(result_json!=null){
-        alert("完成时间限制：10天，逾期将被提出项目并降低信誉度");
+        alert("完成时间限制：10天，逾期将被踢出项目并降低信誉度");
     }
 }
 
@@ -261,4 +261,27 @@ function loadhref() {
         pic_display_img[i].parentNode.href = "workerMarking.html"+"?"+pro__id+"="+ pic_display_img[i].id;
         console.log(pic_display_img.id,88)
     }
+}
+
+function finishMarkerJob() {
+
+    var phonenum = getUserPhone();
+    var proid = window.location.href.split("?")[1];
+    var result_json = {};
+    $.ajax({
+        url:'/finishMakerJob',
+        type:'post',
+        async:false,
+        data:{
+            phonenum:phonenum,
+            id:proid
+        },
+        success:function(data) {
+            result_json = JSON.parse(data)
+        },
+        error:function () {
+            alert("fail")
+        }
+    });
+    return result_json;
 }

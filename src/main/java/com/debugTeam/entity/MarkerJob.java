@@ -1,5 +1,8 @@
 package com.debugTeam.entity;
 
+import com.debugTeam.dao.impl.ProjectDaoImpl;
+import com.debugTeam.dao.impl.UserDaoImpl;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +26,7 @@ public class MarkerJob implements Serializable {
     private double score;  //任务评分
     private boolean isFinished;  //是否完成任务
     private String startTime; //接受任务起始时间
+    private double currentCut;  //接受任务时候的分成
 
     public MarkerJob(String id, ArrayList<String> picList) {
         this.id = id;
@@ -37,6 +41,8 @@ public class MarkerJob implements Serializable {
         this.score = 0;
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         this.startTime = df.format(new Date());
+
+        this.currentCut = calculateCurrentCut();
     }
 
     //更新已标记未标记列表
@@ -44,6 +50,15 @@ public class MarkerJob implements Serializable {
         tagList.add(picName);
         markedPicList.add(picName);
         unmarkedPicList.remove(picName);
+    }
+
+    //计算接任务时候应该获取多少分成
+    private double calculateCurrentCut() {
+        return new ProjectDaoImpl().calculateCurrentCut(this.id);
+    }
+
+    public double getCurrentCut() {
+        return currentCut;
     }
 
     public String getStartTime() {

@@ -7,10 +7,9 @@
     <title>所有项目-DebugTeam</title>
 
     <link rel="stylesheet" href="../css/main.840c01.css">
-
     <link rel="stylesheet" href="../css/requestorProject.css">
-
     <link rel="stylesheet" href="../css/filter.css">
+    <link rel="stylesheet" href="../css/requestorUtil.css">
 
     <script src="../js/util.js"></script>
 </head>
@@ -55,8 +54,13 @@
                 </li>
                 </li>
                 <li class="_29OpZ xLon9" >
-                    <a class="_3t5Ep _1CBrG" id="credits">
+                    <a class="_3t5Ep _1CBrG" id="credits" href="requestorCreditDetail.html">
                         积分:
+                    </a>
+                </li>
+                <li class="_29OpZ xLon9" >
+                    <a class="_3t5Ep _1CBrG" onclick="buyCredit()" style="cursor: pointer;">
+                        充值积分
                     </a>
                 </li>
                 <li class="_29OpZ xLon9" >
@@ -151,6 +155,7 @@
             <canvas v-bind:id="'canvas'+item.id" width="150" height="150" style="background:#48dbfb;"></canvas>
             <button type="button" class="closeButton" @click="closeProject(index)" v-if="!item.isEnded">关闭项目</button>
             <button type="button" class="closeButton evaluateButton" @click="evaluateProject(index)" v-else-if="!item.isEvaluated">评价项目</button>
+            <button type="button" class="closeButton evaluateButton" @click="checkEvaluateProject(index)" v-else-if="item.isEvaluated">查看评价</button>
             <p></p><div class="d_label"><b>类型：</b>{{item.type}}</div><div class="d_label"><b>分类：</b>{{item.categories}}</div><p></p>
             <p></p><div class="d_label"><b>积分：</b>{{item.award + '/人'}}</div><p></p>
             <p></p><div class="d_label"><b>标注人数：</b>{{item.workerNum + '人'}}</div><div class="d_label"><b>参与标注：</b>{{item.workers}}</div><p></p>
@@ -185,6 +190,28 @@
         <div>
             <button type="button" class="btn" @click="closeForm">取消</button>
             <input type="submit" class="btn"/>
+        </div>
+    </fieldset>
+</form>
+<!--查看评价表-->
+<form id="checkEvaluateForm" class="evaluateForm" hidden>
+    <fieldset>
+        <a class="closeImg" @click="closeForm"><img src="../image/close.png"/></a>
+        <h2>评价表</h2>
+        <label style="margin-right: 30px;">项目名称：{{toEvaluateProject.name}}</label>
+        <label>项目ID：{{toEvaluateProject.id}}</label>
+        <!--列表-->
+        <dl v-for="(item, index) in toEvaluateProject.markerList">
+            <div class="imgDIv">
+                <dt><a><img src="../favicon.ico"/></a></dt>
+            </div>
+            <dd>
+                <h4>{{item}}</h4>
+                <label>评分(0~5)：</label><input type="number" min="0" max="5" step="0.1" v-model.number="scoreList[index]" disabled/>
+            </dd>
+        </dl>
+        <div>
+            <button type="button" class="btn" @click="closeForm">取消</button>
         </div>
     </fieldset>
 </form>

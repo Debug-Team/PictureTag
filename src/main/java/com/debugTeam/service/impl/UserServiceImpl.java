@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserSevice{
     public boolean updateUser(Marker marker) {
         return userDao.updateUser(marker);
     }
+
+    @Override
+    public boolean updateUser(Uploader uploader) {
+        return userDao.updateUser(uploader);
+    }
 }

@@ -91,9 +91,21 @@ var project_list = new Vue({
         // this.projectList.push(data2);
     },
     /**
-     * created之后，对每个项目绘制进度图
+     * created之后，对每个项目绘制进度图，解析地址传参的分类
      */
     mounted: function () {
+        //解析地址传参
+        var href = document.location.href;
+        if(href.indexOf("?categoryList=") > 0){
+            var param = href.substr(href.indexOf("?categoryList=")+14);
+            var params = param.split("&");
+            // console.log(params);
+            for(var i = 0; i < params.length; i++){     //解码URI
+                params[i] = decodeURI(params[i]);
+            }
+            filter.selectedList = params;
+        }
+
         for(var i = 0;i < this.projectList.length;i++){
             printRate(this.projectList[i]);
             // clipPreviewImg(this.projectList[i]);
@@ -139,10 +151,21 @@ var project_list = new Vue({
          * @param index
          */
         evaluateProject: function (index) {
-            $(".overlay").show();
-            $(".evaluateForm").show("fast");
+            console.log("1")
+            $("#overlay").show();
+            $("#evaluateForm").show("fast");
             // console.log(this.projectList[index])
             evaluateForm.setToEvaluateProject(this.projectList[index]);     //设置将评价的项目
+        },
+        /**
+         * 查看项目评价
+         * @param index
+         */
+        checkEvaluateProject: function (index) {
+            console.log("2")
+            $("#overlay").show();
+            $("#checkEvaluateForm").show("fast");
+            checkEvaluateForm.setToEvaluateProject(this.projectList[index]);        //设置将查看的项目
         }
     },
     computed:{
@@ -222,7 +245,7 @@ var evaluateForm = new Vue({
         setToEvaluateProject: function (project) {
             this.toEvaluateProject = project;
             //初始化scoreList
-            scoreList = new Array(project.markerList.lenth);
+            this.scoreList = new Array(project.markerList.lenth);
         },
         /**
          * 检查并修正评分
@@ -247,6 +270,7 @@ var evaluateForm = new Vue({
             //清空要评价的项目
             this.toEvaluateProject = {};
             this.scoreList = [];
+            window.location.reload();
         },
         /**
          * 提交评价表
@@ -281,6 +305,39 @@ var evaluateForm = new Vue({
 });
 
 /**
+ * 查看评价
+ */
+var checkEvaluateForm = new Vue({
+    el: "#checkEvaluateForm",
+    data: {
+        toEvaluateProject: {},
+        scoreList: []
+    },
+    methods:{
+        /**
+         * 设置将查看评价的项目
+         * @param project
+         */
+        setToEvaluateProject: function (project) {
+            this.toEvaluateProject = project;
+            //初始化scoreList
+            this.scoreList = getProjectRate(project.id);
+        },
+        /**
+         * 关闭评价表
+         */
+        closeForm: function () {
+            $("#checkEvaluateForm").hide();
+            $("#overlay").hide();
+            //清空要评价的项目
+            this.toEvaluateProject = {};
+            this.scoreList = [];
+            window.location.reload();
+        }
+    }
+});
+
+/**
  * @return 装有project的对象数组
  */
 function getProjectList() {
@@ -298,11 +355,40 @@ function getProjectList() {
             console.log(data);
             var temp = data.split("-;-");
             for(var i = 0;i < temp.length;i++){
+                if(temp == ""){
+                    break;
+                }
                 result.push(JSON.parse(temp[i]));
             }
         },
         error: function () {
             alert("fail");
+        }
+    })
+    return result;
+}
+
+/**
+ * 获取项目的评价
+ * @param projectId
+ * @returns {Array} 评分数组
+ */
+function getProjectRate(projectId) {
+    var result = [];
+    $.ajax({
+        url:'/getProjectRate',
+        type:'post',
+        async: false,
+        data:{
+            id:projectId
+        },
+        success: function (data) {
+            console.log(data);
+            var json = JSON.parse(data);
+            result = json.scorelist;
+        },
+        error: function () {
+            alert("获取项目评价失败");
         }
     })
     return result;

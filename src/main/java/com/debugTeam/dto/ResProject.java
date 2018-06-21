@@ -12,6 +12,7 @@ public class ResProject {
     private String discription;
     private int type;
     private boolean isEnded;
+    private String title;
 
     public ResProject(String id, String previewPic, double process, String discription, int type) {
         this.id = id;
@@ -28,6 +29,15 @@ public class ResProject {
         this.discription = project.getDescription();
         this.type = project.getType();
         this.isEnded = project.isEnded();
+        this.title = project.getName();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public boolean isEnded() {

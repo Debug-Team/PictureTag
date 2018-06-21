@@ -90,6 +90,9 @@ function initWholeProjectPie() {
             }
         ]
     };
+    myChart.on('click', function (params) {
+        window.location.href = "../html/requestorProject.html?categoryList="+params.name;
+    })
 
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
@@ -183,6 +186,9 @@ function initDoingProjectPie() {
             }
         ]
     };
+    myChart.on('click', function (params) {
+        window.location.href = "../html/requestorProject.html?categoryList="+params.name+"&"+"进行中";
+    })
 
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
@@ -276,6 +282,9 @@ function initFinishedProjectPie() {
             }
         ]
     };
+    myChart.on('click', function (params) {
+        window.location.href = "../html/requestorProject.html?categoryList="+params.name+"&"+"已完成";
+    })
 
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
