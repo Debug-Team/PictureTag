@@ -77,6 +77,10 @@ function initUserRegister() {
             }
         ]
     };
+
+    myChart.on('click', function (params) {
+        window.location.href = "../html/adminLogSignDetail.html"+"?SignUp&"+params.name;
+    });
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
     }
@@ -153,6 +157,11 @@ function initUserLogin() {
             }
         ]
     };
+
+    myChart.on('click', function (params) {
+        window.location.href = "../html/adminLogSignDetail.html"+"?Login&"+params.name;
+    });
+
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
     }
