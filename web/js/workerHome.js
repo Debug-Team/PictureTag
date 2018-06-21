@@ -446,6 +446,21 @@ var project_list = new Vue({
     updated:function(){
 
     },
+    mounted: function () {
+        //解析地址传参
+        var href = document.location.href;
+        if(href.indexOf("?categoryList=") > 0){
+            var param = href.substr(href.indexOf("?categoryList=")+14);
+            var params = param.split("&");
+            // console.log(params);
+            for(var i = 0; i < params.length; i++){     //解码URI
+                params[i] = decodeURI(params[i]);
+            }
+            filter.selectedList = params;
+        }
+        this.setShowState(3);
+
+    },
     methods: {
         /**
          * 设置显示的状态
