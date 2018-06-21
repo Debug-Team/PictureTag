@@ -39,6 +39,29 @@ public class StatisticsController {
     private AdministratorService administratorService;
 
     /**
+     * 得到当日平台积分明细
+     * @param date 时间
+     * @return json
+     */
+    @PostMapping(value = "/dailyProfitsDetail", produces="application/text; charset=utf-8")
+    public @ResponseBody
+    String dailyProfitsDetail(@RequestParam("date") String date){
+        Administrator administrator = administratorService.getAdministrator();
+        Map<String, String> map = administrator.getCreditsHistory();
+        Map<String, String> resmap = new HashMap<>();
+
+
+        List<Map.Entry<String, String>> list = new ArrayList<>(map.entrySet());
+        for (Map.Entry<String, String> entry : list){
+            if(entry.getKey().substring(5,10).equals(date)){
+                resmap.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        return JsonHelper.creditsHistory2json(resmap);
+    }
+
+    /**
      * 平台运行状况
      * 登录注册活跃度，任务注册接取活跃度，积分获取，分成变动
      * @return json

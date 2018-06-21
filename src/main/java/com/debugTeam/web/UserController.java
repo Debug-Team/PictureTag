@@ -3,6 +3,7 @@ package com.debugTeam.web;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.debugTeam.entity.*;
+import com.debugTeam.service.AdministratorService;
 import com.debugTeam.service.ProjectService;
 import com.debugTeam.service.UserSevice;
 import com.debugTeam.util.JsonHelper;
@@ -23,6 +24,8 @@ public class UserController {
     private UserSevice userSevice;
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private AdministratorService administratorService;
 
     /**
      * 上传者积分充值
@@ -35,8 +38,11 @@ public class UserController {
     String uploaderRecharge(@RequestParam("userphone") String userphone,
                           @RequestParam("amounts") int amounts){
         Uploader uploader = userSevice.getUploader(userphone);
+        Administrator administrator = administratorService.getAdministrator();
         uploader.setCredits(amounts, "充值积分");
+        administrator.setCredits(amounts, "充值积分", 0);
         userSevice.updateUser(uploader);
+        administratorService.updateAdministrator(administrator);
 
         return new ResponseObject(1,"充值成功！").toString();
     }
@@ -97,11 +103,14 @@ public class UserController {
     String markerExchange(@RequestParam("userphone") String userphone,
                                   @RequestParam("amounts") int amounts){
         Marker marker = userSevice.getMarker(userphone);
+        Administrator administrator = administratorService.getAdministrator();
         if (marker.getCredits() < amounts){
             return new ResponseObject(-1, "积分不足，兑换失败").toString();
         }
 
         marker.setCredits(-amounts,"积分兑换");
+        administrator.setCredits(-amounts, "积分兑换", 0);
+        administratorService.updateAdministrator(administrator);
         userSevice.updateUser(marker);
         return new ResponseObject(1, "兑换"+amounts+"积分！").toString();
     }
