@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width ,  user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>网站积分明细-DebugTeam</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300, 400, 500" rel="stylesheet">
+    <link rel="stylesheet" href="../css/creditDetail.css">
+    <link rel="stylesheet" href="../css/main.840c01.css">
+    <link rel="stylesheet" href="../css/markerCredits.css">
+</head>
+<body>
+<!--导航栏-->
+<header class="niA6p _3PSbf" >
+    <nav class="_1M8LQ _2xMJp" >
+        <div class="_2jZzC" >
+            <a class="_2-Pvv _1CBrG"  href="/" >
+                <svg viewbox="0 0 32 32" width="32" height="32" aria-labelledby="unsplash-home" aria-hidden="false">
+                    <!--<path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z" data-reactid="47"></path>-->
+                    <rect x="1" y="1" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;" />
+                    <rect x="7" y="6" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;fill-opacity: 0.5;" />
+                </svg>
+                <div class="_3nvuJ" >
+                    <a class="_1Xu6J _22v5L _2svCU" >PictureTag</a>
+                    <a style = "text-decoration: NONE"class="_2TTDP _22v5L xLon9" href="http://114.215.188.21/groups/161250181_DebugSECIII" target="_blank">
+                        DebugTeam
+                    </a>
+                </div>
+            </a>
+            <div class="_1g2pj _3PSbf _8gQbN" >
+            </div>
+        </div>
+        <div class="QoLMB" >
+            <div class="_2j1Lb" >
+                <ul class="_250wZ" >
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="adminHome.html">
+                            首页
+                        </a>
+                    </li>
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="../?=logout" onclick="logout()">
+                            登出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <a  href="" >
+                <!--<svg  viewbox="0 0 32 32" width="32" height="32" >-->
+                <!---->
+                <!--</svg>-->
+                <img src="../image/worker_head_img.jpg" width="45" height="40" border = "3">
+            </a>
+        </div>
+    </nav>
+    <div class="_1g4h6" data-reactid="133"></div>
+</header>
+<!--积分明细表-->
+<div id="credit_detail" class="credit_detail">
+    <div class="m_grow bor">
+        <div class="u_grow_hd">
+            <h2>积分明细</h2>
+            <!--<span class="red-info">注：心悦成长值到账时效为“24小时”,只保存最近三个月的流水。</span>-->
+        </div>
+        <div class="u_grow_bd">
+            <table class="tabA">
+                <tbody>
+                <tr>  <th width="20%">时间</th> <th width="30%">来源</th><th width="20%">积分变动</th> </tr>
+                <tr class="bg" v-for="item in curPageList"> <td>{{item.time}}</td> <td>{{item.detail}}</td> <td>{{item.credits}}</td> </tr>
+                </tbody>
+            </table>
+            <div class="u_page mt20 clearfix">
+                <div class="pageshow fr">
+                    每页显示
+                    <select v-model="perPage" class="source_sel">
+                        <option value="10">10条</option>
+                        <option value="20">20条</option>
+                        <option value="30">30条</option>
+                    </select>
+                </div>
+                <div class="pagination2">
+                    <a alt="下一页" class="uppage" @click="upPage">上一页</a>
+                    <span>{{curPage}} / {{totalPage}}</span>
+                    <a alt="下一页" class="downpage" @click="downPage">下一页</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script src="../js/jquery.min.js"></script>
+<!--<script src="../js/requestorUtil.js"></script>-->
+<!--<script src="../js/util.js"></script>-->
+<!--<script src="../js/creditDetail.js"></script>-->
+<script src="../js/adminCreditDetail.js"></script>
+
+</body>
+</html>

@@ -776,9 +776,9 @@ function initPlatformProfitsChart() {
     var app = {};
     option = null;
     option = {
-        title: {
-            text: '7日平台盈利情况表'
-        },
+        // title: {
+        //     text: '7日平台盈利情况表'
+        // },
         tooltip: {
             trigger: 'axis'
         },
@@ -831,6 +831,10 @@ function initPlatformProfitsChart() {
             }
         ]
     };
+    myChart.on('click', function (params) {
+        window.location.href = "../html/adminCreditDetail.html"+"?date="+params.name;
+    });
+
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
     }
