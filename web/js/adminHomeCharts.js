@@ -751,6 +751,11 @@ function initProjectUpGetChart() {
             }
         ]
     };
+
+    myChart.on('click', function (params) {
+        window.location.href = "../html/adminProject.html"+"?date="+params.name;
+    });
+
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
     }
