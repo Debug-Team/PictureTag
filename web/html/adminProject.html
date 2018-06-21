@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width ,  user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>所有项目-DebugTeam</title>
+
+    <link rel="stylesheet" href="../css/main.840c01.css">
+    <link rel="stylesheet" href="../css/requestorProject.css">
+    <link rel="stylesheet" href="../css/filter.css">
+
+    <script src="../js/util.js"></script>
+</head>
+<body>
+<!--导航栏-->
+<header class="niA6p _3PSbf" >
+    <nav class="_1M8LQ _2xMJp" >
+        <div class="_2jZzC" >
+            <a class="_2-Pvv _1CBrG"  href="/" >
+                <svg viewbox="0 0 32 32" width="32" height="32" aria-labelledby="unsplash-home" aria-hidden="false">
+                    <!--<path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z" data-reactid="47"></path>-->
+                    <rect x="1" y="1" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;" />
+                    <rect x="7" y="6" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;fill-opacity: 0.5;" />
+                </svg>
+                <div class="_3nvuJ" >
+                    <a class="_1Xu6J _22v5L _2svCU" >PictureTag</a>
+                    <a style = "text-decoration: NONE"class="_2TTDP _22v5L xLon9" href="http://114.215.188.21/groups/161250181_DebugSECIII" target="_blank">
+                        DebugTeam
+                    </a>
+                </div>
+            </a>
+            <div class="_1g2pj _3PSbf _8gQbN" >
+            </div>
+        </div>
+        <div class="QoLMB" >
+            <ul class="_250wZ" >
+                <li class="_29OpZ xLon9" >
+                    <a class="_3t5Ep _1CBrG" href="adminHome.html">
+                        主页
+                    </a>
+                </li>
+                <li class="_29OpZ xLon9" >
+                    <a class="_3t5Ep _1CBrG" href="../?=logout" onclick="logout()" >
+                        登出
+                    </a>
+                </li>
+            </ul>
+            <a  href="" >
+                <img src="../image/worker_head_img.jpg" width="45" height="40" border = "3">
+            </a>
+        </div>
+    </nav>
+    <div class="_1g4h6" data-reactid="133"></div>
+</header>
+
+<!--搜索-->
+<div class="F5xv_" id="searchBox">
+    <div class="_11ii-" >
+        <div class="gaoFi" >
+            <picture class="_2QgBf" >
+                <img class="_3twpi" role="presentation" src="../image/photo-1.jpg" ></picture>
+        </div>
+        <div class="RuSEo" >
+            <div class="_258j4 _2sCnE PrOBO _1CR66" >
+                <div class="_2FVCK _1pgnK _3vQsl" >
+                    <span class="_2JV9L _2RmO0 _2svCU" >Picture Tag </span>
+                    <div>
+                        <div>
+                            <h1 class="_1gaeU _27Bp2 _1iWCF" ></h1>
+                            <p class="_3uPxv _27Bp2 _1iWCF" ></p></div>
+                        <div>
+                            <div class="_3_k_e" >
+                                <div class="_3SDxY" >
+                                    <input v-model="searchKey" type="search" class="qWUF0" placeholder="搜索项目 id/名称/类型/分类/参与者/描述/状态 多个关键词间使用空格隔开" required="" ></div>
+                                <div class="_3IXhN" >
+                                    <button title="Search" data-test="feed-header-search-form-button" class="_37zTg _1l4Hh _1CBrG _3TTOE Sb388" >
+                                        <span class="_2yArQ" >Search</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--筛选分类-->
+<div id="filter" class="filter">
+    <div class="crumb g-clearfix">
+        <a class="icon-tag toggle-btn show-collapse">
+            <span class="expand" @click="showGroup" hidden>
+                <span>显示筛选</span>
+            </span>
+            <span class="collapse" @click="hideGroup">
+                <span>收起筛选</span>
+            </span>
+        </a>
+        <span class="cat-text">所有分类&nbsp;></span>
+        <a class="pro icon-tag" v-for="(item, index) in selectedList" @click="deleteSelected(index)">{{item}}<span class="icon-btn-x"></span></a>
+        <span class="total">共 <span class="h">{{totalSize}}</span> 个相关项目</span>
+    </div>
+    <div class="group">
+        <div class="row" v-for="(row, row_index) in conditionList">
+            <div class="head">
+                {{row.title}}<span>：</span>
+            </div>
+            <div class="body g-clearfix">
+                <div class="items">
+                    <a class="item" v-for="(item, index) in row.items" @click="addItem(row_index, index)">{{item}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--展示列表-->
+<div class="project_list" id="project_list" >
+
+    <!--列表-->
+    <!--<dl v-for="(item, index) in projectList">-->
+    <dl v-for="(item, index) in filterProjectList">
+
+        <div class="imgDIv">
+            <!--<dt><a v-bind:href="'requestorProjectInfo.html?id='+item.id"><img v-bind:src="item.previewPic" v-bind:id="'img'+item.id"></a></dt>-->
+            <dt><a><img v-bind:src="item.previewPic" v-bind:id="'img'+item.id"></a></dt>
+        </div>
+        <dd>
+            <!--<h3><a v-bind:href="'requestorProjectInfo.html?id='+item.id">{{item.id}}</a></h3>-->
+            <h3><a>{{item.name}}</a></h3>
+            <canvas v-bind:id="'canvas'+item.id" width="150" height="150" style="background:#48dbfb;"></canvas>
+            <button type="button" class="closeButton" @click="closeProject(index)" v-if="!item.isEnded">关闭项目</button>
+            <button type="button" class="closeButton evaluateButton" @click="evaluateProject(index)" v-else-if="!item.isEvaluated">评价项目</button>
+            <button type="button" class="closeButton evaluateButton" @click="checkEvaluateProject(index)" v-else-if="item.isEvaluated">查看评价</button>
+            <p><div class="d_label"><b>上传者：</b>{{item.owner}}</div></p>
+            <p></p><div class="d_label"><b>类型：</b>{{item.type}}</div><div class="d_label"><b>分类：</b>{{item.categories}}</div><p></p>
+            <p></p><div class="d_label"><b>积分：</b>{{item.award + '/人'}}</div><p></p>
+            <p></p><div class="d_label"><b>标注人数：</b>{{item.workerNum + '人'}}</div><div class="d_label"><b>参与标注：</b>{{item.workers}}</div><p></p>
+            <!--<p></p><div class="d_label"><b>开始时间：</b>{{item.startTime}}</div><p></p>-->
+            <p></p><div class="d_label"><b>项目描述：</b>{{item.description}}</div><p></p>
+            <p></p><div class="d_label"><b>开始时间：</b>{{item.startTime}}</div><div class="d_label"><b>结束时间：</b>{{item.endTime}}</div><p></p>
+            <p><b style="color:#F00">状态:</b> {{item.state}} </p>
+            <a v-bind:href="'../downloadTags/'+item.id">DOWNLOAD</a>
+        </dd>
+    </dl>
+</div>
+
+<!--vue-->
+<script src="../js/vue.js"></script>
+
+<script src="../js/jquery.min.js"></script>
+
+<script src="../js/util.js"></script>
+<script src="../js/filter.js"></script>
+<script src="../js/adminProject.js"></script>
+
+</body>
+</html>
