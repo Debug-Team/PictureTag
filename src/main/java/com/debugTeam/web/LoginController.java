@@ -48,6 +48,7 @@ public class LoginController {
     public @ResponseBody
     String login(@RequestParam("userphone") String userphone, @RequestParam("password") String password){
         System.out.println("login"+userphone+" "+password);
+        Administrator administrator = administratorService.getAdministrator();
         String retJson;
         int usertype = -1;
 
@@ -57,15 +58,16 @@ public class LoginController {
             else if(loginService.login(userphone,password)==1){
                 usertype = 1;
                 administratorService.updateDailyUploaderLoginNum();
+                administrator.setLoginDetail(userphone);
             }
             else {
                 usertype = 0;
                 administratorService.updateDailyMarkerLoginNum();
                 if(!kickOut(userphone))
                     System.out.println("kickout fail");
+                administrator.setLoginDetail(userphone);
             }
-            Administrator administrator = administratorService.getAdministrator();
-            administrator.setLoginDetail(userphone);
+
             administratorService.updateAdministrator(administrator);
 
             retJson = new ResponseObject(1,"登陆成功", usertype).toString();

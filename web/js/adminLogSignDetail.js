@@ -22,7 +22,7 @@ var logSign_detail = new Vue({
             data.id = res_json.userphone[i];
             data.name = res_json.username[i];
             data.time = res_json.time[i];
-            data.type = res_json.usertype[i];
+            data.type = (res_json.usertype[i]==0)?"标注者":"上传者";
             list.push(data);
         }
         console.log(list.length/this.perPage);
