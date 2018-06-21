@@ -699,9 +699,9 @@ function initProjectUpGetChart() {
     var app = {};
     option = null;
     option = {
-        title: {
-            text: '今日网站项目上传接受情况'
-        },
+        // title: {
+        //     text: '今日网站项目上传接受情况'
+        // },
         tooltip: {
             trigger: 'axis'
         },

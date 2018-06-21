@@ -92,6 +92,10 @@ function initalThreeTagPieCharts() {
         ]
     };
 
+    myChart.on('click', function (params) {
+        window.location.href = "../html/workerHome.html?categoryList="+params.name;
+    })
+
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
     }
