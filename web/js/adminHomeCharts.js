@@ -64,14 +64,14 @@ function initUserRegister() {
             {
                 name:'上传者',
                 type:'line',
-                stack: '总量',
+                // stack: '总量',
                 data:requestor_data,
                 smooth:true
             },
             {
                 name:'标记者',
                 type:'line',
-                stack: '总量',
+                // stack: '总量',
                 data:marker_data,
                 smooth:true
             }
@@ -144,14 +144,14 @@ function initUserLogin() {
             {
                 name:'上传者',
                 type:'line',
-                stack: '总量',
+                // stack: '总量',
                 data:requestor_data,
                 smooth:true
             },
             {
                 name:'标记者',
                 type:'line',
-                stack: '总量',
+                // stack: '总量',
                 data:marker_data,
                 smooth:true
             }
@@ -740,13 +740,13 @@ function initProjectUpGetChart() {
             {
                 name:'上传数量',
                 type:'line',
-                stack: '总量',
+                // stack: '总量',
                 data:projectUpload
             },
             {
                 name:'接受数量',
                 type:'line',
-                stack: '总量',
+                // stack: '总量',
                 data:projectAccept
             }
         ]
@@ -830,7 +830,7 @@ function initPlatformProfitsChart() {
                 name:'赚取积分总量',
                 yAxisIndex:0,
                 type:'line',
-                stack: '总量',
+                // stack: '总量',
                 data:creditsList,
                 smooth:true,
 
@@ -839,7 +839,7 @@ function initPlatformProfitsChart() {
                 name:'积分分成率',
                 yAxisIndex:1,
                 type:'line',
-                stack: '总量',
+                // stack: '总量',
                 data:cutList,
                 smooth:true
             }
