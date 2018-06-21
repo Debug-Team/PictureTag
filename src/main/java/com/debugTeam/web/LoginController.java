@@ -114,6 +114,7 @@ public class LoginController {
                 }
                 Administrator administrator = administratorService.getAdministrator();
                 administrator.setSignupDetail(phone);
+                administrator.setLoginDetail(phone);
                 administratorService.updateAdministrator(administrator);
                 retjson = new ResponseObject(1,"注册成功").toString();
             }

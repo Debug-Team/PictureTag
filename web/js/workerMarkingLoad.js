@@ -675,14 +675,15 @@ function loadMarkedHotArea(picname) {
     var detailmessage = window.location.href.split("?")[1];
     var pro_id = detailmessage.split("=")[0];
     var result;
+    var userphonum = getUserPhone();
     $.ajax({
         url:'/hotTagArea',
         type:'post',
         async:false,
         data:{
             id:pro_id,
-            pic:picname
-
+            pic:picname,
+            userphone:userphonum
         },
         success:function (data) {
             result = data;
@@ -693,43 +694,43 @@ function loadMarkedHotArea(picname) {
 
     });
 
-    var tags_hot_area_array = JSON.parse(result).data;
-    console.log(result);
-    var rect_temp = {};
-    var rect_now_json = {};
-    for(var i = 0;i<tags_hot_area_array.length;i++){
-        rect_now_json = JSON.parse(tags_hot_area_array[i]);
-        if(i==0){
-            rect_temp = rect_now_json.coordinates;
-        }else {
-            console.log("ssss"+rect_now_json);
-            var start_x_now = rect_now_json.coordinates.start_x;
-            var start_y_now = rect_now_json.coordinates.start_y;
-            var end_x_now = rect_now_json.coordinates.end_x;
-            var end_y_now = rect_now_json.coordinates.end_y;
-            var start_x_temp = rect_temp.start_x;
-            var start_y_temp = rect_temp.start_y;
-            var end_x_temp = rect_temp.end_x;
-            var end_y_temp = rect_temp.end_y;
-
-            rect_temp.start_x = (start_x_now>=start_x_temp)?start_x_now:start_x_temp;
-            rect_temp.start_y = (start_y_now>=start_y_temp)?start_y_now:start_y_temp;
-            rect_temp.end_x = (end_x_now<=end_x_temp)?end_x_now:end_x_temp;
-            rect_temp.end_y = (end_y_now<=end_y_temp)?end_y_now:end_y_temp;
-
-        }
-
-    }
+    var rect_hot_json = JSON.parse(result);
+    // console.log(result);
+    // var rect_temp = {};
+    // var rect_now_json = {};
+    // for(var i = 0;i<tags_hot_area_array.length;i++){
+    //     rect_now_json = JSON.parse(tags_hot_area_array[i]);
+    //     if(i==0){
+    //         rect_temp = rect_now_json.coordinates;
+    //     }else {
+    //         console.log("ssss"+rect_now_json);
+    //         var start_x_now = rect_now_json.coordinates.start_x;
+    //         var start_y_now = rect_now_json.coordinates.start_y;
+    //         var end_x_now = rect_now_json.coordinates.end_x;
+    //         var end_y_now = rect_now_json.coordinates.end_y;
+    //         var start_x_temp = rect_temp.start_x;
+    //         var start_y_temp = rect_temp.start_y;
+    //         var end_x_temp = rect_temp.end_x;
+    //         var end_y_temp = rect_temp.end_y;
+    //
+    //         rect_temp.start_x = (start_x_now>=start_x_temp)?start_x_now:start_x_temp;
+    //         rect_temp.start_y = (start_y_now>=start_y_temp)?start_y_now:start_y_temp;
+    //         rect_temp.end_x = (end_x_now<=end_x_temp)?end_x_now:end_x_temp;
+    //         rect_temp.end_y = (end_y_now<=end_y_temp)?end_y_now:end_y_temp;
+    //
+    //     }
+    //
+    // }
 
     // var img = new Image();
     // img.src = canvas_img.toDataURL();
     // canvas_img_ctx.clearRect(0,0,canvas_img.width,canvas_img.height);
     // canvas_img_ctx.drawImage(img,0,0);
     //
-    if(JSON.stringify(rect_temp)!='{}'){
+    if(JSON.stringify(rect_hot_json)!='{}'){
         canvas_img_ctx.fillStyle = "rgba(0,255,0,0.2)";
         canvas_img_ctx.beginPath();
-        canvas_img_ctx.rect(rect_temp.start_x,rect_temp.start_y,rect_temp.end_x-rect_temp.start_x,rect_temp.end_y-rect_temp.start_y);
+        canvas_img_ctx.rect(rect_hot_json.sx,rect_hot_json.sy,rect_hot_json.ex-rect_hot_json.sx,rect_hot_json.ey-rect_hot_json.sy);
         canvas_img_ctx.fill();
         canvas_img_ctx.closePath();
     }

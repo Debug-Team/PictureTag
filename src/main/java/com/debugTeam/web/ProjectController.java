@@ -135,11 +135,13 @@ public class ProjectController {
      * 热点区域提示，得到该图片的其他人的标注数据
      * @param id
      * @param pic
+     *
      * @return { "data" : [tag1, tag2, ... ] }
      */
     @PostMapping(value = "/hotTagArea", produces="application/text; charset=utf-8")
     public @ResponseBody
-    String hotTagArea(@RequestParam("id") String id, @RequestParam("pic") String pic){
+    String hotTagArea(@RequestParam("id") String id, @RequestParam("pic") String pic,
+                      @RequestParam("userphone") String userphone){
 
         String tagPath = "data"+File.separator+"project"+File.separator+id+File.separator+ "tags";
         ArrayList<String> markerList = projectService.getProject(id).getMarkerList();
@@ -148,6 +150,9 @@ public class ProjectController {
 
         for (int i=0; i<markerList.size(); i++){
             String makerName = markerList.get(i);
+            if (makerName.equals(userphone)){
+                continue;
+            }
             String path = tagPath + File.separator + pic.replaceFirst("\\.", "#") + "_" + makerName + ".txt";
             File file = new File(path);
             try {
@@ -179,7 +184,7 @@ public class ProjectController {
         int maxCluster = 0, max = 0;
         Map<Integer, Integer> table = new HashMap<>();
         for (Point p:points) {
-            if (table.containsKey(p.getCluster())){
+            if (!table.containsKey(p.getCluster())){
                 table.put(p.getCluster(), 1);
             }
             else{
