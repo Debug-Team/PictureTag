@@ -1,0 +1,148 @@
+html{
+    background: #fafafa;
+}
+/*----成长值容器-----*/
+.credit_detail {
+    width: 1360px;
+    margin: 50px auto;
+}
+.bor {
+    border: #cecdd2 1px solid;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+.clearfix {
+    zoom: 1;
+}
+
+/* ------- S 成长值 --------*/
+.u_grow_hd {
+    position: relative;
+    background: #f2f3f7;
+    height: 80px;
+    border-bottom: #cecdd2 1px solid;
+}
+
+.red-info {
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    color: #f06a45;
+}
+
+.u_grow_hd h2 {
+    line-height: 80px;
+    font-size: 24px;
+    text-indent: 30px;
+    margin: 0;
+}
+
+.u_grow_bd {
+    background: #fff;
+    font-size: 14px;
+    padding: 30px;
+    min-height: 459px;
+}
+
+.u_grow_inquiry {
+    height: 30px;
+    line-height: 30px;
+}
+
+.u_grow_inquiry select {
+    border: #dedede 1px solid;
+    width: 150px;
+}
+
+.u_grow_inquiry .source {
+    margin-right: 30px;
+}
+
+.u_grow_inquiry .search {
+    border: #9dbcec 2px solid;
+    height: 24px;
+}
+
+.u_grow_inquiry .search .txt {
+    float: left;
+    border: 0 none;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 5px;
+}
+
+.u_grow_inquiry .search .sea {
+    float: left;
+    width: 46px;
+    height: 24px;
+    background-position: -368px -131px;
+    border: 0 none;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+
+.u_grow_bd .tabA {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.u_grow_bd .tabA th,
+.u_grow_bd .tabA td {
+    border: #e2edfe 1px solid;
+    height: 60px;
+}
+
+.u_grow_bd .tabA th {
+    background: #e2edfe;
+}
+
+.u_grow_bd .tabA .bg {
+    background: #f9fbff;
+}
+
+.u_grow_bd .tabA a {
+    color: #52505a;
+}
+
+.u_grow_bd .tabA a:hover {
+    color: #f06a45;
+}
+/* ------- u_page --------*/
+.u_page {
+    background: #f2f3f7;
+    padding: 10px 15px;
+}
+
+.u_page .pagination2 {
+    text-align: center;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.u_page .pagination2 a {
+    color: #52505a;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.u_page .pagination2 a:hover {
+    color: #f06a45;
+}
+.fr {
+    float: right;
+    display: inline;
+}
+th {
+    font-weight: bold;
+    text-align: -internal-center;
+}
+
+td, th {
+    display: table-cell;
+    vertical-align: center;
+}
+/* ------- E 成长值 --------*/

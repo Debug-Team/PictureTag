@@ -1,0 +1,64 @@
+/*遮罩*/
+.overlay_credit{
+    background-color: rgb(230, 245, 255);
+    border-top: 1px solid rgb(230, 245, 255);
+    position: absolute; height: 2980px;
+    z-index: 100003;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    opacity: 0.7;
+}
+
+/*积分*/
+.container_credit {
+    z-index: 100004;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+.container_credit h2 {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container_credit button{
+    width: 70px;
+    background: #2ed573;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 2px;
+    margin: 20px;
+    padding: 8px 5px;
+    font-size: 17px;
+}
+
+.container_credit label{
+    font-size: 15px;
+}
+
+.container_credit .inputArea{
+    font-size: 15px;
+    padding: 6px 5px;
+}
+
+.container_credit .closeImg{
+    /*float: right;*/
+    position: absolute;
+    right: 30px;
+    cursor: pointer;
+}
+

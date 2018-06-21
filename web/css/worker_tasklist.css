@@ -1,0 +1,14 @@
+.project_list {
+    /*width: 100%;*/
+    /*margin: 10px 15px 10px 15px;*/
+    margin: 30px auto 10px auto;
+    max-width: 1320px;
+    min-width: 768px;
+    padding: 0 15px;
+}
+
+.filter_container {
+    margin: 0 auto;
+    max-width: 1320px;
+    min-width: 768px;
+}

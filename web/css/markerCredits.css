@@ -1,0 +1,155 @@
+
+#goodcover {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 133%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: 0.50;
+    filter: alpha(opacity=80);
+}
+#code {
+    width: 400px;
+    height: 300px;
+    background-color: #fff;
+    padding: 10px;
+    position: absolute;
+    display: none;
+    left: 45%;
+    z-index: 1002;
+}
+.close1 {
+    width: 380px;
+    height: 60px;
+    position: relative;
+}
+#closebt {
+    float: right;
+}
+#closebt img {
+    width: 20px;
+}
+.goodtxt {
+    text-align: center;
+}
+.goodtxt p {
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    color: #000;
+    font-weight: 600;
+}
+.code-img {
+    width: 250px;
+    margin: 30px auto 0 auto;
+    padding: 10px;
+}
+.code-img img {
+    width: 240px;
+}
+
+
+
+
+.exp {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    margin-bottom: 30px;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.exp__label {
+    transition: 0.3s;
+    margin-bottom: 5px;
+}
+
+.exp__label:before {
+    content: attr(data-icon);
+    font-weight: normal;
+    font-family: "Ionicons";
+    font-size: 24px;
+    position: absolute;
+    left: 0;
+    transform: rotateY(90deg);
+    bottom: 0;
+    height: 52px;
+    background: transparent;
+    color: #000;
+    transform-origin: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color .3s 0s ease, transform .3s 0s ease;
+    width: 42px;
+}
+
+.exp__input {
+    border: 1px solid #ddd;
+    padding: 0 10px;
+    width: 100%;
+    height: 52px;
+    transition: 0.3s;
+    font-weight: normal;
+    box-sizing: border-box;
+    font-family: "Work Sans", sans-serif;
+    outline: none;
+}
+
+.exp__input:focus {
+    padding-left: 42px;
+    border-color: #bbb;
+}
+
+.exp__input:focus + label:before {
+    transform: rotateY(0deg);
+}
+
+.exp__input:valid {
+    padding-left: 42px;
+    border-color: green;
+}
+
+.exp__input:valid + label {
+    color: green;
+}
+
+.exp__input:valid + label:before {
+    transform: rotateY(0deg);
+    color: green;
+    font-size: 34px;
+    content: attr(data-icon-ok);
+}
+
+.exchange-button {
+    background: #007dc1;
+    background-image: -webkit-linear-gradient(top, #007dc1, #0061a7);
+    background-image: -moz-linear-gradient(top, #007dc1, #0061a7);
+    background-image: -ms-linear-gradient(top, #007dc1, #0061a7);
+    background-image: -o-linear-gradient(top, #007dc1, #0061a7);
+    background-image: linear-gradient(to bottom, #007dc1, #0061a7);
+    -webkit-border-radius: 3;
+    -moz-border-radius: 3;
+    border-radius: 3px;
+    text-shadow: 0px 1px 0px #154682;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #54a3f7;
+    -moz-box-shadow: inset 0px 1px 0px 0px #54a3f7;
+    box-shadow: inset 0px 1px 0px 0px #54a3f7;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 9px 30px 9px 30px;
+    border: solid #124d77 1px;
+    text-decoration: none;
+}
+
+.exchange-button:hover {
+    color: #ffffff;
+    background: #0061a7;
+    text-decoration: none;
+}
