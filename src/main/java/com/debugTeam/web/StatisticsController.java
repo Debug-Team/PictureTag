@@ -50,7 +50,6 @@ public class StatisticsController {
         Map<String, String> map = administrator.getCreditsHistory();
         Map<String, String> resmap = new HashMap<>();
 
-
         List<Map.Entry<String, String>> list = new ArrayList<>(map.entrySet());
         for (Map.Entry<String, String> entry : list){
             if(entry.getKey().substring(5,10).equals(date)){

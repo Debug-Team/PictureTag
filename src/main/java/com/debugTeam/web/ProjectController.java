@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import sun.dc.pr.PRError;
 
 import java.awt.*;
+import java.awt.image.AreaAveragingScaleFilter;
 import java.io.*;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -44,6 +46,29 @@ public class ProjectController {
 
     private final String tmppath = "data"+File.separator+"tmp";
     private final String proPath = "data"+File.separator+"project";
+
+    /**
+     * 得到当日上传的项目
+     * @param date 时间
+     * @return json
+     */
+    @PostMapping(value = "/dailyProjects", produces="application/text; charset=utf-8")
+    public @ResponseBody
+    String dailyProjects(@RequestParam("date") String date){
+
+        ArrayList<Project> projects = projectService.getAllProject();
+        ArrayList<Project> res = new ArrayList<>();
+        for (Project p : projects){
+            String s = p.getId().substring(4,6) + '-' + p.getId().substring(6,8);
+            if (s.equals(date)){
+                res.add(p);
+            }
+        }
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("projects", res);
+        return jsonObject.toString();
+    }
 
     /**
      * 标注者判断项目是否已完成
