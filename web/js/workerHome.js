@@ -457,8 +457,9 @@ var project_list = new Vue({
                 params[i] = decodeURI(params[i]);
             }
             filter.selectedList = params;
+            this.setShowState(3);
         }
-        this.setShowState(3);
+
 
     },
     methods: {
