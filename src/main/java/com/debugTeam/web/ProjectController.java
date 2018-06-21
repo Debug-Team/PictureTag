@@ -509,7 +509,7 @@ public class ProjectController {
      * @param markedPersonNum 标记人数
      * @param file zip文件
      * @param tags 标记tag的list
-     * @param tagcolor 分类标注tag-颜色
+     * @param tagcolor 整体标注tag-颜色
      * @param tagState 轮廓标注的状态字
      * @return 上传结果
      */

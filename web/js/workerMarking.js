@@ -1,6 +1,6 @@
 /**
  * @Author: 周正伟
- * 标注者分类标注完后保存的数据json
+ * 标注者整体标注完后保存的数据json
  * @param coordinates 坐标信息
  * @param tags_choices_uploader 由上传者决定的tag类型和其选项（数组形式）
  * @param tags_decision_annotator 标注者选择的tag

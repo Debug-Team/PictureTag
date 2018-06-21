@@ -97,7 +97,7 @@
                 <label class="label">项目类型：</label>
                 <select name="projectType" id="projectType" class="inputArea" @change="selectType" required>
                     <option value="" disabled selected hidden>请选择项目类型</option>
-                    <option value="1" >分类标注</option>
+                    <option value="1" >整体标注</option>
                     <option value="2" >标框标注</option>
                     <option value="3" >边界标注</option>
                 </select>
@@ -130,7 +130,7 @@
             <!--<input type="file" name="file" id="file" style="display: none" accept=".zip"/>-->
             <!--<select name="projectType" id="projectType" class="inputArea" @change="selectType" required>-->
                 <!--<option value="" disabled selected hidden>项目类型</option>-->
-                <!--<option value="1" >分类标注</option>-->
+                <!--<option value="1" >整体标注</option>-->
                 <!--<option value="2" >标框标注</option>-->
                 <!--<option value="3" >边界标注</option>-->
             <!--</select>-->
@@ -197,7 +197,7 @@
                 </div>
             </template>
             <template v-else-if="projectType === '1' ">
-                <h2 class="fs-title">项目要求-分类标注</h2>
+                <h2 class="fs-title">项目要求-整体标注</h2>
                 <h3 class="fs-subtitle">希望标注者标注什么属性</h3>
                 <div>
                     <textarea id="tag_category" rows="4" class="inputArea" placeholder="标注要求&#10请用中文分号；分隔每个要求"

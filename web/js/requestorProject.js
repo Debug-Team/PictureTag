@@ -35,7 +35,7 @@ var project_list = new Vue({
             data.name = item.name;
             data.rate = item.process/(item.picList.length*item.markedPersonNum);
             if(item.type == 1){
-                data.type = "分类标注";
+                data.type = "整体标注";
             }
             else if(item.type == 2){
                 data.type = "标框标注";
@@ -68,7 +68,7 @@ var project_list = new Vue({
         // data.previewPic = "../image/photo-1.jpg";
         // data.id = "test";
         // data.rate = 0.36;
-        // data.type = "分类标注";
+        // data.type = "整体标注";
         // data.award = 300;
         // data.workerNum = 3;
         // data.workers = "zyb,zzw";

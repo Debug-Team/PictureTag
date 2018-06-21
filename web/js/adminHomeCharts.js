@@ -255,6 +255,9 @@ function initWholeProjectPie() {
             }
         ]
     };
+    myChart.on('click', function (params) {
+        window.location.href = "../html/adminProject.html"+"?condition="+params.name+"?date=all";
+    });
 
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
@@ -349,6 +352,10 @@ function initDoingProjectPie() {
         ]
     };
 
+    myChart.on('click', function (params) {
+        window.location.href = "../html/adminProject.html"+"?condition="+params.name+"&进行中"+"?date=all";
+    });
+
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
     }
@@ -441,6 +448,10 @@ function initFinishedProjectPie() {
             }
         ]
     };
+
+    myChart.on('click', function (params) {
+        window.location.href = "../html/adminProject.html"+"?condition="+params.name+"&已结束"+"?date=all";
+    });
 
     if (option && typeof option === "object") {
         myChart.setOption(option, true);

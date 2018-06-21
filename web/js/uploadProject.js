@@ -165,7 +165,7 @@ var msform = new Vue({
             var projectName = document.getElementById("projectName").value;
             var categories = this.selectedCategoryList;
 
-            if(type == 1){    //分类标注
+            if(type == 1){    //整体标注
                 tags = document.getElementById("tag_category").value;
             }
             else if(type == 2){   //标框标注
@@ -207,7 +207,7 @@ var msform = new Vue({
  * @param markedPersonNum 标记人数
  * @param file zip文件
  * @param tags 标记tag的list
- * @param tagcolor 分类标注tag-颜色
+ * @param tagcolor 整体标注tag-颜色
  * @param tagState 轮廓标注的状态字
  * @param projectName 项目名称
  * @param categories 项目分类

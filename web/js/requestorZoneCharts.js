@@ -283,7 +283,7 @@ function initFinishedProjectPie() {
         ]
     };
     myChart.on('click', function (params) {
-        window.location.href = "../html/requestorProject.html?categoryList="+params.name+"&"+"已完成";
+        window.location.href = "../html/requestorProject.html?categoryList="+params.name+"&"+"已结束";
     })
 
     if (option && typeof option === "object") {

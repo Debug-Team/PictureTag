@@ -3,7 +3,7 @@ var filter = new Vue({
     data: {
         selectedList:[],
         conditionList:[
-            {title:"类型", items:["分类标注", "标框标注", "边界标注"]},
+            {title:"类型", items:["整体标注", "标框标注", "边界标注"]},
             {title:"分类", items:getCategoriesList()},
             {title:"是否结束", items:["已结束", "进行中"]}],
         totalSize: 0

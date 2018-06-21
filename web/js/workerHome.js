@@ -388,7 +388,7 @@ function loadAllProjects(projects_html_state) {
         data.previewPic = "../"+"pic/" + pro_json.id + "/"+ pro_json.picList[0];
         var pro_type = "";
         if (pro_json.type == 1){
-            pro_type = "分类标注";
+            pro_type = "整体标注";
         }else if(pro_json.type == 2){
             pro_type = "标框标注";
         }else{

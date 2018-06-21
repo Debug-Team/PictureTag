@@ -8,7 +8,7 @@ var border = 0;
 
 /**
  * 初始化图表的数据
- * @param categoryNum 分类标注的数据
+ * @param categoryNum 整体标注的数据
  * @param rectangleNum 标框标注
  * @param borderNum 边界标注
  */

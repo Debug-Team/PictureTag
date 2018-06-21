@@ -29,8 +29,13 @@ var project_list = new Vue({
         if(href.indexOf("?date=") > 0){
             var date = href.substr(href.indexOf("?date=")+6);
 
-            //调用ajax
-            list = getDeilyProjects(date);
+            if(date == "all"){
+                list = getAllProjects();
+            }
+            else{
+                //调用ajax
+                list = getDeilyProjects(date);
+            }
         }
 
         for(var i = 0;i < list.length;i++){
@@ -41,7 +46,7 @@ var project_list = new Vue({
             data.name = item.name;
             data.rate = item.process/(item.picList.length*item.markedPersonNum);
             if(item.type == 1){
-                data.type = "分类标注";
+                data.type = "整体标注";
             }
             else if(item.type == 2){
                 data.type = "标框标注";
@@ -77,7 +82,7 @@ var project_list = new Vue({
         // data.previewPic = "../image/photo-1.jpg";
         // data.id = "test";
         // data.rate = 0.36;
-        // data.type = "分类标注";
+        // data.type = "整体标注";
         // data.award = 300;
         // data.workerNum = 3;
         // data.workers = "zyb,zzw";
@@ -106,7 +111,7 @@ var project_list = new Vue({
         //解析地址传参
         var href = document.location.href;
         if(href.indexOf("?condition=") > 0){
-            var param = href.substr(href.indexOf("?condition=")+14, href.indexOf("?date=")-(href.indexOf("?condition=")+14));
+            var param = href.substr(href.indexOf("?condition=")+11, href.indexOf("?date=")-(href.indexOf("?condition=")+11));
             var params = param.split("&");
             // console.log(params);
             for(var i = 0; i < params.length; i++){     //解码URI
@@ -312,6 +317,11 @@ function printRate(data) {
     };
 }
 
+/**
+ * 得到指定日期的项目
+ * @param date
+ * @returns {Array}
+ */
 function getDeilyProjects(date){
     var result = [];
     $.ajax({
@@ -325,6 +335,34 @@ function getDeilyProjects(date){
             console.log(data);
             var json = JSON.parse(data);
             result = json.projects;
+        },
+        error: function () {
+            alert("获取项目列表失败");
+        }
+    })
+    return result;
+}
+
+/**
+ * 得到所有项目
+ * @returns {Array}
+ */
+function getAllProjects(){
+    var result = [];
+    $.ajax({
+        url:'/allprojects',
+        type:'post',
+        async: false,
+        data:{},
+        success: function (data) {
+            console.log(data);
+            var temp = data.split("-;-");
+            for(var i = 0;i < temp.length;i++){
+                if(temp == ""){
+                    break;
+                }
+                result.push(JSON.parse(temp[i]));
+            }
         },
         error: function () {
             alert("获取项目列表失败");
