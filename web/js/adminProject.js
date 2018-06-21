@@ -27,7 +27,7 @@ var project_list = new Vue({
 
         var href = document.location.href;
         if(href.indexOf("?date=") > 0){
-            var date = href.substr(href.indexOf("?date="));
+            var date = href.substr(href.indexOf("?date=")+6);
 
             //调用ajax
             list = getDeilyProjects(date);
