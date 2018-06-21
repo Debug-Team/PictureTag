@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>项目总览</title>
+    <link rel="stylesheet" href="../css/projectOverview.css">
+    <link rel="stylesheet" href="../css/main.840c01.css">
+</head>
+<body>
+<header class="niA6p _3PSbf" >
+    <nav class="_1M8LQ _2xMJp" >
+        <div class="_2jZzC" >
+            <a class="_2-Pvv _1CBrG"  href="/" >
+                <a>
+                    <svg class="_2m4hn" version="1.1" viewbox="0 0 32 32" width="32" height="32" aria-labelledby="unsplash-home" aria-hidden="false" >
+                        <rect x="1" y="1" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;"/>
+                        <rect x="7" y="6" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;fill-opacity: 0.5;"/>
+
+                    </svg>
+                </a>
+                <div class="_3nvuJ" >
+                    <a class="_1Xu6J _22v5L _2svCU" >PictureTag</a>
+                    <a style = "text-decoration: NONE"class="_2TTDP _22v5L xLon9" href="http://114.215.188.21/groups/161250181_DebugSECIII" target="_blank">
+                        DebugTeam
+                    </a>
+                </div>
+            </a>
+            <div class="_1g2pj _3PSbf _8gQbN" >
+            </div>
+        </div>
+        <div class="QoLMB" >
+            <div class="_2j1Lb" >
+                <ul class="_250wZ" >
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="WorkerZone.html">
+                            个人空间
+                        </a>
+                    </li>
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="workerHome.html">
+                            主页
+                        </a>
+                    </li>
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="../?=logout" onclick="logout()">
+                            登出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <a  href="" >
+                <img src="../image/worker_head_img.jpg" width="45" height="40" border = "3">
+            </a>
+        </div>
+    </nav>
+    <div class="_1g4h6" ></div>
+</header>
+
+<div class="RuSEo" style="color: grey;">
+            <div class="_258j4 _2sCnE PrOBO _1CR66" >
+                <div class="_2FVCK _1pgnK _3vQsl" >
+
+                    <span class="_2JV9L _2RmO0 _2svCU" id = "projectTitle" >分类标注</span>
+                    <div data-reactid="175">
+                        <div  data-reactid="176">
+                            <h1 class="_1gaeU _27Bp2 _1iWCF" id = "award"></h1>
+                            <div class="block__cell" id ="accept">
+                                <a  class="btn btn--activate" id="btnActivation">
+                                    <span class="btn__icon"></span>
+                                    <span class="btn__text" data-wait="waiting" data-after="Accepted">Accept</span>
+                                </a>
+                            </div>
+                            <p class="_3uPxv _27Bp2 _1iWCF" style="margin-top: 5px;margin-bottom: 5px;" id = "discription"></p>
+                            <p class="_3uPxv _27Bp2 _1iWCF" style="margin-top: 5px;margin-bottom: 5px;" id = "tagRule"></p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+</div>
+
+<div style="width: 1050px;margin: 0 auto;">
+    <div  class='container' style="float:left;width:200px;margin:5px">
+        <ul id = "pic_display_column1" class='pictures_display'>
+            <!--<li class='picture_single'>-->
+                <!--<a class='normal'>-->
+                    <!--<img class="picture_introduce" src="https://images.unsplash.com/photo-1511189975737-b5939ef6a944?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8b6af19ba770980521cdd98c2c60eef1&auto=format&fit=crop&w=500&q=60"></a>-->
+                <!--<div style="top: 0;left: 0;height:200px;width:200px;position: absolute;background: rgba(0,0,0,0.7);color: #f5f1e5;">-->
+                    <!--<a href="https://www.baidu.com">-->
+                        <!--<svg style="height: 200px;width: 200px">-->
+                            <!--<polyline points="55,80 80, 105 150,55" stroke-width="6" stroke="white" fill="none"></polyline>-->
+                            <!--<text x="65" y="135" fill="white" font-size="20px">已标注</text></svg>-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li class='picture_single'>-->
+                <!--<a class='normal' href="https://www.baidu.com">-->
+                    <!--<img class="picture_introduce" src="https://images.unsplash.com/photo-1516010959786-8ac179510f0f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=17f7f067f360cd8cc2a75ea42ed91f79&auto=format&fit=crop&w=500&q=60"></a>-->
+
+            <!--</li>-->
+
+        </ul>
+    </div>
+    <div  class='container' style="float:left;width:200px;margin:5px">
+        <ul id = "pic_display_column2" class='pictures_display'>
+
+        </ul>
+    </div>
+    <div  class='container' style="float:left;width:200px;margin:5px">
+        <ul id = "pic_display_column3" class='pictures_display'>
+
+        </ul>
+    </div>
+    <div  class='container' style="float:left;width:200px;margin:5px">
+        <ul id = "pic_display_column4" class='pictures_display'>
+
+        </ul>
+    </div>
+    <div  class='container' style="float:left;width:200px;margin:5px">
+        <ul id = "pic_display_column5" class='pictures_display'>
+
+        </ul>
+    </div>
+</div>
+<!--</div>-->
+
+<script>
+    // console.log("1")
+   // window.onload = function (ev) { }
+    /**
+     * 加载图片时预设宽高 利于裁剪
+     * @type {HTMLCollectionOf<Element>}
+     */
+    function clip() {
+        var pictures = document.getElementsByClassName("picture_introduce");
+        var i;
+        for (i = 0; i < pictures.length; i++) {
+
+            var kuan = pictures[i].naturalWidth;
+            var gao = pictures[i].naturalHeight;
+            // console.log("qian",pictures[i].width)
+            if(!((kuan==200)&&(gao==200))) {
+
+                if (kuan > gao) {
+
+                    pictures[i].height = 200;
+                } else {
+
+                    pictures[i].width = 200;
+
+                }
+
+                pictures[i].style = "position:absolute; top:0px; left:0px; clip:rect(0px 200px 200px 0px);"
+            }
+            // console.log("hou",pictures[i].width,pictures[i].height)
+
+        }
+    }
+
+</script>
+<script src="../js/util.js"></script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src = "../js/projectOverview.js"></script>
+<script>
+    var record_index =1;
+    var uls = document.getElementsByClassName("pictures_display");
+    function waterFall(){
+
+                var pic_display_column1 = document.getElementById("pic_display_column1");
+                var pic_display_column2 = document.getElementById("pic_display_column2");
+                var pic_display_column3 = document.getElementById("pic_display_column3");
+                var pic_display_column4 = document.getElementById("pic_display_column4");
+                var pic_display_column5 = document.getElementById("pic_display_column5");
+
+                var pic_array = pro_detail_json.picList;
+
+                var final_five_bool = false;
+                if((pic_array.length- current_load_process)<=5){
+                    final_five_bool = true;
+                }
+                if(!final_five_bool){           //不是最后五张内
+                    for (var i = current_load_process; i<(current_load_process+5);i++){
+
+                        var pic_image_src = "../" + "pic/" + pro_detail_json.id + "/" + pic_array[i];
+                        console.log(pic_image_src)
+                        var li = document.createElement("li");
+                        var a = document.createElement("a");
+                        var img = document.createElement("img");
+
+                        li.classList.add("picture_single");
+                        a.classList.add("normal");
+                        img.classList.add("picture_introduce");
+
+                        li.appendChild(a);
+                        a.appendChild(img);
+                        if (isMypro()){
+                            a.href = "workerMarking.html"+"?"+pro_detail_json.id+"="+pic_array[i].split(".")[0];
+
+                        }
+                        console.log(a.href);
+                        img.src = pic_image_src;
+                        img.id = pic_array[i].split(".")[0];
+
+                        var count = (i + 1) % 5;
+                        switch (count) {
+                            case 1:
+                                pic_display_column1.appendChild(li);
+                                break;
+                            case 2:
+                                pic_display_column2.appendChild(li);
+                                break;
+                            case 3:
+                                pic_display_column3.appendChild(li);
+                                break;
+                            case 4:
+                                pic_display_column4.appendChild(li);
+                                break;
+                            case 0:
+                                pic_display_column5.appendChild(li);
+                                break;
+
+                        }
+
+                    }
+
+                    current_load_process = current_load_process + 5;
+
+                    if(record_index==1) {
+                        setTimeout("clip()", 50);
+                        record_index=0;
+                        console.log("fuck")
+                    }else {
+                        clip();
+                    }
+                }else {                         //最后的小于等于5张
+                    for(var i = current_load_process;i<pic_array.length;i++){
+                        var pic_image_src = "../" + "pic/" + pro_detail_json.id + "/" + pic_array[i];
+                        console.log(pic_image_src)
+                        var li = document.createElement("li");
+                        var a = document.createElement("a");
+                        var img = document.createElement("img");
+
+                        li.classList.add("picture_single");
+                        a.classList.add("normal");
+                        img.classList.add("picture_introduce");
+
+                        li.appendChild(a);
+                        a.appendChild(img);
+                        if (isMypro()){
+                            a.href = "workerMarking.html"+"?"+pro_detail_json.id+"="+pic_array[i].split(".")[0];
+
+                        }
+                        console.log(a.href);
+                        img.src = pic_image_src;
+                        img.id = pic_array[i].split(".")[0];
+
+                        var count = (i + 1) % 5;
+                        switch (count) {
+                            case 1:
+                                pic_display_column1.appendChild(li);
+                                break;
+                            case 2:
+                                pic_display_column2.appendChild(li);
+                                break;
+                            case 3:
+                                pic_display_column3.appendChild(li);
+                                break;
+                            case 4:
+                                pic_display_column4.appendChild(li);
+                                break;
+                            case 0:
+                                pic_display_column5.appendChild(li);
+                                break;
+
+                        }
+                    }
+
+                    full_load_bool = true;
+
+                    if(record_index==1) {
+                        setTimeout("clip()", 50);
+                        record_index=0;
+                        console.log("fuck")
+                    }else {
+                        clip();
+                    }
+
+                }
+
+
+            // console.log("2");
+            //创建li
+
+            // return uls[0].offsetHeight;
+        loadMarkerJob();
+    }
+    // $(window).scroll(function () {
+    //     console.log(document.body.scrollTop);
+    //     console.log(window.)
+    //     // console.log($(document).height())
+    //     if ($(document).scrollTop() + $(window).height() >= ($(document).height())-3) {
+    //         waterFall();
+    //           }
+    // })
+    $(window).scroll(function(event){
+        var wScrollY = window.scrollY; // 当前滚动条位置
+        var wInnerH = window.innerHeight; // 设备窗口的高度（不会变）
+        var bScrollH = document.body.scrollHeight; // 滚动条总高度
+        if (wScrollY + wInnerH >= (bScrollH-1)) {
+            if(!full_load_bool){
+                waterFall();
+            }
+
+        }
+    });
+
+
+</script>
+<script>            //按钮加载特效
+    $(document).ready(function(){
+        if(isMypro()){
+
+            $('#btnActivation').removeClass('btn--activate');
+            $('#btnActivation').addClass('btn--activated');
+            $("#btnActivation").attr("disabled",true);
+            $("#btnActivation").css("pointer-events","none");
+
+        }else {
+
+            $('#btnActivation').click(function(){
+
+                if(!$('#btnActivation').hasClass(('btn--activated'))){
+                    $('#btnActivation').removeClass('btn--activate');
+                    $('#btnActivation').addClass('btn--waiting');
+
+                    setTimeout(function(){
+                        removeWaiting();
+                    }, 500);
+
+                }
+                startNewJob();
+                $("#btnActivation").attr("disabled",true);
+                $("#btnActivation").css("pointer-events","none");
+                loadhref();
+            });
+        }
+
+
+        function removeWaiting(){
+
+            $('#btnActivation').removeClass('btn--waiting');
+            $('#btnActivation').addClass('btn--activated');
+        }
+
+    });</script>
+
+
+
+</body>
+</html>

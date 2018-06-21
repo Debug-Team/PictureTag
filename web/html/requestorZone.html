@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width ,  user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>上传者个人空间/历史数据-DebugTeam</title>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300, 400, 500" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+
+    <link href="../css/requestorHome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/main.840c01.css">
+    <link href="../css/adminHome.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+<!--导航栏-->
+<header class="niA6p _3PSbf" >
+    <nav class="_1M8LQ _2xMJp" >
+        <div class="_2jZzC" >
+            <a class="_2-Pvv _1CBrG"  href="/" >
+                <svg viewbox="0 0 32 32" width="32" height="32" aria-labelledby="unsplash-home" aria-hidden="false">
+                    <!--<path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z" data-reactid="47"></path>-->
+                    <rect x="1" y="1" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;" />
+                    <rect x="7" y="6" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;fill-opacity: 0.5;" />
+                </svg>
+                <div class="_3nvuJ" >
+                    <a class="_1Xu6J _22v5L _2svCU" >PictureTag</a>
+                    <a style = "text-decoration: NONE"class="_2TTDP _22v5L xLon9" href="http://114.215.188.21/groups/161250181_DebugSECIII" target="_blank">
+                        DebugTeam
+                    </a>
+                </div>
+            </a>
+            <div class="_1g2pj _3PSbf _8gQbN" >
+            </div>
+        </div>
+        <div class="QoLMB" >
+            <div class="_2j1Lb" >
+                <ul class="_250wZ" >
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="requestorHome.html">
+                            主页
+                        </a>
+                    </li>
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="uploadProject.html">
+                            发起项目
+                        </a>
+                    </li>
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="requestorProject.html">
+                            全部项目
+                        </a>
+                    </li>
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" id="credits">
+                            积分:
+                        </a>
+                    </li>
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="../?=logout" onclick="logout()" >
+                            登出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <a  href="" >
+                <!--<svg  viewbox="0 0 32 32" width="32" height="32" >-->
+                <!---->
+                <!--</svg>-->
+                <img src="../image/worker_head_img.jpg" width="45" height="40" border = "3">
+            </a>
+        </div>
+    </nav>
+    <div class="_1g4h6" data-reactid="133"></div>
+</header>
+
+<div class="header" id="header">
+    <div class="container">
+        <div class="col-md-8 header-left">
+            <div class="col-sm-5 pro-pic">
+                <img class="img-responsive" src="../image/worker_head_img.jpg" alt=" "/>
+            </div>
+            <div class="col-sm-5 pro-text">
+                <h1>{{username}}</h1>
+                <p>PictureTag Requestor 上传者</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-4 header-right ">
+        <ul class="list-left">
+        <li>Phone:</li>
+        <li>Credits:</li>
+        </ul>
+        <ul class="list-right">
+        <li>{{userphone}}</li>
+        <li>{{credits}}</li>
+        </ul>
+        <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- 网站数据 -->
+<div class="employment" id="projectData">
+    <div class="container">
+        <h3 class="tittle ">任务数据</h3>
+        <!--任务-->
+        <div class="col-md-4">
+            <div class="col-md-6 employ-left2">
+                <h5>总任务</h5>
+            </div>
+            <div class="col-md-6 employ-right2">
+                <h4>{{wholeProjectNum}}</h4>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-6 employ-left2">
+                <h5>进行中</h5>
+            </div>
+            <div class="col-md-6 employ-right2">
+                <h4>{{doingProjectNum}}</h4>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-6 employ-left2">
+                <h5>已完成</h5>
+            </div>
+            <div class="col-md-6 employ-right2">
+                <h4>{{finishedProjectNum}}</h4>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- 任务统计图 -->
+<div class="employment">
+    <div class="container">
+        <h3 class="tittle ">总任务统计图</h3>
+        <div id="wholeProjectPie" style="margin: auto;width: 600px; height:400px;"></div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="employment">
+    <div class="container">
+        <h3 class="tittle ">进行中任务统计图</h3>
+        <div id="doingProjectPie" style="margin: auto;width: 600px; height:400px;"></div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="employment">
+    <div class="container">
+        <h3 class="tittle ">已完成任务统计图</h3>
+        <div id="finishedProjectPie" style="margin: auto;width: 600px; height:400px;"></div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<script src="../js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.8/vue.min.js"></script>
+<script src="../js/echarts.js"></script>
+
+<script src="../js/util.js"></script>
+<script src="../js/requestorUtil.js"></script>
+<script src="../js/requestorZone.js"></script>
+<script src="../js/requestorZoneCharts.js"></script>
+
+</body>
+</html>
+
+</body>
+</html>

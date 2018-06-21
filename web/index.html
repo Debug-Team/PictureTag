@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>PictureTag众包标注-DebugTeam</title>
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300, 400, 500" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body>
+
+<div id='stars'></div>
+<div id='stars2'></div>
+<div id='stars3'></div>
+
+<div class="product-nav nav-fixed">
+    <!--<div class="nav-show-box">-->
+        <!--<h3 class="nav-product-title">数据众包服务</h3>-->
+        <!--<div class="apply-btn">-->
+            <!--<a class="submit" href="/ds/requirement/info">申请使用</a>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="module-nav">
+        <div class="apply-btn">
+            <a class="submit" onclick="showLogin()">登录/注册</a>
+        </div>
+        <a href="#home" class="nav">首页</a>
+        <a href="#summary" class="nav current">产品概述</a>
+        <a href="#features" class="nav">产品功能</a>
+        <a href="#advantages" class="nav">产品优势</a>
+        <a href="#processes" class="nav">使用步骤</a>
+    </div>
+    <i style="left: 0px;"></i>
+</div>
+
+<section class="panel home" data-section-name="home">
+    <div id="early-bird-list" class="container">
+        <div class="text-center">
+            <svg class="logo" version="1.1" viewbox="0 0 128 128" width="128" height="128" aria-hidden="false">
+                <rect x="20" y="4" width="64" height="96" style="stroke: #222426; fill: transparent;stroke-width:8;" />
+                <rect x="44" y="24" width="64" height="96" style="stroke: #222426; fill: transparent;stroke-width:8;fill-opacity: 0.5;" />
+            </svg>
+            <div class="welcome">
+                <label class="welcome_1">PictureTag</label>
+            </div>
+        </div>
+    </div>
+    <div class="scrollDiv">
+        <a href="#login" class="scroll">&nbsp; 更多</a>
+    </div>
+</section>
+<section class="panel summary" data-section-name="summary">
+    <div class="blank"></div>
+    <div class="group">
+        <div class="title">产品概述</div>
+        <div class="content">
+            <p ui-type="text" class="text">
+                一站式的数据众包服务，可根据特定领域、特定场景的客户需求，提供定制化的数据获取与加工方案的设计与执行服务，
+                为客户交付标准化结构化的可用数据，数据类型涵盖文本、图像、音频、视频、网页等。
+            </p>
+            <img ui-type="diagram" class="diagram" src="image/process_index.png">
+        </div>
+    </div>
+</section>
+<section class="panel features" data-section-name="features">
+    <div class="blank"></div>
+    <div class="group">
+        <div class="title">产品功能</div>
+        <div class="content">
+            <!--<p ui-type="text" class="text">-->
+                <!--一站式的数据众包服务，可根据特定领域、特定场景的客户需求，提供定制化的数据获取与加工方案的设计与执行服务，-->
+                <!--为客户交付标准化结构化的可用数据，数据类型涵盖文本、图像、音频、视频、网页等。-->
+            <!--</p>-->
+            <!--<img ui-type="diagram" class="diagram" src="image/process_index.png">-->
+        </div>
+    </div>
+</section>
+<section class="panel advantages" data-section-name="advantages">
+    <div class="blank"></div>
+    <div class="group">
+        <div class="title">产品优势</div>
+        <div class="content">
+            <!--<p ui-type="text" class="text">-->
+                <!--一站式的数据众包服务，可根据特定领域、特定场景的客户需求，提供定制化的数据获取与加工方案的设计与执行服务，-->
+                <!--为客户交付标准化结构化的可用数据，数据类型涵盖文本、图像、音频、视频、网页等。-->
+            <!--</p>-->
+            <!--<img ui-type="diagram" class="diagram" src="image/process_index.png">-->
+        </div>
+    </div>
+</section>
+<section class="panel processes" data-section-name="processes">
+    <div class="blank"></div>
+    <div class="group">
+        <div class="title">使用步骤</div>
+        <div class="content">
+            <!--<p ui-type="text" class="text">-->
+                <!--一站式的数据众包服务，可根据特定领域、特定场景的客户需求，提供定制化的数据获取与加工方案的设计与执行服务，-->
+                <!--为客户交付标准化结构化的可用数据，数据类型涵盖文本、图像、音频、视频、网页等。-->
+            <!--</p>-->
+            <!--<img ui-type="diagram" class="diagram" src="image/process_index.png">-->
+        </div>
+    </div>
+</section>
+
+<!--<section class="panel login" data-section-name="login">-->
+<div class="login" hidden>
+    <a class="closeImg" onclick="closeLogin()"></a>
+    <section class="user">
+        <div class="user_options-container">
+            <div class="user_options-text">
+                <div class="user_options-unregistered">
+                    <h2 class="user_unregistered-title">Don't have an account?</h2>
+                    <p class="user_unregistered-text">Upload project. Add tags. There's going to be something for everybody.</p>
+                    <button class="user_unregistered-signup" id="signup-button">Sign up</button>
+                </div>
+
+                <div class="user_options-registered">
+                    <h2 class="user_registered-title">Have an account?</h2>
+                    <p class="user_registered-text">How about starting working right now?</p>
+                    <button class="user_registered-login" id="login-button">Login</button>
+                </div>
+            </div>
+
+            <div class="user_options-forms" id="user_options-forms">
+                <div class="user_forms-login">
+                    <h2 class="forms_title">Login</h2>
+                    <!--<form class="forms_form" action="/login" method="post">-->
+                    <form class="forms_form" id="login_form">
+                        <fieldset class="forms_fieldset">
+                            <div class="forms_field">
+                                <input type="text" placeholder="PhoneNumber" class="forms_field-input" name="userphone" id="userPhone_login" required />
+                            </div>
+                            <div class="forms_field">
+                                <input type="password" placeholder="Password" class="forms_field-input" name="password" id="password_login" required />
+                            </div>
+                        </fieldset>
+                        <div  id = "logininID">
+                            <button type="button" class="forms_buttons-forgot">Forgot password?</button>
+                            <input type="submit" value="Log In" class="forms_buttons-action" >
+                            <!--<input type="button" value="Log In" class="forms_buttons-action" onclick="clickLogin()">-->
+                        </div>
+                    </form>
+                </div>
+                <div class="user_forms-signup">
+                    <h2 class="forms_title">Sign Up</h2>
+                    <form class="forms_form" id="signup_form">
+                        <fieldset class="forms_fieldset">
+                            <div class="forms_field">
+                                <input type="text" placeholder="Name" class="forms_field-input" id="name_signUp" required />
+                            </div>
+                            <div class="forms_field">
+                                <input type="number" placeholder="PhoneNumber" class="forms_field-input" id="userPhone_signUp" required />
+                            </div>
+                            <div class="forms_field">
+                                <input type="password" placeholder="Password" class="forms_field-input" id="password_signUp" required />
+                            </div>
+                            <div class="forms_field">
+                                <select class="forms_field-input" id="type_signUp" required>
+                                    <option value="" disabled selected hidden>类型</option>
+                                    <option value="0">标注者</option>
+                                    <option value="1">上传者</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                        <div class="forms_buttons" >
+                            <!--<input type="button" value="Sign up" class="forms_buttons-action" onclick="clickSignUp()">-->
+                            <input type="submit" value="Sign up" class="forms_buttons-action"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--</section>-->
+</div>
+
+<!--<script src="js/vue.js"></script>-->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/jquery.scrollify.min.js"></script>
+<script>
+    $(function() {
+
+        $(".panel").css({"height":$(window).height()});
+        var timer;
+
+        $(window).resize(function() {
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+                $(".panel").css({"height":$(window).height()});
+            },40);
+        });
+
+        $.scrollify({
+            section:".panel"
+        });
+
+
+        $(".scroll").click(function(e) {
+            e.preventDefault();
+            $.scrollify("move",$(this).attr("href"));
+        });
+
+        $(window).scroll(function (event) {
+            var sections = $('.panel');
+            for(var i = 0; i < sections.length; i++) {
+                var section = $(sections[i]);
+                // console.log(section.offset().top)
+                // console.log($(window).scrollTop())
+                if (section.offset().top >= $(window).scrollTop()) {
+                    // console.log(section)
+                    var targetNav = $(".module-nav a[href='#" + section.attr('data-section-name') + "']");
+                    $(".module-nav .nav").attr('class', 'nav');
+                    targetNav.attr('class', 'nav current');
+                    $('.product-nav i').css('left', targetNav.offset().left + targetNav.width() / 2 - 20);
+                    break;
+                }
+            }
+        })
+
+
+    });
+</script>
+
+<script  src="js/index.js"></script>
+<script src="js/login.js"></script>
+<script src="js/util.js"></script>
+
+</body>
+</html>

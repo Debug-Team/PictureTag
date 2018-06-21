@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Marking</title>
+    <link rel="stylesheet" href="../css/main.840c01.css">
+    <link rel="stylesheet" href="../css/workerMark.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/jquery.mThumbnailScroller.css">
+    <!--<link rel="stylesheet" href="../css/component.css">-->
+    <!--<link rel="stylesheet" href="../css/demo.css">-->
+    <link rel="stylesheet" href="../css/jqtransform.css">
+
+</head>
+<!--<body>-->
+<!--<canvas id="canvas_img"  style="position: absolute;-->
+            <!--left: 400px;-->
+            <!--top: 50px;-->
+            <!--width: 760cm;-->
+            <!--height: 570cm;-->
+            <!--margin: 20px;-->
+            <!--background: #ffffff;-->
+            <!--border: thin solid #aaaaaa;">-->
+
+<!--</canvas>-->
+<!--<script src="../js/workerMarking.js"></script>-->
+</body>
+<body>
+<header class="niA6p _3PSbf" >
+    <nav class="_1M8LQ _2xMJp" >
+        <div class="_2jZzC" >
+            <a class="_2-Pvv _1CBrG"  href="/" >
+                <a>
+                    <svg class="_2m4hn" version="1.1" viewbox="0 0 32 32" width="32" height="32" aria-labelledby="unsplash-home" aria-hidden="false" >
+                        <rect x="1" y="1" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;"/>
+                        <rect x="7" y="6" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;fill-opacity: 0.5;"/>
+
+                    </svg>
+                </a>
+                <div class="_3nvuJ" >
+                    <a class="_1Xu6J _22v5L _2svCU" >PictureTag</a>
+                    <a style = "text-decoration: NONE"class="_2TTDP _22v5L xLon9" href="http://114.215.188.21/groups/161250181_DebugSECIII" target="_blank">
+                        DebugTeam
+                    </a>
+                </div>
+            </a>
+            <div class="_1g2pj _3PSbf _8gQbN" >
+            </div>
+        </div>
+        <div class="QoLMB" >
+            <div class="_2j1Lb" >
+                <ul class="_250wZ" >
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="WorkerZone.html">
+                            个人空间
+                        </a>
+                    </li>
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="workerHome.html">
+                            主页
+                        </a>
+                    </li>
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="../?=logout" onclick="logout()">
+                            登出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <a  href="" >
+                <!--<svg  viewbox="0 0 32 32" width="32" height="32" >-->
+                <!---->
+                <!--</svg>-->
+                <img src="../image/worker_head_img.jpg" width="45" height="40" border = "3">
+            </a>
+        </div>
+    </nav>
+    <div class="_1g4h6" ></div>
+</header>
+<div id="content">
+    <div class="photos_index_layout">
+        <div class="main_container">
+            <div class="photo_container" style="height: 700px;">
+                <div class="overlay logged-out">
+                    <div class="nav left">
+                        <!-- demo content -->
+                        <div id="content-3" class="content mThumbnailScroller" data-mts-axis="y">
+                            <ul >
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1491956398797-69cc68e54362?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=56e65380a8432ddfb39bba8af21952fc&auto=format&fit=crop&w=500&q=60" style="	border: 2px solid yellow;"/></a></li>-->
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1522206024047-9c925421675b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d15068e79f25c166667b83b933341939&auto=format&fit=crop&w=500&q=60"  /></a></li>-->
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1510007552638-e1c0c4c67ee0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=95ed13af4e929ecf4617003a8e056214&auto=format&fit=crop&w=500&q=60" /></a></li>-->
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1511515828069-1e4853d8b336?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d8a87480a079880a7b5c986927e01b9d&auto=format&fit=crop&w=500&q=60"/></a></li>-->
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1505150892987-424388901632?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=84b47a91f3f340fbbf640f2ffc239c0a&auto=format&fit=crop&w=500&q=60" /></a></li>-->
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1491956398797-69cc68e54362?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=56e65380a8432ddfb39bba8af21952fc&auto=format&fit=crop&w=500&q=60"/></a></li>-->
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1491956398797-69cc68e54362?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=56e65380a8432ddfb39bba8af21952fc&auto=format&fit=crop&w=500&q=60" /></a></li>-->
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1491956398797-69cc68e54362?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=56e65380a8432ddfb39bba8af21952fc&auto=format&fit=crop&w=500&q=60" /></a></li>-->
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1491956398797-69cc68e54362?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=56e65380a8432ddfb39bba8af21952fc&auto=format&fit=crop&w=500&q=60" /></a></li>-->
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1491956398797-69cc68e54362?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=56e65380a8432ddfb39bba8af21952fc&auto=format&fit=crop&w=500&q=60" /></a></li>-->
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1491956398797-69cc68e54362?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=56e65380a8432ddfb39bba8af21952fc&auto=format&fit=crop&w=500&q=60" /></a></li>-->
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1491956398797-69cc68e54362?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=56e65380a8432ddfb39bba8af21952fc&auto=format&fit=crop&w=500&q=60" /></a></li>-->
+                                <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1491956398797-69cc68e54362?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=56e65380a8432ddfb39bba8af21952fc&auto=format&fit=crop&w=500&q=60"  /></a></li>-->
+
+                            </ul>
+                        </div>
+                        <!-- -//- -->
+                    </div>
+                    <div class="focus box10">
+                        <canvas id="canvas_img" width="760" height="570" >
+
+                        </canvas>
+                        <canvas id="canvas_tag" width="760" height="570">
+
+                        </canvas>
+                    </div>
+                </div>
+
+            </div>
+            <!--tag区-->
+            <div class="sidebar_region clearfix">
+                <div class="photo_sidebar photo_sidebar--with_scrollbar">
+                    <div class="attribution_region section">
+
+                        <!--<div class="attribution">-->
+
+                            <!--<div class="photographer_info large logged_out">-->
+                                <!--<div class="left">-->
+
+                                    <!--<a class="photographer_info__user_avatar_region">-->
+                                        <!--<div class="user_avatar">-->
+                                            <!--<div class="user_avatar__avatar_wrapper">-->
+                                                <!--<img class="user_avatar__avatar_image" ></div>-->
+                                            <!--<div class="user_avatar__badge_wrapper"></div>-->
+                                        <!--</div>-->
+                                    <!--</a>-->
+                                <!--</div>-->
+                                <!--<div class="right">-->
+
+                               <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <h3 id = "pro_type"></h3>
+                        <p id = "pro_dis"></p>
+
+
+
+                    </div>
+
+                    <div class="details_region">
+                        <div class="photo_sidebar_details">
+                            <div class="sidebar_expandable_header sidebar_expandable_header--expanded">
+                                <div class="sidebar_expandable_header__label">标注信息  </div>
+                            </div>
+                            <div class="sidebar_expandable_content sidebar_expandable_content--expanded ">
+
+                                <div class="badges">
+                                    <div class="tags_container">
+                                        <div class="tags-region">
+                                            <div class="photo_tags">
+                                                <div class="tag-container" >
+                                                    <div id="classify_tags_provided">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="badges">
+                                    <div class="tagsinfo_input" id = "tags_operate">
+                                        <!--<span class="input input&#45;&#45;kuro">-->
+                                            <!--<input class="input__field input__field&#45;&#45;kuro" type="text" id="ss" onchange="savetags(this)">-->
+                                            <!--<label class="input__label input__label&#45;&#45;kuro" for="ss">-->
+                                            <!--<span class="input__label-content input__label-content&#45;&#45;kuro">性别</span>-->
+                                            <!--</label>-->
+                                        <!--</span>-->
+                                        <!--<div class="rowElem">-->
+                                            <!--<label style="cursor: pointer;">描述信息：</label>-->
+                                            <!--<table cellspacing="0" cellpadding="0" border="0" class="jqTransformTextarea">-->
+                                                <!--<tbody>-->
+                                                <!--<tr>-->
+                                                    <!--<td id="jqTransformTextarea-mm" class="jqTransformSafariTextarea">-->
+                                                        <!--<div style="height: 192px; width: 261px;">-->
+                                                            <!--<textarea cols="40" rows="12" name="mytext" class="jqtransformdone" id="description_textarea" onchange="savetextdiscription()"></textarea>-->
+                                                        <!--</div>-->
+                                                    <!--</td>-->
+                                                 <!--</tr>-->
+                                                <!--</tbody>-->
+                                            <!--</table>-->
+                                        <!--</div>-->
+                                        <!--<fieldset tabindex="0" class="radioGroup">-->
+                                            <!--<input id="g1o1" name="group1" value="option1" checked="" type="radio">-->
+                                            <!--<label for="g1o1">Hell yeah</label>-->
+                                            <!--<input id="g1o2" name="group1" value="option2" type="radio">-->
+                                            <!--<label for="g1o2">A little</label>-->
+                                            <!--<input id="g1o3" name="group1" value="option3" type="radio">-->
+                                            <!--<label for="g1o3">Nope</label>-->
+                                        <!--</fieldset>-->
+
+                                        <!--<div class='radio-check'>-->
+                                            <!--<input type='radio' name='test' id='test1'/>-->
+                                            <!--<label for='test1' >苹果</label>-->
+                                        <!--</div>-->
+                                        <!--<div class='radio-check'>-->
+                                            <!--<input type='radio' name='test' id='test2'/>-->
+                                            <!--<label for='test2' >橘子</label>-->
+                                        <!--</div>-->
+                                        <!--<div class="rowElem">-->
+                                            <!--<label style="cursor: pointer;">性别：</label>-->
+                                            <!--<div class="jqTransformInputWrapper jqTransformSafari" style="width: 170px;">-->
+                                                <!--<div class="jqTransformInputInner">-->
+                                                    <!--<div>-->
+                                                        <!--<input type="text" name="inputtext" class="jqtranformdone jqTransformInput" style="width: 226px;"></div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="rowElem">-->
+                                            <!--<label style="cursor: pointer;">年龄：</label>-->
+                                            <!--<div class="jqTransformInputWrapper jqTransformSafari" style="width: 170px;">-->
+                                                <!--<div class="jqTransformInputInner">-->
+                                                    <!--<div>-->
+                                                        <!--<input type="text"  class="jqtranformdone jqTransformInput" ></div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <!--<span class="input input&#45;&#45;akira">-->
+					                    <!--<input class="input__field input__field&#45;&#45;akira" type="text" onchange="savetags(this)" id = "ss">-->
+					                    <!--<label class="input__label input__label&#45;&#45;akira" for ="ss">-->
+						                    <!--<span class="input__label-content input__label-content&#45;&#45;akira">妹子？</span>-->
+					                    <!--</label>-->
+				                        <!--</span>-->
+                                        <!--<span class="input input&#45;&#45;akira">-->
+                                            <!--<input class="input__field input__field&#45;&#45;akira" type="text" id="data0">-->
+                                             <!--<label class="input__label input__label&#45;&#45;akira" for="data0">-->
+                                                 <!--<span class="input__label-content input__label-content&#45;&#45;akira">adasjkhdksa</span></label>-->
+                                        <!--</span>-->
+
+                                        <!--<span class="input input&#45;&#45;akira">-->
+					                    <!--<input class="input__field input__field&#45;&#45;akira" type="text" >-->
+					                    <!--<label class="input__label input__label&#45;&#45;akira" >-->
+						                    <!--<span class="input__label-content input__label-content&#45;&#45;akira">动作</span>-->
+					                    <!--</label>-->
+				                        <!--</span>-->
+                                    </div>
+                                </div>
+
+                             </div>
+                            <div class="actions_region section">
+                                <div class="curator-actions">
+                                    <div class="desktop curator_actions--with-gallery">
+                                        <div class="like-button" >
+                                            <div>
+                                                <a class="button " onclick="previousPic()">
+                                                    上一张
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="like-button" >
+                                            <div>
+                                                <a class="button " onclick="nextPic()">
+                                                    下一张
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="curator-actions">
+                                    <div class="desktop curator_actions--with-gallery" id = "tools">
+                                        <!--<div class="like-button">-->
+
+                                                <!--<a class="button " id = "revoke">-->
+                                                    <!--撤销-->
+                                                <!--</a>-->
+
+                                        <!--</div>-->
+                                        <!--<div class="like-button">-->
+
+                                                <!--<a class="button " id = "rubber">-->
+                                                    <!--橡皮擦-->
+                                                <!--</a>-->
+
+                                        <!--</div>-->
+                                        <!--<div class="like-button">-->
+
+                                                <!--<a class="button " id = "pencil">-->
+                                                    <!--铅笔-->
+                                                <!--</a>-->
+
+                                        <!--</div>-->
+                                        <!--<div class="like-button">-->
+
+                                            <!--<a class="button " id = "undo">-->
+                                                <!--撤销-->
+                                            <!--</a>-->
+
+                                        <!--</div>-->
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/util.js"></script>
+<script src="../js/workerMarking.js"></script>
+<script src="../js/jquery-1.11.0.min.js"></script>
+<script src="../js/jquery.mThumbnailScroller.js"></script>
+<script src="../js/workerMarkingLoad.js"></script>
+<!--<script>-->
+    <!--(function() {-->
+        <!--// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim-->
+        <!--if (!String.prototype.trim) {-->
+            <!--(function() {-->
+                <!--// Make sure we trim BOM and NBSP-->
+                <!--var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;-->
+                <!--String.prototype.trim = function() {-->
+                    <!--return this.replace(rtrim, '');-->
+                <!--};-->
+            <!--})();-->
+        <!--}-->
+
+        <!--[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {-->
+            <!--// in case the input is already filled..-->
+            <!--if( inputEl.value.trim() !== '' ) {-->
+                <!--classie.add( inputEl.parentNode, 'input&#45;&#45;filled' );-->
+            <!--}-->
+
+            <!--// events:-->
+            <!--inputEl.addEventListener( 'focus', onInputFocus );-->
+            <!--inputEl.addEventListener( 'blur', onInputBlur );-->
+        <!--} );-->
+
+        <!--function onInputFocus( ev ) {-->
+            <!--classie.add( ev.target.parentNode, 'input&#45;&#45;filled' );-->
+        <!--}-->
+
+        <!--function onInputBlur( ev ) {-->
+            <!--if( ev.target.value.trim() === '' ) {-->
+                <!--classie.remove( ev.target.parentNode, 'input&#45;&#45;filled' );-->
+            <!--}-->
+        <!--}-->
+    <!--})();-->
+<!--</script>-->
+<!--<script src="../js/classie.js"></script>-->
+
+</body>
+
+</html>

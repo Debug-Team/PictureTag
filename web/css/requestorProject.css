@@ -1,0 +1,294 @@
+/* project_list */
+.project_list {
+    padding: 0px 40px 0px 30px;
+    margin-bottom: 10px;
+    float: left;
+    width: 100%;
+}
+
+.project_list h2 {
+    font-size: 1rem;
+}
+
+.project_list h3 {
+    font-size: 1.3rem;
+}
+
+.project_list h3 a {
+    color: #666;
+    font-weight: bold;
+}
+
+.project_list h3 a:hover {
+    color: #F68;
+}
+
+.project_list h2, .project_list h3{
+    font-weight: normal;
+    line-height: 1.4rem;
+    margin-bottom: 0;
+    display: inline;
+}
+
+.project_list h2 a span,.project_list h3 a span{
+    font-size: 0.75rem;
+    color: #999;
+    margin-left: 0.8rem;
+    position: relative;
+    top: 1px;
+}
+
+.project_list p{
+    line-height: 1.6rem;
+    margin: 2px 0 0 0;
+    color: #777;
+}
+
+.project_list p a {
+    margin-right: 0.8rem;
+    color: #777
+}
+
+.project_list p a:hover{
+    color: #f68
+}
+
+.project_list p b {
+    color: #999;
+}
+
+.project_list dl {
+    padding: 12px 7px;
+    margin: 12px 8px;
+    -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, .37);
+    -moz-box-shadow: 0 0 7px rgba(0, 0, 0, .37);
+    box-shadow: 0 0 7px rgba(0, 0, 0, .37);
+    width: 100%;
+}
+
+.project_list dl{
+    clear: both;
+    float: left;
+    display: block;
+}
+
+.project_list dl {
+    border-top: 2px dashed #e5e5e5;
+}
+
+.project_list .imgDIv {
+    width: 265px;
+    height: 265px;
+    float: left;
+    display: block;
+}
+
+.project_list dt {
+    width: 265px;
+    height: 265px;
+    float: left;
+}
+
+.project_list dt img {
+    width: 100%;
+    max-height: 100%;
+    border: 2px solid #fff;
+    border-radius: 7px;
+}
+
+.project_list dt a img:hover {
+    border: 2px solid #f68;
+}
+
+.project_list dd{
+    padding-left: 20px;
+    overflow: hidden;
+}
+
+.project_list canvas{
+    background: transparent;
+    position:absolute;
+    /*left: 85%;*/
+    right: 4%;
+}
+/*关闭项目按钮*/
+#project_list .closeButton{
+    position: absolute;
+    /*left: 85%;*/
+    right: 4%;
+    margin-top: 210px;
+    width: 150px;
+    background: #ff7675;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 3px;
+    padding: 12px;
+}
+/*评价项目按钮*/
+#project_list .evaluateButton{
+    background: #7bed9f;
+}
+
+/*遮罩*/
+.overlay{
+    background-color: rgb(230, 245, 255);
+    border-top: 1px solid rgb(230, 245, 255);
+    position: absolute; height: 2980px;
+    z-index: 100001;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    opacity: 0.7;
+}
+/*评价表*/
+.evaluateForm{
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    z-index: 100002;
+}
+.evaluateForm fieldset{
+    width: 600px;
+    margin: 50px auto;
+    text-align: center;
+    position: relative;
+
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    box-sizing: border-box;
+}
+.evaluateForm .closeImg{
+    float: right;
+    cursor: pointer;
+}
+.evaluateForm dl {
+    padding: 12px 7px;
+    margin: 12px 8px;
+    /*-webkit-box-shadow: 0 0 7px rgba(0, 0, 0, .37);*/
+    /*-moz-box-shadow: 0 0 7px rgba(0, 0, 0, .37);*/
+    /*box-shadow: 0 0 7px rgba(0, 0, 0, .37);*/
+    width: 97%;
+}
+
+.evaluateForm dl{
+    clear: both;
+    float: left;
+    display: block;
+}
+.evaluateForm .imgDIv {
+    width: 100px;
+    height: 100px;
+    float: left;
+    display: block;
+}
+.evaluateForm dt {
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+.evaluateForm dt img {
+    width: 100%;
+    max-height: 100%;
+    border: 2px solid #fff;
+    border-radius: 7px;
+}
+.evaluateForm dd{
+    padding-left: 20px;
+    overflow: hidden;
+    text-align: left;
+}
+.evaluateForm input{
+    padding: 5px;
+}
+.evaluateForm .btn{
+    width: 70px;
+    background: #2ed573;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 2px;
+    margin: 20px;
+}
+/*p.switch {*/
+    /*width: 122px;*/
+    /*height: 26px;*/
+    /*margin-bottom: 15px;*/
+    /*background: url(../image/switch_bg.gif) no-repeat;*/
+/*}*/
+/*a.switch_thumb {*/
+    /*width: 34px;*/
+    /*height: 26px;*/
+    /*line-height: 26px;*/
+    /*padding: 0;*/
+    /*margin: 0 0 0 80px;*/
+    /*display: block;*/
+    /*background: url(../image/switch_btn.gif) no-repeat;*/
+    /*outline: none;*/
+    /*text-indent: -9999px;*/
+/*}*/
+/*a.swap { background-position: left bottom; }*/
+/*a:hover.switch_thumb {*/
+    /*filter:alpha(opacity=75);*/
+    /*opacity:.75;*/
+    /*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";*/
+/*}*/
+/*ul.display {*/
+    /*width: 744px;*/
+    /*background: #222 none repeat scroll 0 0;*/
+    /*border-right: 1px solid #333;*/
+    /*border-top: 1px solid #333;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*overflow: hidden;*/
+    /*clear: both;*/
+/*}*/
+/*ul.display li {*/
+    /*width: 742px;*/
+    /*float: left;*/
+    /*margin: 0;*/
+    /*padding: 10px 0;*/
+    /*border: 1px solid;*/
+    /*border-color: #111 #111 #333 #333;*/
+/*}*/
+/*ul.display li a {*/
+    /*color: #DDD;*/
+    /*text-decoration: none;*/
+    /*font-size: 140%;*/
+/*}*/
+/*ul.display li .content_block {*/
+    /*padding: 0 10px;*/
+/*}*/
+/*ul.display li .content_block h4 {*/
+    /*margin: 0;*/
+    /*padding: 5px;*/
+/*}*/
+/*ul.display li .content_block p {*/
+    /*margin: 0;*/
+    /*padding: 5px 5px 5px 241px; !*--The left padding keeps the content from flowing under the image--*!*/
+    /*color: #CCC;*/
+/*}*/
+/*ul.display li .content_block a img{ !*--Double border technique--*!*/
+    /*border: 5px solid #ccc;*/
+    /*background: #fff;*/
+    /*margin: 0 15px 0 0;*/
+    /*float: left;*/
+/*}*/
+/*!*-- Switch the width to accommodate for the three column layout-- *!*/
+/*ul.thumb_view li {*/
+    /*width: 246px;*/
+/*}*/
+/*ul.thumb_view li h4 {*/
+    /*display: inline;*/
+/*}*/
+/*ul.thumb_view li p {*/
+    /*display: none;*/
+/*}*/
+/*ul.thumb_view li .content_block a img {*/
+    /*margin: 0 0 10px;*/
+/*}*/

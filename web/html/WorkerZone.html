@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>个人空间</title>
+<meta charset="UTF-8">
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/workerZone.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/main.840c01.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/popup.css" rel="stylesheet" type="text/css" media="all"/>
+</head>
+<body>
+<!-- banner -->
+<header class="niA6p _3PSbf" >
+	<nav class="_1M8LQ _2xMJp" >
+		<div class="_2jZzC" >
+			<a class="_2-Pvv _1CBrG"  href="/" >
+				<a>
+					<svg class="_2m4hn" version="1.1" viewbox="0 0 32 32" width="32" height="32" aria-labelledby="unsplash-home" aria-hidden="false" >
+						<rect x="1" y="1" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;"/>
+						<rect x="7" y="6" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;fill-opacity: 0.5;"/>
+
+					</svg>
+				</a>
+				<div class="_3nvuJ" >
+					<a class="_1Xu6J _22v5L _2svCU" >PictureTag</a>
+					<a style = "text-decoration: NONE"class="_2TTDP _22v5L xLon9" href="http://114.215.188.21/groups/161250181_DebugSECIII" target="_blank">
+						DebugTeam
+					</a>
+				</div>
+			</a>
+			<div class="_1g2pj _3PSbf _8gQbN" >
+			</div>
+		</div>
+		<div class="QoLMB" >
+			<div class="_2j1Lb" >
+				<ul class="_250wZ" >
+					<li class="_29OpZ xLon9" >
+						<a class="_3t5Ep _1CBrG" id="btn1"style="cursor: pointer" onclick="loadMedalDetail()">
+							成就等级/兴趣管理
+							<!--<input type="button" value="点击弹出框" id="btn1">-->
+						</a>
+					</li>
+					<li class="_29OpZ xLon9" >
+						<a class="_3t5Ep _1CBrG" href="workerHome.html">
+							主页
+						</a>
+					</li>
+					<li class="_29OpZ xLon9" >
+						<a class="_3t5Ep _1CBrG" href="../?=logout" onclick="logout()">
+							登出
+						</a>
+					</li>
+				</ul>
+			</div>
+			<a  href="" >
+				<!--<svg  viewbox="0 0 32 32" width="32" height="32" >-->
+				<!---->
+				<!--</svg>-->
+				<img src="../image/worker_head_img.jpg" width="45" height="40" border = "3">
+			</a>
+		</div>
+	</nav>
+	<div class="_1g4h6" ></div>
+</header>
+<div class="header">
+	<div class="container">
+		<div class="col-md-8 header-left">
+			<div class="col-sm-5 pro-pic">
+				<img class="img-responsive" src="../image/worker_head_img.jpg" alt=" "/>
+			</div>
+			<div class="col-sm-5 pro-text">
+				<h1 id = "worker_name"></h1>
+				<p>PictureTag Worker 标注者</p>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="col-md-4 header-right ">
+			<ul class="list-left">
+				<li>Phone no:</li>
+				<li>EXP:</li>
+				<li>Credits:</li>
+
+			</ul>
+			<ul class="list-right">
+
+
+			</ul>
+			<div class="clearfix"></div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<!-- //banner -->
+<!-- about -->
+<div class="more">
+    <div class="container">
+        <h3 class="tittle " id = "credits_title">总积分:</h3>
+        <div class="col-md-6 skill-left ">
+
+			<!--<p class="abt-para">大扎好，我系轱天乐，我四渣渣辉，肿爆婊叔，介四里没有彪过的船新版本，挤需体验三番钟，里造会干我一样，爱象节款溪头</p>-->
+            <div id = "radarWorker" style="width: 600px; height:400px;"></div>
+
+		</div>
+        <div class="col-md-6 skill-right ">
+			<h1 id="my_rank">我的排名：</h1>
+            <div class="scrollbar scrollbar1">
+                <div class="row flat">
+
+                    <ul class="plan plan2 featured" id = "rankList">
+                        <li class="plan-name">
+                            排行榜
+                        </li>
+
+
+                    </ul>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>·
+<div  class="about">
+	<div class="container">
+		<h3 class="tittle">三类标注比例统计图</h3>
+		<!--<p class="abt-para">Sed ut perspiciatis unde omnis iste natus error sit-->
+			<!--voluptatem accusantium doloremque laudantium, totam-->
+			<!--rem aperiam, eaque ipsa quae ab illo inventore veritatis-->
+			<!--et quasi architecto beatae vitae dicta sunt explicabo.-->
+			<!--Nemo enim ipsam voluptatem quia voluptas sit aspernatur . </p>-->
+	</div>
+	<div id="pieTry" style="margin: auto;width: 600px; height:400px;"></div>
+
+	<div class="clearfix"></div>
+</div>
+
+<div  class="about">
+	<div class="container">
+		<h3 class="tittle">日标记图片热点图</h3>
+		<!--<p class="abt-para">Sed ut perspiciatis unde omnis iste natus error sit-->
+		<!--voluptatem accusantium doloremque laudantium, totam-->
+		<!--rem aperiam, eaque ipsa quae ab illo inventore veritatis-->
+		<!--et quasi architecto beatae vitae dicta sunt explicabo.-->
+		<!--Nemo enim ipsam voluptatem quia voluptas sit aspernatur . </p>-->
+	</div>
+	<div id= "hotMap" style=" margin: auto;width: 1200px; height:400px;" ></div>
+	<div class="clearfix"></div>
+</div>
+<div  class="about">
+	<div class="container">
+		<h3 class="tittle">标记时段分布表</h3>
+		<!--<p class="abt-para">Sed ut perspiciatis unde omnis iste natus error sit-->
+		<!--voluptatem accusantium doloremque laudantium, totam-->
+		<!--rem aperiam, eaque ipsa quae ab illo inventore veritatis-->
+		<!--et quasi architecto beatae vitae dicta sunt explicabo.-->
+		<!--Nemo enim ipsam voluptatem quia voluptas sit aspernatur . </p>-->
+	</div>
+	<div id ="HourMarkChart"  style="margin: auto;width: 1200px; height:400px;"></div>
+	<div class="clearfix"></div>
+</div>
+<div  class="about">
+	<div class="container">
+		<h3 class="tittle">7日获取积分对照</h3>
+		<!--<p class="abt-para">Sed ut perspiciatis unde omnis iste natus error sit-->
+		<!--voluptatem accusantium doloremque laudantium, totam-->
+		<!--rem aperiam, eaque ipsa quae ab illo inventore veritatis-->
+		<!--et quasi architecto beatae vitae dicta sunt explicabo.-->
+		<!--Nemo enim ipsam voluptatem quia voluptas sit aspernatur . </p>-->
+	</div>
+	<div id ="creditsGetLineCharts"  style="margin: auto;width: 1200px; height:400px;"></div>
+	<div class="clearfix"></div>
+</div>
+<div  class="about">
+	<div class="container">
+		<h3 class="tittle">平均标记时间变化线性回归</h3>
+		<!--<p class="abt-para">Sed ut perspiciatis unde omnis iste natus error sit-->
+		<!--voluptatem accusantium doloremque laudantium, totam-->
+		<!--rem aperiam, eaque ipsa quae ab illo inventore veritatis-->
+		<!--et quasi architecto beatae vitae dicta sunt explicabo.-->
+		<!--Nemo enim ipsam voluptatem quia voluptas sit aspernatur . </p>-->
+	</div>
+	<div id ="pageTimeLinearRegression"  style="margin: auto;width: 1200px; height:400px;"></div>
+	<div class="clearfix"></div>
+</div>
+
+<div id="popup" class="popup" style="width: 850px">
+	<div class="title">
+		<p data-title="我的成就" ></p>
+		<span>x</span>
+	</div>
+	<div class="cont" style="height: 1000px">
+        <div style="text-align: center;vertical-align: middle;margin:20px 0">
+            <h2>成就等级</h2>
+        </div>
+        <div style="margin:20px 0;vertical-align: middle">
+            <h3 style="float: left;width: 100px;text-align: center;margin-top: 80px;margin-left: 10px;color: rgba(99,184,255);">整体标注</h3>
+            <div style="width: 100px" class="mature-progress">
+                <div class="mature-progress-bottom">
+                    <!-- 等级样式  v0 v1 v2 v3 v4 v5 -->
+                    <div class="mature-progress-box mature-progress-box-detail v0" >
+                        <dl>
+                            <dt>0</dt>
+                            <dd><span class="member-ico v0"></span>萌新</dd>
+                        </dl>
+                        <dl>
+                            <dt>5</dt>
+                            <dd><span class="member-ico v1"></span>菜鸟</dd>
+                        </dl>
+                        <dl>
+                            <dt>50</dt>
+                            <dd><span class="member-ico v2"></span>熟练</dd>
+                        </dl>
+                        <dl>
+                            <dt>500</dt>
+                            <dd><span class="member-ico v3"></span>大师</dd>
+                        </dl>
+                        <dl>
+                            <dt>5000</dt>
+                            <dd><span class="member-ico v4"></span>传说</dd>
+                        </dl>
+                        <div class="progress-box" >
+                            <i class="progress-box-1"></i>
+                            <!-- 200 -->
+                            <i class="progress-box-2"></i>
+                            <!-- 1000 -->
+                            <i class="progress-box-3"></i>
+                            <!-- 5000 -->
+                            <i class="progress-box-4"></i>
+                            <!-- 10000 -->
+                            <i class="progress-box-5"></i>
+                            <!-- 10000+ -->
+                        </div>
+                    </div>
+                    <div class="mature-progress-box bgtwos">
+                        <dl> <dt></dt> </dl> <dl> <dt></dt> </dl> <dl> <dt></dt> </dl> <dl> <dt></dt> </dl> <dl> <dt></dt> </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin:20px 0;vertical-align: middle">
+            <h3 style="float: left;width: 100px;text-align: center;margin-top: 80px;margin-left: 10px;color: rgba(99,184,255);">标框标注</h3>
+            <div style="width: 100px" class="mature-progress">
+                <div class="mature-progress-bottom">
+                    <!-- 等级样式  v0 v1 v2 v3 v4 v5 -->
+                    <div class="mature-progress-box mature-progress-box-detail v0" >
+                        <dl>
+                            <dt>0</dt>
+                            <dd><span class="member-ico v0"></span>萌新</dd>
+                        </dl>
+                        <dl>
+                            <dt>5</dt>
+                            <dd><span class="member-ico v1"></span>菜鸟</dd>
+                        </dl>
+                        <dl>
+                            <dt>50</dt>
+                            <dd><span class="member-ico v2"></span>熟练</dd>
+                        </dl>
+                        <dl>
+                            <dt>500</dt>
+                            <dd><span class="member-ico v3"></span>大师</dd>
+                        </dl>
+                        <dl>
+                            <dt>5000</dt>
+                            <dd><span class="member-ico v4"></span>传说</dd>
+                        </dl>
+                        <div class="progress-box" >
+                            <i class="progress-box-1"></i>
+                            <!-- 200 -->
+                            <i class="progress-box-2"></i>
+                            <!-- 1000 -->
+                            <i class="progress-box-3"></i>
+                            <!-- 5000 -->
+                            <i class="progress-box-4"></i>
+                            <!-- 10000 -->
+                            <i class="progress-box-5"></i>
+                            <!-- 10000+ -->
+                        </div>
+                    </div>
+                    <div class="mature-progress-box bgtwos">
+                        <dl> <dt></dt> </dl> <dl> <dt></dt> </dl> <dl> <dt></dt> </dl> <dl> <dt></dt> </dl> <dl> <dt></dt> </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin:20px 0;vertical-align: middle">
+            <h3 style="float: left;width: 100px;text-align: center;margin-top: 80px;margin-left: 10px;color: rgba(99,184,255);">边界标注</h3>
+            <div style="width: 100px" class="mature-progress">
+                <div class="mature-progress-bottom">
+                    <!-- 等级样式  v0 v1 v2 v3 v4 v5 -->
+                    <div class="mature-progress-box mature-progress-box-detail v0" >
+                        <dl>
+                            <dt>0</dt>
+                            <dd><span class="member-ico v0"></span>萌新</dd>
+                        </dl>
+                        <dl>
+                            <dt>5</dt>
+                            <dd><span class="member-ico v1"></span>菜鸟</dd>
+                        </dl>
+                        <dl>
+                            <dt>50</dt>
+                            <dd><span class="member-ico v2"></span>熟练</dd>
+                        </dl>
+                        <dl>
+                            <dt>500</dt>
+                            <dd><span class="member-ico v3"></span>大师</dd>
+                        </dl>
+                        <dl>
+                            <dt>5000</dt>
+                            <dd><span class="member-ico v4"></span>传说</dd>
+                        </dl>
+                        <div class="progress-box" >
+                            <i class="progress-box-1"></i>
+                            <!-- 200 -->
+                            <i class="progress-box-2"></i>
+                            <!-- 1000 -->
+                            <i class="progress-box-3"></i>
+                            <!-- 5000 -->
+                            <i class="progress-box-4"></i>
+                            <!-- 10000 -->
+                            <i class="progress-box-5"></i>
+                            <!-- 10000+ -->
+                        </div>
+                    </div>
+                    <div class="mature-progress-box bgtwos">
+                        <dl> <dt></dt> </dl> <dl> <dt></dt> </dl> <dl> <dt></dt> </dl> <dl> <dt></dt> </dl> <dl> <dt></dt> </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center;vertical-align: middle;margin:30px 0">
+            <h2>兴趣爱好</h2>
+        </div>
+        <div style="vertical-align: middle;margin:20px 0;">
+            <div style="width: 250px;float: left;margin-left: 15px">
+                <p>喜好项目分类</p>
+                <div id="mySelect" class="mySelect" ></div>
+            </div>
+            <div style="width: 250px;float: left;margin-left: 15px">
+                <p>喜好项目类型</p>
+                <div id="mySelect2" class="mySelect" ></div>
+            </div>
+            <div style="width: 250px;float: left;margin-left: 15px">
+                <p>喜好项目大小</p>
+                <div id="mySelect3" class="mySelect" ></div>
+            </div>
+
+        </div>
+        <div style="text-align: center;vertical-align: middle;margin:260px 0px;">
+            <button class="save-button" onclick="setInterests()">保存</button>
+        </div>
+
+	</div>
+</div>
+
+
+<div id="mask_shadow"></div>
+
+<script src="../js/echarts.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>	<!--scrolling js-->
+<script src="../js/util.js"></script>
+<script src="../js/workerZone.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+<script src="../js/workerZoneCharts.js"></script>
+<script src="../js/popup.js"></script>
+<script>
+    $(function () {
+
+        /**
+         ifDrag: 是否拖拽
+         dragLimit: 拖拽限制范围
+         */
+        $('#popup').popup({ifDrag: true, dragLimit: true});
+
+    });
+</script>
+<script src="../js/loadMedalProcess.js"></script>
+<script src="../js/interestManage.js"></script>
+<script>
+</script>
+</body>
+</html>

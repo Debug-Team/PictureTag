@@ -1,0 +1,141 @@
+.g-clearfix:after {
+    clear: both;
+}
+.g-clearfix:after, .g-clearfix:before {
+    content: "";
+    display: table;
+}
+
+.filter{
+    padding: 0px 40px 0px 40px;
+}
+
+.filter .crumb{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.filter .crumb .toggle-btn {
+    float: right;
+    margin: 0 0 0 4px;
+    height: 24px;
+    line-height: 24px;
+    border: solid 1px #e8e8e8;
+    padding: 0 9px;
+    background: #f6f6f6;
+    color: #6b6b6b;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.filter .crumb .show-collapse .expand {
+    /*display: inline-block;*/
+}
+
+.filter .crumb .toggle-btn .arrow {
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.filter .crumb .show-collapse .collapse {
+    /*display: inline-block;*/
+}
+
+.filter .crumb .toggle-btn .arrow {
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.filter .crumb .cat, .crumb .cat-text {
+    margin-top: 4px;
+    margin-right: 10px;
+    float: left;
+    display: inline;
+    line-height: 20px;
+    height: 20px;
+    color: #666;
+    text-decoration: none;
+}
+
+.filter .crumb .pro {
+    position: relative;
+    padding: 0 22px 0 4px;
+    float: left;
+    white-space: nowrap;
+    /*overflow: hidden;*/
+    text-overflow: ellipsis;
+    border: 1px solid #e8e8e8;
+    /*height: 18px;*/
+    /*line-height: 18px;*/
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.filter .crumb .pro:hover {
+    border-color: #f40;
+}
+
+.filter .crumb .pro .icon-btn-x {
+    position: absolute;
+    right: 4px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    background: url("../image/close.png") no-repeat scroll center;
+}
+
+.filter .crumb .total {
+    float: left;
+    margin: 4px 4px 0 4px;
+    line-height: 20px;
+    color: #3c3c3c;
+    text-decoration: none;
+}
+.filter .crumb .total .h {
+    color: #F40!important;
+}
+
+.filter .group {
+    border: 1px solid #e8e8e8;
+    margin-top: -1px;
+}
+.filter .group .row {
+    position: relative;
+    border-top: 1px dashed #dedede;
+    margin: 0 8px;
+}
+.filter .group .head {
+    float: left;
+    color: #999;
+    font-weight: 400;
+    display: inline-block;
+    margin: 7px 40px 7px 0;
+    height: 18px;
+    text-decoration: none;
+    width: 75px;
+}
+.filter .group .body {
+    /*display: inline-block;*/
+    padding: 0 40px 0 0px;
+}
+.filter .group .body .items {
+    overflow: hidden;
+}
+.filter .group .body .item {
+    float: left;
+    margin: 7px 30px 7px 0;
+    height: 18px;
+    color: #000;
+    text-decoration: none;
+}
+.filter .group .body .text {
+    float: left;
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.filter .group .body .item:hover {
+    color: #f40;
+}

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务管理</title>
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../css/main.840c01.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../css/workerZone.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../css/task.css" rel="stylesheet" type="text/css" media="all" />
+    <!--<link href="../css/task1.css" rel="stylesheet" type="text/css" media="all" />-->
+</head>
+<body>
+<header class="niA6p _3PSbf" >
+    <nav class="_1M8LQ _2xMJp" >
+        <div class="_2jZzC" >
+            <a class="_2-Pvv _1CBrG"  href="/" >
+                <a>
+                    <svg class="_2m4hn" version="1.1" viewbox="0 0 32 32" width="32" height="32" aria-labelledby="unsplash-home" aria-hidden="false" >
+                        <rect x="1" y="1" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;"/>
+                        <rect x="7" y="6" width="16" height="24" style="stroke: black; fill: transparent;stroke-width:2;fill-opacity: 0.5;"/>
+
+                    </svg>
+                </a>
+                <div class="_3nvuJ" >
+                    <a class="_1Xu6J _22v5L _2svCU" >PictureTag</a>
+                    <a style = "text-decoration: NONE"class="_2TTDP _22v5L xLon9" href="http://114.215.188.21/groups/161250181_DebugSECIII" target="_blank">
+                        DebugTeam
+                    </a>
+                </div>
+            </a>
+            <div class="_1g2pj _3PSbf _8gQbN" >
+            </div>
+        </div>
+        <div class="QoLMB" >
+            <div class="_2j1Lb" >
+                <ul class="_250wZ" >
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" id = "ClickMe">
+                            悬赏榜
+                        </a>
+                    </li>
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="workerHome.html">
+                            主页
+                        </a>
+                    </li>
+                    <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG" href="../?=logout" onclick="logout()">
+                            登出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <a  href="" >
+                <!--<svg  viewbox="0 0 32 32" width="32" height="32" >-->
+                <!---->
+                <!--</svg>-->
+                <img src="../image/worker_head_img.jpg" width="45" height="40" border = "3">
+            </a>
+        </div>
+    </nav>
+    <div class="_1g4h6" ></div>
+</header>
+<div class="header">
+    <div class="container">
+        <div class="col-md-8 header-left">
+            <div class="col-sm-5 pro-pic">
+                <img class="img-responsive" src="../image/worker_head_img.jpg" alt=" "/>
+            </div>
+            <div class="col-sm-5 pro-text">
+                <h1 id = "worker_name"></h1>
+                <p>PictureTag Worker 标注者</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-4 header-right ">
+            <ul class="list-left">
+                <li>成就称号:</li>
+                <li>已达成成就:</li>
+
+            </ul>
+            <ul class="list-right">
+
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div  class="about" style="background-color: white">
+    <div class="container">
+        <h3 class="tittle">任务总览</h3>
+        <!--<p class="abt-para">Sed ut perspiciatis unde omnis iste natus error sit-->
+        <!--voluptatem accusantium doloremque laudantium, totam-->
+        <!--rem aperiam, eaque ipsa quae ab illo inventore veritatis-->
+        <!--et quasi architecto beatae vitae dicta sunt explicabo.-->
+        <!--Nemo enim ipsam voluptatem quia voluptas sit aspernatur . </p>-->
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- PANEL DEFAULT -->
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title btn-toggle-collapse" >每日任务</h3>
+                    <!--<div class="right">-->
+                        <!--<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>-->
+                        <!--<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>-->
+                    <!--</div>-->
+                </div>
+                <div class="panel-body" id = "taskUnTakePanel">
+                     <!--<div class="col-md-14">-->
+                        <!---->
+                        <!--<div class="panel">-->
+                            <!--<div class="panel-heading">-->
+                                <!--<p>Objectively network visionary methodologies via best-</p>-->
+                                <!--<div class="right">-->
+
+                                    <!--<button onclick="acceptMission()" >-->
+                                        <!--<p style="color: limegreen;">接受</p>-->
+                                    <!--</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="panel-footer">-->
+                                <!--<p style="float: left" >奖励积分：</p>-->
+                                <!--<p >奖励经验：</p>-->
+
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!---->
+                    <!--</div>-->
+                </div>
+            </div>
+            <!-- END PANEL DEFAULT -->
+        </div>
+        <div class="col-md-4">
+            <!-- PANEL NO CONTROLS -->
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">已接受任务</h3>
+                </div>
+                <div class="panel-body" id = "isDoingPanel">
+                     <!--<div class="col-md-14">-->
+                        <!--&lt;!&ndash; PANEL WITH FOOTER &ndash;&gt;-->
+                        <!--<div class="panel">-->
+                            <!--<div class="panel-heading">-->
+                                <!--<p>Objectively network visionary methodologies via best-</p>-->
+                            <!--</div>-->
+                            <!--<div class="panel-footer">-->
+                                <!--<p style="float: left" >奖励积分：</p>-->
+                                <!--<p style="float: left">奖励经验：</p>-->
+                                <!--<p >进度：1/20</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; END PANEL WITH FOOTER &ndash;&gt;-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <!-- END PANEL NO CONTROLS -->
+        </div>
+        <div class="col-md-4">
+            <!-- PANEL WITH FOOTER -->
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">已完成任务</h3>
+                    <div class="right">
+                        <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                        <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+                    </div>
+                </div>
+                <div class="panel-body" id="isDonePanel">
+                    <!--<div class="col-md-14">-->
+                        <!--&lt;!&ndash; PANEL WITH FOOTER &ndash;&gt;-->
+                        <!--<div class="panel">-->
+                            <!--<div class="panel-heading">-->
+                                <!--<p>Objectively network visionary methodologies via best-</p>-->
+                                <!--<div class="right">-->
+                                    <!--&lt;!&ndash;<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>&ndash;&gt;-->
+                                    <!--<button onclick="receiveReward()" >-->
+                                        <!--<p style="color: limegreen;">领取奖励</p>-->
+                                    <!--</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="panel-footer">-->
+                                <!--<p style="float: left" >奖励积分：</p>-->
+                                <!--<p style="float: left">奖励经验：</p>-->
+                                <!--<p > 进度： 20/20</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; END PANEL WITH FOOTER &ndash;&gt;-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <!-- END PANEL WITH FOOTER -->
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div id="goodcover" style="display: none;"></div>
+<div id="code" style="position: absolute; top: 205.5px; left: 280px; display: none;">
+    <div class="close1">
+        <h1 style="float: left;position: absolute;margin-left: 140px;color: dodgerblue">悬赏榜</h1>
+        <a href="javascript:void(0)" id="closebt">
+            <img src="../image/close.gif">
+        </a>
+    </div>
+
+    <div style="width: 390px;height: 420px;overflow: hidden;">
+        <div style="width: 400px;height: 420px;overflow-y: auto;" id = "wanted_div">
+            <!--<div class="col-md-12">-->
+
+                 <!--<div class="panel">-->
+                    <!--<div class="panel-heading">-->
+                        <!--<p>Objectively network vogest-</p>-->
+                        <!--<div class="right">-->
+
+                            <!--<button onclick="" >-->
+                                <!--<p style="color: dodgerblue;">接受</p>-->
+                            <!--</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                 <!--</div>-->
+
+            <!--</div>-->
+
+        </div>
+    </div>
+
+</div>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--<script>-->
+    <!--$(document).ready(function() {-->
+    <!--/*&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;*/-->
+
+    <!--// panel remove-->
+    <!--$('.panel .btn-remove').click(function(e){-->
+
+        <!--e.preventDefault();-->
+        <!--$(this).parents('.panel').fadeOut(300, function(){-->
+            <!--$(this).remove();-->
+        <!--});-->
+    <!--});-->
+
+    <!--// panel collapse/expand-->
+    <!--var affectedElement = $('.panel-body');-->
+
+    <!--$('.panel .btn-toggle-collapse').clickToggle(-->
+        <!--function(e) {-->
+            <!--e.preventDefault();-->
+
+            <!--// if has scroll-->
+            <!--if( $(this).parents('.panel').find('.slimScrollDiv').length > 0 ) {-->
+                <!--affectedElement = $('.slimScrollDiv');-->
+            <!--}-->
+
+            <!--$(this).parents('.panel').find(affectedElement).slideUp(300);-->
+            <!--$(this).find('i.lnr-chevron-up').toggleClass('lnr-chevron-down');-->
+        <!--},-->
+        <!--function(e) {-->
+            <!--e.preventDefault();-->
+
+            <!--// if has scroll-->
+            <!--if( $(this).parents('.panel').find('.slimScrollDiv').length > 0 ) {-->
+                <!--affectedElement = $('.slimScrollDiv');-->
+            <!--}-->
+
+            <!--$(this).parents('.panel').find(affectedElement).slideDown(300);-->
+            <!--$(this).find('i.lnr-chevron-up').toggleClass('lnr-chevron-down');-->
+        <!--}-->
+    <!--);-->
+    <!--});-->
+    <!--// toggle function-->
+    <!--$.fn.clickToggle = function( f1, f2 ) {-->
+        <!--return this.each( function() {-->
+            <!--var clicked = false;-->
+            <!--$(this).bind('click', function() {-->
+                <!--if(clicked) {-->
+                    <!--clicked = false;-->
+                    <!--return f2.apply(this, arguments);-->
+                <!--}-->
+
+                <!--clicked = true;-->
+                <!--return f1.apply(this, arguments);-->
+            <!--});-->
+        <!--});-->
+
+    <!--}-->
+
+<!--</script>-->
+<script src="../js/util.js"></script>
+<script src="../js/taskManage.js"></script>
+<script>
+    $(function() {
+        //alert($(window).height());
+        $('#ClickMe').click(function() {
+            $('#code').center();
+            $('#goodcover').show();
+            $('#code').fadeIn();
+        });
+        $('#closebt').click(function() {
+            $('#code').hide();
+            $('#goodcover').hide();
+        });
+        $('#goodcover').click(function() {
+            $('#code').hide();
+            $('#goodcover').hide();
+        });
+        /*var val=$(window).height();
+        var codeheight=$("#code").height();
+        var topheight=(val-codeheight)/2;
+        $('#code').css('top',topheight);*/
+        jQuery.fn.center = function(loaded) {
+            var obj = this;
+            body_width = parseInt($(window).width());
+            body_height = parseInt($(window).height());
+            block_width = parseInt(obj.width());
+            block_height = parseInt(obj.height());
+
+            left_position = parseInt((body_width / 2) - (block_width / 2) + $(window).scrollLeft());
+            if (body_width < block_width) {
+                left_position = 0 + $(window).scrollLeft();
+            };
+
+            top_position = parseInt((body_height / 2) - (block_height / 2) + $(window).scrollTop());
+            if (body_height < block_height) {
+                top_position = 0 + $(window).scrollTop();
+            };
+
+            if (!loaded) {
+
+                obj.css({
+                    'position': 'absolute'
+                });
+                obj.css({
+                    'top': ($(window).height() - $('#code').height()) * 0.5,
+                    'left': left_position
+                });
+                $(window).bind('resize', function() {
+                    obj.center(!loaded);
+                });
+                $(window).bind('scroll', function() {
+                    obj.center(!loaded);
+                });
+
+            } else {
+                obj.stop();
+                obj.css({
+                    'position': 'absolute'
+                });
+                obj.animate({
+                    'top': top_position
+                }, 200, 'linear');
+            }
+        }
+
+    })
+</script>
+</body>
+</html>
