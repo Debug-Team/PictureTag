@@ -311,13 +311,36 @@ public class UserController {
     @PostMapping(value = "/getUserRank", produces="application/text; charset=utf-8")
     public @ResponseBody
     String getUserRank(){
-        return userSevice.getMarkerList()
-                .stream()
-                .sorted((m1,m2) -> m1.getCredits()>m2.getCredits() ? 1 : 0)
-                .limit(10)
-                .map(marker -> toRankStr(marker.getUserName(),marker.getCredits()))
-                .reduce((s1,s2) -> s1+"#"+s2)
-                .orElse("");
+
+        ArrayList<Marker> markers = userSevice.getMarkerList();
+
+        //降序比较器
+        Comparator<Marker> valueComparator = new Comparator<Marker>() {
+            @Override
+            public int compare(Marker o1, Marker o2) {
+                return (o2.getCredits()-o1.getCredits());
+            }
+        };
+        Collections.sort(markers, valueComparator);
+
+        String res = "";
+        for (int i=0; i<10; i++){
+            if (i>=markers.size()){
+                break;
+            }
+            res += toRankStr(markers.get(i).getUserName(), markers.get(i).getCredits());
+            if (i!=markers.size()-1 && i!=9){
+                res += "#";
+            }
+        }
+
+        return res;
+//        return userSevice.getMarkerList()
+//                .stream()
+//                .limit(10)
+//                .map(marker -> toRankStr(marker.getUserName(),marker.getCredits()))
+//                .reduce((s1,s2) -> s1+"#"+s2)
+//                .orElse("");
     }
 
     /**
