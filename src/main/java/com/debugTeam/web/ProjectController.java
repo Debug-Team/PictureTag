@@ -475,7 +475,7 @@ public class ProjectController {
 
         System.out.println(phonenum+state);
         Stream<Project> ret = null;
-        final int maxRecommandNum = 16;
+        final int maxRecommandNum = 9;
 
         //推荐项目，迭代3智能推荐
         if(state==1){
