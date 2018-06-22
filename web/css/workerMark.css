@@ -2361,6 +2361,7 @@ body.desktop {
     /*border:1px solid #000000;*/
     /*background:#f0fbeb*/
     /*cursor: url("http://ued.taobao.com/blog/wp-content/themes/taobaoued/images/cursor.ico");*/
+    margin-left: 50px;
 }
 #canvas_tag{
     position: absolute;
@@ -2369,6 +2370,7 @@ body.desktop {
     /*border:1px solid #000000;*/
     /*background:#f0fbeb*/
     cursor: url("../image/pencil.png"),auto;
+    margin-left: 50px;
 }
 
 .box10{
