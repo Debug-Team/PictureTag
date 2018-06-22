@@ -475,10 +475,11 @@ public class ProjectController {
 
         System.out.println(phonenum+state);
         Stream<Project> ret = null;
+        final int maxRecommandNum = 16;
 
         //推荐项目，迭代3智能推荐
         if(state==1){
-            ret = recommandProject(phonenum).stream();
+            ret = recommandProject(phonenum).stream().limit(maxRecommandNum);
         //全部项目
         }else if(state==2){
             ret = projectService.getAllProject().stream()
