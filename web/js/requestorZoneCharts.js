@@ -50,7 +50,7 @@ function initWholeProjectPie() {
                     },
                     {
                         value:border,
-                        name:'区域标注',
+                        name:'边界标注',
                         itemStyle: {
                             color: '#74b9ff'
                         }
@@ -146,7 +146,7 @@ function initDoingProjectPie() {
                     },
                     {
                         value:border,
-                        name:'区域标注',
+                        name:'边界标注',
                         itemStyle: {
                             color: '#74b9ff'
                         }
@@ -242,7 +242,7 @@ function initFinishedProjectPie() {
                     },
                     {
                         value:border,
-                        name:'区域标注',
+                        name:'边界标注',
                         itemStyle: {
                             color: '#74b9ff'
                         }

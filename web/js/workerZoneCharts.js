@@ -51,7 +51,7 @@ function initalThreeTagPieCharts() {
                     },
                     {
                         value:border,
-                        name:'区域标注',
+                        name:'边界标注',
                         itemStyle: {
                             color: '#74b9ff'
                         }
