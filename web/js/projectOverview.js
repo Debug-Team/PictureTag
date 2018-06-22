@@ -129,7 +129,7 @@ function loadProInfo() {
                     break;
 
             }
-
+            img.onload = function (ev) { clip(); }
 
         }
     }
@@ -208,7 +208,8 @@ window.onload = function (ev) {
         loadMarkerJob();  //待添加逻辑 只有是自己已经接受的项目才调用loadMarkerJOB
 
     }
-    setTimeout("clip();",50)
+    // setTimeout("clip();",50)
+
 }
 // test();
 
