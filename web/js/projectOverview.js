@@ -66,8 +66,11 @@ function loadProInfo() {
     }else {
         titleMessage = "轮廓标注";
     }
-    titleMessage = titleMessage + "  ID:" + project_json.id;
-    projectTitle.innerHTML = titleMessage;
+    // titleMessage = titleMessage + "  ID:" + project_json.id;
+    projectTitle.innerHTML = project_json.name;
+
+    var award = document.getElementById("project_type");
+    award.innerHTML = "项目类型：" + titleMessage;
 
     var award = document.getElementById("award");
     award.innerHTML = "奖励积分：🎁" + parseInt(project_json.award*(1-project_json.cut));
@@ -76,7 +79,8 @@ function loadProInfo() {
     discription.innerHTML = "项目描述：" + project_json.description;
 
     var tagRule = document.getElementById("tagRule");
-    tagRule.innerHTML = "怎么标注的信息";
+    console.log(project_json)
+    tagRule.innerHTML = "项目规模： " + project_json.picList.length+" 张";
 
     var pictures_array = project_json.picList;
     var pic_display_column1 = document.getElementById("pic_display_column1");
@@ -233,9 +237,10 @@ function startNewJob() {
         }
     });
     // alert((result_json.state==1)?"成功":"失败");
-    if(result_json!=null){
-        alert("完成时间限制：10天，逾期将被踢出项目并降低信誉度");
-    }
+    // if(result_json!=null){
+    //     alert("完成时间限制：10天，逾期将被踢出项目并降低信誉度");
+    // }
+    return result_json;
 }
 
 function isMypro() {
@@ -284,5 +289,6 @@ function finishMarkerJob() {
             alert("fail")
         }
     });
+    // console.log(result_json,"ss")
     return result_json;
 }

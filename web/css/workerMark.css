@@ -590,8 +590,8 @@ body .actors_flyout .qtip-tip:after {
     -moz-transition: all 0.2s;
     transition: all 0.2s;
     border: 1px solid #b9c1c7;
-    -webkit-border-radius: 20px;
-    border-radius: 20px;
+    -webkit-border-radius: 6px;
+    /*border-radius: 20px;*/
     font-size: 14px;
     margin: 0 10px 10px 0;
     background-color: #fff
@@ -1356,7 +1356,7 @@ body.desktop {
     color: #71767a;
     font-size: 20px;
     position: absolute;
-    padding-left: 10px;
+    /*padding-left: 10px;*/
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden
@@ -2344,8 +2344,8 @@ body.desktop {
 
 .overlay .focus {
     position: absolute;
-    top: 5%;
-    bottom: 0;
+    top: 4%;
+    /*bottom: 0;*/
     height: 85%;
     width: 75%;
     left: 21%;
@@ -2361,7 +2361,7 @@ body.desktop {
     /*border:1px solid #000000;*/
     /*background:#f0fbeb*/
     /*cursor: url("http://ued.taobao.com/blog/wp-content/themes/taobaoued/images/cursor.ico");*/
-    margin-left: 50px;
+    /*margin-left: 50px;*/
 }
 #canvas_tag{
     position: absolute;
@@ -2370,11 +2370,11 @@ body.desktop {
     /*border:1px solid #000000;*/
     /*background:#f0fbeb*/
     cursor: url("../image/pencil.png"),auto;
-    margin-left: 50px;
+    /*margin-left: 50px;*/
 }
 
 .box10{
-    margin: 20px auto;
+    /*margin: 20px auto;*/
     width: 300px;
     min-height: 310px;
     padding: 10px;

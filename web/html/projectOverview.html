@@ -5,6 +5,8 @@
     <title>项目总览</title>
     <link rel="stylesheet" href="../css/projectOverview.css">
     <link rel="stylesheet" href="../css/main.840c01.css">
+    <link rel="stylesheet" href="../css/element-ui.css">
+
 </head>
 <body>
 <header class="niA6p _3PSbf" >
@@ -57,27 +59,32 @@
 </header>
 
 <div class="RuSEo" style="color: grey;">
-            <div class="_258j4 _2sCnE PrOBO _1CR66" >
-                <div class="_2FVCK _1pgnK _3vQsl" >
+    <div class="_258j4 _2sCnE PrOBO _1CR66" style="padding-bottom: 50px" >
+        <div class="_2FVCK _1pgnK _3vQsl"  style="width: 1000px">
 
-                    <span class="_2JV9L _2RmO0 _2svCU" id = "projectTitle" >整体标注</span>
-                    <div data-reactid="175">
-                        <div  data-reactid="176">
-                            <h1 class="_1gaeU _27Bp2 _1iWCF" id = "award"></h1>
-                            <div class="block__cell" id ="accept">
-                                <a  class="btn btn--activate" id="btnActivation">
-                                    <span class="btn__icon"></span>
-                                    <span class="btn__text" data-wait="waiting" data-after="Accepted" id="isAcceptOrEnd">Accept</span>
-                                </a>
-                            </div>
-                            <p class="_3uPxv _27Bp2 _1iWCF" style="margin-top: 5px;margin-bottom: 5px;" id = "discription"></p>
-                            <p class="_3uPxv _27Bp2 _1iWCF" style="margin-top: 5px;margin-bottom: 5px;" id = "tagRule"></p>
-                        </div>
-
+            <span class="_2JV9L _2RmO0 _2svCU" id = "projectTitle" >分类标注</span>
+            <div data-reactid="175">
+                <div  data-reactid="176">
+                    <h1 class="_1gaeU _27Bp2 _1iWCF" id = "award"></h1>
+<!--                    <div class="block__cell" id ="accept">-->
+<!--                        <a  class="btn btn&#45;&#45;activate" id="btnActivation">-->
+<!--                            <span class="btn__icon"></span>-->
+<!--                            <span class="btn__text" data-wait="" data-after="已接受" id="isAcceptOrEnd">接受</span>-->
+<!--                        </a>-->
+<!--                    </div>-->
+                    <div id="accept">
+                        <el-button  @click="operate" :type="types" :loading="isLoading" :disabled="isDisabled">{{operation_mes}}</el-button>
                     </div>
+                    <p class="_3uPxv _27Bp2 _1iWCF" style="margin-top: 5px;margin-bottom: 5px;" id = "project_type"></p>
+                    <p class="_3uPxv _27Bp2 _1iWCF" style="margin-top: 5px;margin-bottom: 5px;" id = "tagRule"></p>
+                    <p class="_3uPxv _27Bp2 _1iWCF" style="margin-top: 5px;margin-bottom: 5px;" id = "discription"></p>
 
                 </div>
+
             </div>
+
+        </div>
+    </div>
 </div>
 
 <div style="width: 1050px;margin: 0 auto;">
@@ -125,6 +132,14 @@
 </div>
 <!--</div>-->
 
+
+<script src="../js/vue.js"> </script>
+<script src="../js/element-ui.js"></script>
+
+<script src="../js/util.js"></script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src = "../js/projectOverview.js"></script>
+
 <script>
     // console.log("1")
    // window.onload = function (ev) { }
@@ -159,227 +174,287 @@
     }
 
 </script>
-<script src="../js/util.js"></script>
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-<script src = "../js/projectOverview.js"></script>
+
+
+
 <script>
+    var buttonData = new Vue({
+        el: '#accept',
+        data: {
+            types:"primary",
+            isLoading:false,
+            operation_mes:"接受",
+            isDisabled:false
+
+        },
+        methods:{
+            operate:function(){
+                this.isLoading = true;
+                if(this.operation_mes == "接受"){
+                    this.operation_mes = "";
+                    setTimeout(this.receiveChangeButton,1000);
+                }else if(this.operation_mes == "结束"){
+                    this.operation_mes = "";
+                    setTimeout(this.endChangeButton,1000);
+                }
+
+            },
+            receiveChangeButton:function () {
+                var res = startNewJob();
+               if(res.state ==1){
+                   this.isLoading = false;
+                   this.operation_mes = "已接受";
+                   this.types = "success";
+                   this.isDisabled = true;
+                   loadhref();
+                   this.$message.success('接收成功，完成时间限制：10天，逾期将被踢出项目并降低信誉度');
+               }else {
+                   this.isLoading = false;
+                   this.operation_mes = "接受";
+                   this.$message.error("接受失败")
+               }
+            },
+            endChangeButton:function () {
+                var s = finishMarkerJob();
+                if(s.state == 1){
+                    this.isLoading = false;
+                    this.operation_mes = "已结束";
+                    this.types = "success";
+                    this.isDisabled = true;
+                    this.$message('结束成功，快去开启新的项目吧');
+                }else {
+                    this.isLoading = false;
+                    this.operation_mes = "结束";
+                    this.$message.error("结束失败")
+                }
+
+            }
+        },
+        mounted:function () {
+            if(isMypro()){
+                this.operation_mes = "结束"
+            }
+        }
+    })
     var record_index =1;
     var uls = document.getElementsByClassName("pictures_display");
     function waterFall(){
 
-                var pic_display_column1 = document.getElementById("pic_display_column1");
-                var pic_display_column2 = document.getElementById("pic_display_column2");
-                var pic_display_column3 = document.getElementById("pic_display_column3");
-                var pic_display_column4 = document.getElementById("pic_display_column4");
-                var pic_display_column5 = document.getElementById("pic_display_column5");
+        var pic_display_column1 = document.getElementById("pic_display_column1");
+        var pic_display_column2 = document.getElementById("pic_display_column2");
+        var pic_display_column3 = document.getElementById("pic_display_column3");
+        var pic_display_column4 = document.getElementById("pic_display_column4");
+        var pic_display_column5 = document.getElementById("pic_display_column5");
 
-                var pic_array = pro_detail_json.picList;
+        var pic_array = pro_detail_json.picList;
 
-                var final_five_bool = false;
-                if((pic_array.length- current_load_process)<=5){
-                    final_five_bool = true;
+        var final_five_bool = false;
+        if((pic_array.length- current_load_process)<=5){
+            final_five_bool = true;
+        }
+        if(!final_five_bool){           //不是最后五张内
+            for (var i = current_load_process; i<(current_load_process+5);i++){
+
+                var pic_image_src = "../" + "pic/" + pro_detail_json.id + "/" + pic_array[i];
+                console.log(pic_image_src)
+                var li = document.createElement("li");
+                var a = document.createElement("a");
+                var img = document.createElement("img");
+
+                li.classList.add("picture_single");
+                a.classList.add("normal");
+                img.classList.add("picture_introduce");
+
+                li.appendChild(a);
+                a.appendChild(img);
+                if (isMypro()){
+                    a.href = "workerMarking.html"+"?"+pro_detail_json.id+"="+pic_array[i].split(".")[0];
+
                 }
-                if(!final_five_bool){           //不是最后五张内
-                    for (var i = current_load_process; i<(current_load_process+5);i++){
+                console.log(a.href);
+                img.src = pic_image_src;
+                img.id = pic_array[i].split(".")[0];
 
-                        var pic_image_src = "../" + "pic/" + pro_detail_json.id + "/" + pic_array[i];
-                        console.log(pic_image_src)
-                        var li = document.createElement("li");
-                        var a = document.createElement("a");
-                        var img = document.createElement("img");
-
-                        li.classList.add("picture_single");
-                        a.classList.add("normal");
-                        img.classList.add("picture_introduce");
-
-                        li.appendChild(a);
-                        a.appendChild(img);
-                        if (isMypro()){
-                            a.href = "workerMarking.html"+"?"+pro_detail_json.id+"="+pic_array[i].split(".")[0];
-
-                        }
-                        console.log(a.href);
-                        img.src = pic_image_src;
-                        img.id = pic_array[i].split(".")[0];
-
-                        var count = (i + 1) % 5;
-                        switch (count) {
-                            case 1:
-                                pic_display_column1.appendChild(li);
-                                break;
-                            case 2:
-                                pic_display_column2.appendChild(li);
-                                break;
-                            case 3:
-                                pic_display_column3.appendChild(li);
-                                break;
-                            case 4:
-                                pic_display_column4.appendChild(li);
-                                break;
-                            case 0:
-                                pic_display_column5.appendChild(li);
-                                break;
-
-                        }
-
-                    }
-
-                    current_load_process = current_load_process + 5;
-
-                    if(record_index==1) {
-                        setTimeout("clip()", 50);
-                        record_index=0;
-                        console.log("fuck")
-                    }else {
-                        clip();
-                    }
-                }else {                         //最后的小于等于5张
-                    for(var i = current_load_process;i<pic_array.length;i++){
-                        var pic_image_src = "../" + "pic/" + pro_detail_json.id + "/" + pic_array[i];
-                        console.log(pic_image_src)
-                        var li = document.createElement("li");
-                        var a = document.createElement("a");
-                        var img = document.createElement("img");
-
-                        li.classList.add("picture_single");
-                        a.classList.add("normal");
-                        img.classList.add("picture_introduce");
-
-                        li.appendChild(a);
-                        a.appendChild(img);
-                        if (isMypro()){
-                            a.href = "workerMarking.html"+"?"+pro_detail_json.id+"="+pic_array[i].split(".")[0];
-
-                        }
-                        console.log(a.href);
-                        img.src = pic_image_src;
-                        img.id = pic_array[i].split(".")[0];
-
-                        var count = (i + 1) % 5;
-                        switch (count) {
-                            case 1:
-                                pic_display_column1.appendChild(li);
-                                break;
-                            case 2:
-                                pic_display_column2.appendChild(li);
-                                break;
-                            case 3:
-                                pic_display_column3.appendChild(li);
-                                break;
-                            case 4:
-                                pic_display_column4.appendChild(li);
-                                break;
-                            case 0:
-                                pic_display_column5.appendChild(li);
-                                break;
-
-                        }
-                    }
-
-                    full_load_bool = true;
-
-                    if(record_index==1) {
-                        setTimeout("clip()", 50);
-                        record_index=0;
-                        console.log("fuck")
-                    }else {
-                        clip();
-                    }
+                var count = (i + 1) % 5;
+                switch (count) {
+                    case 1:
+                        pic_display_column1.appendChild(li);
+                        break;
+                    case 2:
+                        pic_display_column2.appendChild(li);
+                        break;
+                    case 3:
+                        pic_display_column3.appendChild(li);
+                        break;
+                    case 4:
+                        pic_display_column4.appendChild(li);
+                        break;
+                    case 0:
+                        pic_display_column5.appendChild(li);
+                        break;
 
                 }
 
+            }
 
-            // console.log("2");
-            //创建li
+            current_load_process = current_load_process + 5;
 
-            // return uls[0].offsetHeight;
+            if(record_index==1) {
+                setTimeout("clip()", 50);
+                record_index=0;
+                console.log("fuck")
+            }else {
+                clip();
+            }
+        }else {                         //最后的小于等于5张
+            for(var i = current_load_process;i<pic_array.length;i++){
+                var pic_image_src = "../" + "pic/" + pro_detail_json.id + "/" + pic_array[i];
+                console.log(pic_image_src)
+                var li = document.createElement("li");
+                var a = document.createElement("a");
+                var img = document.createElement("img");
+
+                li.classList.add("picture_single");
+                a.classList.add("normal");
+                img.classList.add("picture_introduce");
+
+                li.appendChild(a);
+                a.appendChild(img);
+                if (isMypro()){
+                    a.href = "workerMarking.html"+"?"+pro_detail_json.id+"="+pic_array[i].split(".")[0];
+
+                }
+                console.log(a.href);
+                img.src = pic_image_src;
+                img.id = pic_array[i].split(".")[0];
+
+                var count = (i + 1) % 5;
+                switch (count) {
+                    case 1:
+                        pic_display_column1.appendChild(li);
+                        break;
+                    case 2:
+                        pic_display_column2.appendChild(li);
+                        break;
+                    case 3:
+                        pic_display_column3.appendChild(li);
+                        break;
+                    case 4:
+                        pic_display_column4.appendChild(li);
+                        break;
+                    case 0:
+                        pic_display_column5.appendChild(li);
+                        break;
+
+                }
+            }
+
+            full_load_bool = true;
+
+            if(record_index==1) {
+                setTimeout("clip()", 50);
+                record_index=0;
+                console.log("fuck")
+            }else {
+                clip();
+            }
+
+        }
+
+
+        // console.log("2");
+        //创建li
+
+        // return uls[0].offsetHeight;
         loadMarkerJob();
     }
-    // $(window).scroll(function () {
-    //     console.log(document.body.scrollTop);
-    //     console.log(window.)
-    //     // console.log($(document).height())
-    //     if ($(document).scrollTop() + $(window).height() >= ($(document).height())-3) {
-    //         waterFall();
-    //           }
-    // })
-    $(window).scroll(function(event){
-        var wScrollY = window.scrollY; // 当前滚动条位置
-        var wInnerH = window.innerHeight; // 设备窗口的高度（不会变）
-        var bScrollH = document.body.scrollHeight; // 滚动条总高度
-        if (wScrollY + wInnerH >= (bScrollH-1)) {
+
+    // $(window).scroll(function(event){
+    //     var wScrollY = window.scrollY; // 当前滚动条位置
+    //     var wInnerH = window.innerHeight; // 设备窗口的高度（不会变）
+    //     var bScrollH = document.body.scrollHeight; // 滚动条总高度
+    //     if (wScrollY + wInnerH >= (bScrollH-1)) {
+    //         if(!full_load_bool){
+    //             waterFall();
+    //         }
+    //
+    //     }
+    // });
+
+    $(window).scroll(function(){
+        //滚动条所在位置的高度
+        var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+        //当前文档高度   小于或等于   滚动条所在位置高度  则是页面底部
+        if(($(document).height()) <= (totalheight+10)) {
+            //页面到达底部
+            console.log("到底")
             if(!full_load_bool){
                 waterFall();
             }
-
         }
     });
 
 
 </script>
-<script>            //按钮加载特效
-    $(document).ready(function(){
-        if(isMypro()){
 
-            // $('#btnActivation').removeClass('btn--activate');
-            // $('#btnActivation').addClass('btn--activated');
-            // $("#btnActivation").attr("disabled",true);
-            // $("#btnActivation").css("pointer-events","none");
-            document.getElementById("isAcceptOrEnd").innerText = "End";
-            document.getElementById("isAcceptOrEnd").setAttribute("data-after","Ended");
-            $('#btnActivation').click(function(){
-                var json_temp = finishMarkerJob();
+<!--<script>            //按钮加载特效-->
+<!--    $(document).ready(function(){-->
+<!--        if(isMypro()){-->
 
-               if(json_temp.state==1){
-                   if(!$('#btnActivation').hasClass(('btn--activated'))){
-                       $('#btnActivation').removeClass('btn--activate');
-                       $('#btnActivation').addClass('btn--waiting');
+<!--            buttonData.receiveChangeButton();-->
 
-                       setTimeout(function(){
-                           removeWaiting();
-                       }, 500);
+<!--            document.getElementById("isAcceptOrEnd").innerText = "提交";-->
+<!--            document.getElementById("isAcceptOrEnd").setAttribute("data-after","已提交");-->
+<!--            $('#btnActivation').click(function(){-->
+<!--                var json_temp = finishMarkerJob();-->
 
-                   }
+<!--               if(json_temp.state==1){-->
+<!--                   if(!$('#btnActivation').hasClass(('btn&#45;&#45;activated'))){-->
+<!--                       $('#btnActivation').removeClass('btn&#45;&#45;activate');-->
+<!--                       $('#btnActivation').addClass('btn&#45;&#45;waiting');-->
 
-                   $("#btnActivation").attr("disabled",true);
-                   $("#btnActivation").css("pointer-events","none");
+<!--                       setTimeout(function(){-->
+<!--                           removeWaiting();-->
+<!--                       }, 500);-->
 
-               }
-               alert(json_temp.retMessage);
+<!--                   }-->
 
-            });
+<!--                   $("#btnActivation").attr("disabled",true);-->
+<!--                   $("#btnActivation").css("pointer-events","none");-->
 
+<!--               }-->
+<!--               alert(json_temp.retMessage);-->
 
-        }else {
-
-            $('#btnActivation').click(function(){
-
-                if(!$('#btnActivation').hasClass(('btn--activated'))){
-                    $('#btnActivation').removeClass('btn--activate');
-                    $('#btnActivation').addClass('btn--waiting');
-
-                    setTimeout(function(){
-                        removeWaiting();
-                    }, 500);
-
-                }
-                startNewJob();
-                $("#btnActivation").attr("disabled",true);
-                $("#btnActivation").css("pointer-events","none");
-                loadhref();
-            });
-        }
+<!--            });-->
 
 
-        function removeWaiting(){
+<!--        }else {-->
 
-            $('#btnActivation').removeClass('btn--waiting');
-            $('#btnActivation').addClass('btn--activated');
-        }
+<!--            $('#btnActivation').click(function(){-->
 
-    });</script>
+<!--                if(!$('#btnActivation').hasClass(('btn&#45;&#45;activated'))){-->
+<!--                    $('#btnActivation').removeClass('btn&#45;&#45;activate');-->
+<!--                    $('#btnActivation').addClass('btn&#45;&#45;waiting');-->
+
+<!--                    setTimeout(function(){-->
+<!--                        removeWaiting();-->
+<!--                    }, 500);-->
+
+<!--                }-->
+<!--                startNewJob();-->
+<!--                $("#btnActivation").attr("disabled",true);-->
+<!--                $("#btnActivation").css("pointer-events","none");-->
+<!--                loadhref();-->
+<!--            });-->
+<!--        }-->
 
 
+<!--        function removeWaiting(){-->
 
+<!--            $('#btnActivation').removeClass('btn&#45;&#45;waiting');-->
+<!--            $('#btnActivation').addClass('btn&#45;&#45;activated');-->
+<!--        }-->
+
+<!--    });</script>-->
 </body>
 </html>

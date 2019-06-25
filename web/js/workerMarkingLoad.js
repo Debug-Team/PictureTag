@@ -93,7 +93,6 @@ var start_time = null;
 var end_time = null;
 
 // marks("border");
-
 function getmarkerjob() {
     var detailmessage = window.location.href.split("?")[1];
     var pro_id = detailmessage.split("=")[0];
@@ -229,7 +228,7 @@ var loadMarksInfo = function () {
             var input_div1 = document.createElement("div");
             var input_div2 = document.createElement("div");
             var input_div3 = document.createElement("div");
-            var tags_tips = document.createTextNode(tags_provide_list[i]);
+            var tags_tips = document.createTextNode(tags_provide_list[i]+"：");
 
 
             tag_operate_input_div.classList.add("rowElem");
@@ -239,10 +238,12 @@ var loadMarksInfo = function () {
             input_div2.classList.add("jqTransformInputInner");
             tag_operate_input.type = "text";
             tag_operate_input.id = "data"+ i;
-            tag_operate_input.setAttribute("onchange","savetags(this)")
+            tag_operate_input.setAttribute("onchange","savetags(this)");
+            tag_operate_input.setAttribute("placeholder","请在这里输入");
             tag_operate_input.classList.add("jqtranformdone");
             tag_operate_input.classList.add("jqTransformInput");
             tag_operate_label.setAttribute("for","data"+i);
+            tag_operate_label.setAttribute("style","width:100px;text-align: left;");
 
             tag_operate_input_div.appendChild(tag_operate_label);
             tag_operate_input_div.appendChild(input_div1);
@@ -310,20 +311,20 @@ var loadMarksInfo = function () {
 
         document.getElementById("pro_type").innerHTML = "标框标注";
 
-        var parent_div = document.getElementById("tools");
-        var revoke_div1 = document.createElement("div");
-        revoke_div1.classList.add("like-button");
-
-        var revoke_a = document.createElement("a");
-        revoke_a.classList.add("button");
-        revoke_a.id = "revoke";
-
-        var revoke_a_text = document.createTextNode("撤销");
-
-        revoke_a.appendChild(revoke_a_text);
-        revoke_div1.appendChild(revoke_a);
-
-        parent_div.appendChild(revoke_div1);
+        // var parent_div = document.getElementById("tools");
+        // var revoke_div1 = document.createElement("div");
+        // revoke_div1.classList.add("like-button");
+        //
+        // var revoke_a = document.createElement("a");
+        // revoke_a.classList.add("button");
+        // revoke_a.id = "revoke";
+        //
+        // var revoke_a_text = document.createTextNode("撤销");
+        //
+        // revoke_a.appendChild(revoke_a_text);
+        // revoke_div1.appendChild(revoke_a);
+        //
+        // parent_div.appendChild(revoke_div1);
 
 
         marks("rect");
@@ -415,37 +416,37 @@ var loadMarksInfo = function () {
         document.getElementById("pro_type").innerHTML = "轮廓标注";
 
 
-        var parent_div = document.getElementById("tools");
-
-        // var rubber_div1 = document.createElement("div");
-        // rubber_div1.classList.add("like-button");
-        // var rubber_a = document.createElement("a");
-        // rubber_a.classList.add("button");
-        // rubber_a.id = "rubber";
-        // var rubber_a_text = document.createTextNode("橡皮擦");
-        // rubber_a.appendChild(rubber_a_text);
-        // rubber_div1.appendChild(rubber_a);
-        // parent_div.appendChild(rubber_div1);
-
-        // var pencil_div1 = document.createElement("div");
-        // pencil_div1.classList.add("like-button");
-        // var pencil_a = document.createElement("a");
-        // pencil_a.classList.add("button");
-        // pencil_a.id = "pencil";
-        // var pencil_a_text = document.createTextNode("铅笔");
-        // pencil_a.appendChild(pencil_a_text);
-        // pencil_div1.appendChild(pencil_a);
-        // parent_div.appendChild(pencil_div1);
-
-        var undo_div1 = document.createElement("div");
-        undo_div1.classList.add("like-button");
-        var undo_a = document.createElement("a");
-        undo_a.classList.add("button");
-        undo_a.id = "undo";
-        var undo_a_text = document.createTextNode("撤销");
-        undo_a.appendChild(undo_a_text);
-        undo_div1.appendChild(undo_a);
-        parent_div.appendChild(undo_div1);
+        // var parent_div = document.getElementById("tools");
+        //
+        // // var rubber_div1 = document.createElement("div");
+        // // rubber_div1.classList.add("like-button");
+        // // var rubber_a = document.createElement("a");
+        // // rubber_a.classList.add("button");
+        // // rubber_a.id = "rubber";
+        // // var rubber_a_text = document.createTextNode("橡皮擦");
+        // // rubber_a.appendChild(rubber_a_text);
+        // // rubber_div1.appendChild(rubber_a);
+        // // parent_div.appendChild(rubber_div1);
+        //
+        // // var pencil_div1 = document.createElement("div");
+        // // pencil_div1.classList.add("like-button");
+        // // var pencil_a = document.createElement("a");
+        // // pencil_a.classList.add("button");
+        // // pencil_a.id = "pencil";
+        // // var pencil_a_text = document.createTextNode("铅笔");
+        // // pencil_a.appendChild(pencil_a_text);
+        // // pencil_div1.appendChild(pencil_a);
+        // // parent_div.appendChild(pencil_div1);
+        //
+        // var undo_div1 = document.createElement("div");
+        // undo_div1.classList.add("like-button");
+        // var undo_a = document.createElement("a");
+        // undo_a.classList.add("button");
+        // undo_a.id = "undo";
+        // var undo_a_text = document.createTextNode("撤销");
+        // undo_a.appendChild(undo_a_text);
+        // undo_div1.appendChild(undo_a);
+        // parent_div.appendChild(undo_div1);
 
         marks("border");
 
@@ -741,3 +742,41 @@ function loadMarkedHotArea(picname) {
 
 
 }
+
+var buttonData = new Vue({
+    el: '#details',
+    data: {
+
+
+    },
+    methods:{
+        lastPi:function () {
+            previousPic();
+        },
+        nextPi:function () {
+            nextPic();
+        }
+    },
+    mounted:function () {
+
+    }
+})
+var returnData = new Vue({
+    el: '#returnP',
+    data: {},
+    methods:{
+        returnPro:function () {
+            returnProject();
+        }
+    }
+});
+var progressData = new Vue({
+    el: '#progressPro',
+    data: {
+        progress_P:60
+    },
+    methods:{}
+
+    });
+
+progressData.$data.progress_P = ((markerjob.markedPicList.length / markerjob.picList.length) * 100).toFixed(2);

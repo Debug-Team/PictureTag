@@ -77,9 +77,6 @@ ul:after {
     box-sizing: border-box;
 }
 
-body {
-    background-color: #fff;
-}
 
 h1 {
     margin: 0 auto 5px;
@@ -115,8 +112,20 @@ h3 {
 }
 body {
 
-    background-image: url("../image/pic8.jpg");
-    /*background-color: lightgrey;*/
+    /*background-image: url("../image/pic8.jpg");*/
+
+    /*background-color: #dfe6e9;  */
+    /*background-color: #bdc3c7;*/
+
+    /*偏黑*/
+    /*background-color: #2d3436;*/
+    background-color: #f5f6f7;
+
+
+    /*蓝*/
+    /*background-color: #74b9ff;*/
+
+
     background-attachment: fixed;"
 }
 * {
@@ -317,6 +326,9 @@ body {
     content: attr(data-after);
     position: absolute;
     top: -27px;
+    float: left;
+    left: -30px;
+    width: 100px;
     color: transparent;
     z-index: -1;
     color: #fff;

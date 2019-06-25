@@ -11,6 +11,7 @@
     <!--<link rel="stylesheet" href="../css/component.css">-->
     <!--<link rel="stylesheet" href="../css/demo.css">-->
     <link rel="stylesheet" href="../css/jqtransform.css">
+    <link rel="stylesheet" href="../css/element-ui.css">
 
 </head>
 <!--<body>-->
@@ -82,9 +83,18 @@
     <div class="photos_index_layout">
         <div class="main_container">
             <div class="photo_container" style="height: 700px;">
-                <div class="overlay logged-out">
+                <div class="overlay logged-out" style="background-color: #f5f6f7;cursor: default">
+
                     <div class="nav left">
                         <!-- demo content -->
+                        <div id = "returnP"
+                                                  style="
+                                    margin-top: 10px;
+                                    float: left;
+                                    margin-left: 25px;
+                                    margin-bottom: 5px;">
+                        <el-button @click="returnPro" style="border:none;background-color: #f5f6f7;font-size: 15px" icon = "el-icon-d-arrow-left" circle>返回</el-button>
+                        </div>
                         <div id="content-3" class="content mThumbnailScroller" data-mts-axis="y">
                             <ul >
                                 <!--<li><a href="#"><img src="https://images.unsplash.com/photo-1491956398797-69cc68e54362?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=56e65380a8432ddfb39bba8af21952fc&auto=format&fit=crop&w=500&q=60" style="	border: 2px solid yellow;"/></a></li>-->
@@ -105,21 +115,30 @@
                         </div>
                         <!-- -//- -->
                     </div>
-                    <div class="focus box10">
-                        <canvas id="canvas_img" width="760" height="570" >
 
-                        </canvas>
-                        <canvas id="canvas_tag" width="760" height="570">
+                       <div class="focus box10">
+                           <canvas id="canvas_img" width="760" height="570" >
 
-                        </canvas>
-                    </div>
+                           </canvas>
+                           <canvas id="canvas_tag" width="760" height="570">
+
+                           </canvas>
+                           <div id = "progressPro" style="    position: absolute;
+
+                                                            top: 615px;
+                                                            width: 100%;">
+                               <el-progress :text-inside="true" :stroke-width="20" :percentage="progress_P"></el-progress>
+                           </div>
+                       </div>
+
+
                 </div>
 
             </div>
             <!--tag区-->
             <div class="sidebar_region clearfix">
-                <div class="photo_sidebar photo_sidebar--with_scrollbar">
-                    <div class="attribution_region section">
+                <div class="photo_sidebar photo_sidebar--with_scrollbar" style="background-color: #f5f6f7">
+                    <div class="attribution_region section" style="background-color: #f5f6f7">
 
                         <!--<div class="attribution">-->
 
@@ -146,12 +165,12 @@
 
                     </div>
 
-                    <div class="details_region">
+                    <div class="details_region" id = "details">
                         <div class="photo_sidebar_details">
                             <div class="sidebar_expandable_header sidebar_expandable_header--expanded">
                                 <div class="sidebar_expandable_header__label">标注信息  </div>
                             </div>
-                            <div class="sidebar_expandable_content sidebar_expandable_content--expanded ">
+                            <div class="sidebar_expandable_content sidebar_expandable_content--expanded " style="background-color: #f5f6f7">
 
                                 <div class="badges">
                                     <div class="tags_container">
@@ -165,103 +184,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="badges">
+                                <div class="badges" style="float: left;">
                                     <div class="tagsinfo_input" id = "tags_operate">
-                                        <!--<span class="input input&#45;&#45;kuro">-->
-                                            <!--<input class="input__field input__field&#45;&#45;kuro" type="text" id="ss" onchange="savetags(this)">-->
-                                            <!--<label class="input__label input__label&#45;&#45;kuro" for="ss">-->
-                                            <!--<span class="input__label-content input__label-content&#45;&#45;kuro">性别</span>-->
-                                            <!--</label>-->
-                                        <!--</span>-->
-                                        <!--<div class="rowElem">-->
-                                            <!--<label style="cursor: pointer;">描述信息：</label>-->
-                                            <!--<table cellspacing="0" cellpadding="0" border="0" class="jqTransformTextarea">-->
-                                                <!--<tbody>-->
-                                                <!--<tr>-->
-                                                    <!--<td id="jqTransformTextarea-mm" class="jqTransformSafariTextarea">-->
-                                                        <!--<div style="height: 192px; width: 261px;">-->
-                                                            <!--<textarea cols="40" rows="12" name="mytext" class="jqtransformdone" id="description_textarea" onchange="savetextdiscription()"></textarea>-->
-                                                        <!--</div>-->
-                                                    <!--</td>-->
-                                                 <!--</tr>-->
-                                                <!--</tbody>-->
-                                            <!--</table>-->
-                                        <!--</div>-->
-                                        <!--<fieldset tabindex="0" class="radioGroup">-->
-                                            <!--<input id="g1o1" name="group1" value="option1" checked="" type="radio">-->
-                                            <!--<label for="g1o1">Hell yeah</label>-->
-                                            <!--<input id="g1o2" name="group1" value="option2" type="radio">-->
-                                            <!--<label for="g1o2">A little</label>-->
-                                            <!--<input id="g1o3" name="group1" value="option3" type="radio">-->
-                                            <!--<label for="g1o3">Nope</label>-->
-                                        <!--</fieldset>-->
 
-                                        <!--<div class='radio-check'>-->
-                                            <!--<input type='radio' name='test' id='test1'/>-->
-                                            <!--<label for='test1' >苹果</label>-->
-                                        <!--</div>-->
-                                        <!--<div class='radio-check'>-->
-                                            <!--<input type='radio' name='test' id='test2'/>-->
-                                            <!--<label for='test2' >橘子</label>-->
-                                        <!--</div>-->
-                                        <!--<div class="rowElem">-->
-                                            <!--<label style="cursor: pointer;">性别：</label>-->
-                                            <!--<div class="jqTransformInputWrapper jqTransformSafari" style="width: 170px;">-->
-                                                <!--<div class="jqTransformInputInner">-->
-                                                    <!--<div>-->
-                                                        <!--<input type="text" name="inputtext" class="jqtranformdone jqTransformInput" style="width: 226px;"></div>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                        <!--<div class="rowElem">-->
-                                            <!--<label style="cursor: pointer;">年龄：</label>-->
-                                            <!--<div class="jqTransformInputWrapper jqTransformSafari" style="width: 170px;">-->
-                                                <!--<div class="jqTransformInputInner">-->
-                                                    <!--<div>-->
-                                                        <!--<input type="text"  class="jqtranformdone jqTransformInput" ></div>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-
-                                        <!--<span class="input input&#45;&#45;akira">-->
-					                    <!--<input class="input__field input__field&#45;&#45;akira" type="text" onchange="savetags(this)" id = "ss">-->
-					                    <!--<label class="input__label input__label&#45;&#45;akira" for ="ss">-->
-						                    <!--<span class="input__label-content input__label-content&#45;&#45;akira">妹子？</span>-->
-					                    <!--</label>-->
-				                        <!--</span>-->
-                                        <!--<span class="input input&#45;&#45;akira">-->
-                                            <!--<input class="input__field input__field&#45;&#45;akira" type="text" id="data0">-->
-                                             <!--<label class="input__label input__label&#45;&#45;akira" for="data0">-->
-                                                 <!--<span class="input__label-content input__label-content&#45;&#45;akira">adasjkhdksa</span></label>-->
-                                        <!--</span>-->
-
-                                        <!--<span class="input input&#45;&#45;akira">-->
-					                    <!--<input class="input__field input__field&#45;&#45;akira" type="text" >-->
-					                    <!--<label class="input__label input__label&#45;&#45;akira" >-->
-						                    <!--<span class="input__label-content input__label-content&#45;&#45;akira">动作</span>-->
-					                    <!--</label>-->
-				                        <!--</span>-->
                                     </div>
                                 </div>
 
                              </div>
-                            <div class="actions_region section">
+                            <div class="" style="position: absolute;right: 0px;bottom: 100px;width: 300px">
                                 <div class="curator-actions">
                                     <div class="desktop curator_actions--with-gallery">
-                                        <div class="like-button" >
-                                            <div>
-                                                <a class="button " onclick="previousPic()">
-                                                    上一张
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="like-button" >
-                                            <div>
-                                                <a class="button " onclick="nextPic()">
-                                                    下一张
-                                                </a>
-                                            </div>
-                                        </div>
+                                        <el-button-group>
+                                            <el-button type="primary" @click="lastPi" icon="el-icon-arrow-left">上一张</el-button>
+                                            <el-button type="primary" @click="nextPi">下一张<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+                                        </el-button-group>
+
                                     </div>
 
                                 </div>
@@ -299,15 +236,7 @@
 
                                 </div>
                             </div>
-                            <div>
-                                <div class="like-button" >
-                                    <div>
-                                        <a class="button " onclick="returnProject()" style="width: 35%">
-                                            返回
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -315,47 +244,14 @@
         </div>
     </div>
 </div>
+<script src="../js/vue.js"></script>
+<script src="../js/element-ui.js"></script>
 <script src="../js/util.js"></script>
 <script src="../js/workerMarking.js"></script>
 <script src="../js/jquery-1.11.0.min.js"></script>
 <script src="../js/jquery.mThumbnailScroller.js"></script>
 <script src="../js/workerMarkingLoad.js"></script>
-<!--<script>-->
-    <!--(function() {-->
-        <!--// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim-->
-        <!--if (!String.prototype.trim) {-->
-            <!--(function() {-->
-                <!--// Make sure we trim BOM and NBSP-->
-                <!--var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;-->
-                <!--String.prototype.trim = function() {-->
-                    <!--return this.replace(rtrim, '');-->
-                <!--};-->
-            <!--})();-->
-        <!--}-->
 
-        <!--[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {-->
-            <!--// in case the input is already filled..-->
-            <!--if( inputEl.value.trim() !== '' ) {-->
-                <!--classie.add( inputEl.parentNode, 'input&#45;&#45;filled' );-->
-            <!--}-->
-
-            <!--// events:-->
-            <!--inputEl.addEventListener( 'focus', onInputFocus );-->
-            <!--inputEl.addEventListener( 'blur', onInputBlur );-->
-        <!--} );-->
-
-        <!--function onInputFocus( ev ) {-->
-            <!--classie.add( ev.target.parentNode, 'input&#45;&#45;filled' );-->
-        <!--}-->
-
-        <!--function onInputBlur( ev ) {-->
-            <!--if( ev.target.value.trim() === '' ) {-->
-                <!--classie.remove( ev.target.parentNode, 'input&#45;&#45;filled' );-->
-            <!--}-->
-        <!--}-->
-    <!--})();-->
-<!--</script>-->
-<!--<script src="../js/classie.js"></script>-->
 
 </body>
 
