@@ -643,8 +643,10 @@ function nextPic() {
     }
     if(!last_pic){
         window.location.href = window.location.href.split("=")[0]+"="+target_pic;
+        return "next";
     }else {
-        alert("这已经是最后一张图了");
+        // alert("这已经是最后一张图了");
+        return "final";
     }
 
 }
@@ -667,8 +669,9 @@ function previousPic() {
     }
     if(!first_pic){
         window.location.href = window.location.href.split("=")[0]+"="+target_pic;
+        return "last";
     }else {
-        alert("这已经是最前一张图了");
+        return "first";
     }
 
 }

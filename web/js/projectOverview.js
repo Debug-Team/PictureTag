@@ -67,20 +67,20 @@ function loadProInfo() {
         titleMessage = "轮廓标注";
     }
     // titleMessage = titleMessage + "  ID:" + project_json.id;
-    projectTitle.innerHTML = project_json.name;
+    projectTitle.innerHTML = "<strong style='color: black'>" +project_json.name+"</strong>";
 
     var award = document.getElementById("project_type");
-    award.innerHTML = "项目类型：" + titleMessage;
+    award.innerHTML = "项目类型：<strong style='color: black'>" + titleMessage+"</strong>";
 
     var award = document.getElementById("award");
-    award.innerHTML = "奖励积分：🎁" + parseInt(project_json.award*(1-project_json.cut));
+    award.innerHTML = "奖励积分：🎁<strong style='color: black'>" + parseInt(project_json.award*(1-project_json.cut))+"</strong>";
 
     var discription = document.getElementById("discription");
-    discription.innerHTML = "项目描述：" + project_json.description;
+    discription.innerHTML = "项目描述：<strong style='color: black'>" + project_json.description+"</strong>";
 
     var tagRule = document.getElementById("tagRule");
     console.log(project_json)
-    tagRule.innerHTML = "项目规模： " + project_json.picList.length+" 张";
+    tagRule.innerHTML = "项目规模：<strong style='color: black'>" + project_json.picList.length+" 张</strong>";
 
     var pictures_array = project_json.picList;
     var pic_display_column1 = document.getElementById("pic_display_column1");

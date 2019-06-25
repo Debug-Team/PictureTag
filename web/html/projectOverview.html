@@ -73,7 +73,7 @@
 <!--                        </a>-->
 <!--                    </div>-->
                     <div id="accept">
-                        <el-button  @click="operate" :type="types" :loading="isLoading" :disabled="isDisabled">{{operation_mes}}</el-button>
+                        <el-button   @click="operate" :type="types" :loading="isLoading" :disabled="isDisabled">{{operation_mes}}</el-button>
                     </div>
                     <p class="_3uPxv _27Bp2 _1iWCF" style="margin-top: 5px;margin-bottom: 5px;" id = "project_type"></p>
                     <p class="_3uPxv _27Bp2 _1iWCF" style="margin-top: 5px;margin-bottom: 5px;" id = "tagRule"></p>
@@ -207,7 +207,7 @@
                    this.types = "success";
                    this.isDisabled = true;
                    loadhref();
-                   this.$message.success('接收成功，完成时间限制：10天，逾期将被踢出项目并降低信誉度');
+                   this.$message.success('接受成功');
                }else {
                    this.isLoading = false;
                    this.operation_mes = "接受";
@@ -221,11 +221,11 @@
                     this.operation_mes = "已结束";
                     this.types = "success";
                     this.isDisabled = true;
-                    this.$message('结束成功，快去开启新的项目吧');
+                    this.$message.success('结束成功，快去开启新的项目吧');
                 }else {
                     this.isLoading = false;
                     this.operation_mes = "结束";
-                    this.$message.error("结束失败")
+                    this.$message.error("结束失败！图片未全部标注完成")
                 }
 
             }

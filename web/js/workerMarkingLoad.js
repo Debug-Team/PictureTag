@@ -751,10 +751,16 @@ var buttonData = new Vue({
     },
     methods:{
         lastPi:function () {
-            previousPic();
+            var res = previousPic();
+            if(res=="first") {
+                this.$message.warning("这已经是最开始的一张图了")
+            }
         },
         nextPi:function () {
-            nextPic();
+            var res = nextPic();
+            if(res=="final") {
+                this.$message.warning("这已经是最后的一张图了")
+            }
         }
     },
     mounted:function () {
@@ -779,4 +785,4 @@ var progressData = new Vue({
 
     });
 
-progressData.$data.progress_P = ((markerjob.markedPicList.length / markerjob.picList.length) * 100).toFixed(2);
+progressData.$data.progress_P = parseFloat(((markerjob.markedPicList.length / markerjob.picList.length) * 100).toFixed(2));
