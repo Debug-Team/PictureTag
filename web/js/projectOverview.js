@@ -2,7 +2,6 @@ function getProject() {
     var proid = window.location.href.split("?")[1];
     var allGetStr = null;
     var pro_json_whole = null;
-    console.log(proid)
     $.ajax({
         url:'/getproject',
         type:'post',
@@ -20,6 +19,7 @@ function getProject() {
     });
 
     pro_json_whole = JSON.parse(allGetStr);
+
     return pro_json_whole;
 
 }
@@ -79,7 +79,7 @@ function loadProInfo() {
     discription.innerHTML = "项目描述：<strong style='color: black'>" + project_json.description+"</strong>";
 
     var tagRule = document.getElementById("tagRule");
-    console.log(project_json)
+    //console.log(project_json)
     tagRule.innerHTML = "项目规模：<strong style='color: black'>" + project_json.picList.length+" 张</strong>";
 
     var pictures_array = project_json.picList;
@@ -95,7 +95,7 @@ function loadProInfo() {
     for (var i= 0;i<pictures_array.length; i++){
         if(i<20) {                                  //出事加载20张
             var pic_image_src = "../" + "pic/" + project_json.id + "/" + pictures_array[i];
-            console.log(pic_image_src)
+            //console.log(pic_image_src)
             var li = document.createElement("li");
             var a = document.createElement("a");
             var img = document.createElement("img");
@@ -110,7 +110,7 @@ function loadProInfo() {
                 a.href = "workerMarking.html"+"?"+proid+"="+pictures_array[i].split(".")[0];
 
             }
-            console.log(a.href);
+            //console.log(a.href);
             img.src = pic_image_src;
             img.id = pictures_array[i].split(".")[0];
 
@@ -144,7 +144,7 @@ function loadProInfo() {
 var test = function () {
 
      var lis = document.getElementsByClassName("picture_single");
-     console.log(lis.length)
+     //console.log(lis.length)
      for (var i = 0; i<lis.length;i++){
          var tagged_tip_div = document.createElement("div");
          var tagged_tip_a = document.createElement("a");
@@ -170,7 +170,7 @@ function loadMarkerJob() {
     var pro_id = window.location.href.split("?")[1];
     var markerjob_json = getMarkerWorked(phonenum,pro_id);
     var tagged_pic_array = markerjob_json.markedPicList;
-    console.log(markerjob_json)
+    //console.log(markerjob_json)
 
     for (var i = 0;i<tagged_pic_array.length;i++){
 
@@ -191,9 +191,9 @@ function loadMarkerJob() {
         var img_target = document.getElementById(id_target);
         var a_target = img_target.parentNode;
         tagged_tip_a.href = a_target.href;
-        console.log(111,a_target.href);
+        //console.log(111,a_target.href);
         var li_target = a_target.parentNode;
-        console.log(li_target)
+        //console.log(li_target)
         li_target.appendChild(tagged_tip_div);
 
 
@@ -202,13 +202,33 @@ function loadMarkerJob() {
 
 }
 
+function sortPicList() {
+    if (isMypro()) {
+        var proid = window.location.href.split("?")[1];
+        var phonenum = getUserPhone();
+        var markerjob_json = getMarkerWorked(phonenum,proid);
+
+        //console.log(markerjob_json)
+        var picL = markerjob_json.picList;
+        var markedPicL = markerjob_json.markedPicList;
+        var res = picL.filter(function (value) {
+            return !(markedPicL.includes(value))
+        })
+        //console.log(res)
+        //console.log(markedPicL)
+        var res1 = res.concat(markedPicL);
+        pro_detail_json.picList = res1;
+    }
+}
+
 var pro_detail_json = getProject();
+sortPicList();
 var full_load_bool = true;
 var current_load_process = 20;
 window.onload = function (ev) {
     loadProInfo();
     if(isMypro()){
-        console.log("ss")
+        //console.log("ss")
         loadMarkerJob();  //待添加逻辑 只有是自己已经接受的项目才调用loadMarkerJOB
 
     }
@@ -265,7 +285,7 @@ function loadhref() {
     var pic_display_img = document.getElementsByClassName("picture_introduce");
     for (var i= 0;i<pic_display_img.length; i++){
         pic_display_img[i].parentNode.href = "workerMarking.html"+"?"+pro__id+"="+ pic_display_img[i].id;
-        console.log(pic_display_img.id,88)
+        //console.log(pic_display_img.id,88)
     }
 }
 

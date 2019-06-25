@@ -8,7 +8,7 @@
 	height: auto;
 }
 .content li {
-	margin: 0 4px;
+	/*margin: 0 4px;*/
 }
 .content li a {
 	display: block;
@@ -23,7 +23,7 @@
 	background-color: aliceblue;
 }
 #content-3 li {
-	margin: 8px 0;
+	/*margin: 8px 0;*/
 }
 #content-3 li a {
 	border: none;

@@ -651,9 +651,24 @@ var loadMarksInfo = function () {
  */
 function loadOverView() {
     var markerjob_json = markerjob;
-    var pic_array = markerjob_json.picList;
+
+
+
+    var picL = markerjob_json.picList;
+    var markedPicL = markerjob_json.markedPicList;
+    var res = picL.filter(function (value) {
+        return !(markedPicL.includes(value))
+    })
+    var res1 = res.concat(markedPicL);
+
+    //修改全局 的markerjob 和 projectdetail
+    markerjob.picList = res1;
+    project_detail.picList = res1;
+
+
+    var pic_array = res1;
     var ul = document.getElementById("mTS_1_container")
-    console.log(1,pic_array)
+    // console.log(1,pic_array)
     for(var i = 0;i<pic_array.length;i++) {
         var src = "../" + "pic/" + window.location.href.split("?")[1].split("=")[0] + "/" + pic_array[i];
 
@@ -666,7 +681,27 @@ function loadOverView() {
         a.setAttribute("onclick","designatedPic(\""+pic_array[i].split(".")[0]+"\")") ;
         a.appendChild(img);
         li.appendChild(a);
-        ul.appendChild(li);
+        li.setAttribute("style","position: relative;")
+
+        if(markedPicL.includes(pic_array[i])){
+            var zhezhao = document.createElement("div");
+            (function (ul,li,zhezhao,img) {
+                img.onload = function (ev) {
+                    var zhezhaoheight = img.height;
+                    zhezhao.setAttribute("style","  top: 0px;left: 0px; width: 160px;height:"+parseInt(zhezhaoheight*(160/img.width))+"px;position: absolute;background: rgba(0, 0, 0, 0.7);")
+                    li.appendChild(zhezhao);
+                    ul.appendChild(li);
+                }
+
+            })(ul,li,zhezhao,img);
+
+
+        }else {
+            ul.appendChild(li);
+        }
+
+
+
 
     }
 }
@@ -784,5 +819,4 @@ var progressData = new Vue({
     methods:{}
 
     });
-
 progressData.$data.progress_P = parseFloat(((markerjob.markedPicList.length / markerjob.picList.length) * 100).toFixed(2));

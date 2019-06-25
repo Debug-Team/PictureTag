@@ -159,13 +159,13 @@ var marks = function (type) {
                 color_rect = getcolor();
                 if(color_rect==""){
                     working_state = false;
-                    console.log("还没选颜色");
+                   // console.log("还没选颜色");
                 }else {
 
                     canvas_tag_ctx.moveTo(originX, originY);
                     canvas_tag_ctx.strokeStyle = color_rect;
                     canvas_tag_ctx.lineWidth = 5;
-                    console.log(color_rect)
+                    //console.log(color_rect)
 
                     rect_single.start_x = originX;
                     rect_single.start_y = originY;
@@ -191,7 +191,7 @@ var marks = function (type) {
                 coordinates_single_start.y = originY;
                 coordinates_one_stroke.push(coordinates_single_start);
                 coordinates_single_start = {};
-                console.log(coordinates_one_stroke)
+                //console.log(coordinates_one_stroke)
 
                 if(last_end_x<0){
                     start_x = originX;
@@ -306,7 +306,7 @@ var marks = function (type) {
                 case "classify":
                     json_classify_saved.coordinates.end_x = event.offsetX;
                     json_classify_saved.coordinates.end_y = event.offsetY;
-                    console.log(json_classify_saved)
+                    //console.log(json_classify_saved)
 
                     working_state = false;
 
