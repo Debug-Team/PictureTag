@@ -80,7 +80,19 @@ function loadProInfo() {
 
     var tagRule = document.getElementById("tagRule");
     //console.log(project_json)
-    tagRule.innerHTML = "项目规模：<strong style='color: black'>" + project_json.picList.length+" 张</strong>";
+    var s = "";
+    if (isMypro()) {
+        var phonenum = getUserPhone();
+        var pro_id = window.location.href.split("?")[1];
+        var pp = getMarkerWorked(phonenum,pro_id);
+
+       s =  "项目规模：<strong style='color: black'>" + project_json.picList.length+" 张</strong>   &nbsp;&nbsp;进度：<strong style='color: black'>"+pp.markedPicList.length+" / "+project_json.picList.length+"";
+    } else {
+        s =  "项目规模：<strong style='color: black'>" + project_json.picList.length+" 张</strong>";
+    }
+    tagRule.innerHTML = s;
+
+
 
     var pictures_array = project_json.picList;
     var pic_display_column1 = document.getElementById("pic_display_column1");
