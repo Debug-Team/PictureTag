@@ -24,12 +24,12 @@ function getProjects(phonenum,state) {
             alert("fail")
         }
     });
-    console.log("?s",projectsStr);
+    // console.log("?s",projectsStr);
     if(projectsStr!=""){
         projects_get = projectsStr.split("-;-");
         // console.log(projects_get)
         for (var x in projects_get){
-            console.log(projects_get)
+            // console.log(projects_get)
             projects_json_array.push(JSON.parse(projects_get[x]))
         }
     }
@@ -476,6 +476,7 @@ var project_list = new Vue({
          */
         openProject: function (index) {
             if(this.projectList[index].state == "已结束" || this.projectList[index].state == "已完成"){       //已完成或者已结束的项目不能再打开
+                this.$message.warning("项目已完成，无法编辑！")
                 return;
             }
             window.location.href = "projectOverview.html?"+this.projectList[index].id;
@@ -486,7 +487,7 @@ var project_list = new Vue({
             this.projectList = loadAllProjects(this.showState);
         },
         projectList: function (oldKey, newKey) {
-            console.log("1");
+            // console.log("1");
             var timer = setInterval(function(){
                 var imgDomList = $('.card__thumb img');
                 for(var i = 0; i < imgDomList.length; i++){

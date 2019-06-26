@@ -362,7 +362,7 @@ var loadMarksInfo = function () {
 
             radio_div.classList.add("radio-check");
             // radio_div.value = color_single;
-            radio_div.style = "    color: "+color_single+";";
+            radio_div.style = "    color: "+color_single+";"+"margin-left:16px";
             radio_input.type = "radio";
             radio_input.value = color_single;
             radio_input.classList.add("radio_input");
@@ -373,6 +373,9 @@ var loadMarksInfo = function () {
             radio_label.appendChild(radio_text);
             radio_div.appendChild(radio_input);
             radio_div.appendChild(radio_label);
+            if(i==0){
+                radio_input.checked = true;
+            }
 
             tags_operate_div.appendChild(radio_div);
 
@@ -685,15 +688,16 @@ function loadOverView() {
 
         if(markedPicL.includes(pic_array[i])){
             var zhezhao = document.createElement("div");
-            (function (ul,li,zhezhao,img) {
+            (function (ul,li,zhezhao,img,s) {
                 img.onload = function (ev) {
                     var zhezhaoheight = img.height;
-                    zhezhao.setAttribute("style","  top: 0px;left: 0px; width: 160px;height:"+parseInt(zhezhaoheight*(160/img.width))+"px;position: absolute;background: rgba(0, 0, 0, 0.7);")
+                    zhezhao.setAttribute("style","  top: 0px;left: 0px; width: 160px;height:100%;position: absolute;background: rgba(0, 0, 0, 0.7);border: 1px solid white;")
+                    zhezhao.setAttribute("onclick","designatedPic(\""+s.split(".")[0]+"\")")
                     li.appendChild(zhezhao);
                     ul.appendChild(li);
                 }
 
-            })(ul,li,zhezhao,img);
+            })(ul,li,zhezhao,img,pic_array[i]);
 
 
         }else {

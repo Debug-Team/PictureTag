@@ -73,7 +73,7 @@ function loadProInfo() {
     award.innerHTML = "项目类型：<strong style='color: black'>" + titleMessage+"</strong>";
 
     var award = document.getElementById("award");
-    award.innerHTML = "奖励积分：🎁<strong style='color: black'>" + parseInt(project_json.award*(1-project_json.cut))+"</strong>";
+    award.innerHTML = "奖励积分：<strong style='color: black'>" + parseInt(project_json.award*(1-project_json.cut))+"</strong>";
 
     var discription = document.getElementById("discription");
     discription.innerHTML = "项目描述：<strong style='color: black'>" + project_json.description+"</strong>";
@@ -117,7 +117,7 @@ function loadProInfo() {
             img.classList.add("picture_introduce");
 
             li.appendChild(a);
-            a.appendChild(img);
+            // a.appendChild(img);
             if (isMypro()){
                 a.href = "workerMarking.html"+"?"+proid+"="+pictures_array[i].split(".")[0];
 
@@ -125,6 +125,21 @@ function loadProInfo() {
             //console.log(a.href);
             img.src = pic_image_src;
             img.id = pictures_array[i].split(".")[0];
+            (function (a,img) {
+                img.onload = function (ev) {
+                    // console.log(img.width,img.height);
+                    if(img.width>img.height) {
+                        img.height = 200;
+                    }else {
+                        img.width = 200;
+                    }
+
+
+                }
+                // console.log("xun",1)
+                a.appendChild(img);
+            })(a,img);
+            // console.log("xun",2)
 
             var count = (i + 1) % 5;
             switch (count) {
@@ -145,7 +160,7 @@ function loadProInfo() {
                     break;
 
             }
-            img.onload = function (ev) { clip(); }
+
 
         }
     }
@@ -186,27 +201,33 @@ function loadMarkerJob() {
 
     for (var i = 0;i<tagged_pic_array.length;i++){
 
-        var tagged_tip_div = document.createElement("div");
-        var tagged_tip_a = document.createElement("a");
-
-        var svg_html = " <svg style=\"height: 200px;width: 200px\">\n" +
-            "                            <polyline points=\"55,80 80, 105 150,55\" stroke-width=\"6\" stroke=\"white\" fill=\"none\"></polyline>\n" +
-            "                            <text x=\"65\" y=\"135\" fill=\"white\" font-size=\"20px\">已标注</text></svg>\n";
-        tagged_tip_a.innerHTML = svg_html;
-        tagged_tip_div.appendChild(tagged_tip_a);
-
-        tagged_tip_div.style = "top: 0;left: 0;height:200px;width:200px;position: absolute;background: rgba(0,0,0,0.7);color: #f5f1e5;";
-
-
-
         var id_target = tagged_pic_array[i].split(".")[0];
         var img_target = document.getElementById(id_target);
-        var a_target = img_target.parentNode;
-        tagged_tip_a.href = a_target.href;
-        //console.log(111,a_target.href);
-        var li_target = a_target.parentNode;
-        //console.log(li_target)
-        li_target.appendChild(tagged_tip_div);
+        var div_need =  document.getElementById(id_target+"_div");
+        // console.log(img_target)
+        if ((img_target != null) && (div_need == null)) {
+            var tagged_tip_div = document.createElement("div");
+            tagged_tip_div.setAttribute("id", id_target + "_div");
+            var tagged_tip_a = document.createElement("a");
+
+            var svg_html = " <svg style=\"height: 200px;width: 200px\">\n" +
+                "                            <polyline points=\"55,80 80, 105 150,55\" stroke-width=\"6\" stroke=\"white\" fill=\"none\"></polyline>\n" +
+                "                            <text x=\"65\" y=\"135\" fill=\"white\" font-size=\"20px\">已标注</text></svg>\n";
+            tagged_tip_a.innerHTML = svg_html;
+            tagged_tip_div.appendChild(tagged_tip_a);
+
+            tagged_tip_div.style = "top: 0;left: 0;height:200px;width:200px;position: absolute;background: rgba(0,0,0,0.7);color: #f5f1e5;";
+
+
+            // console.log(id_target);
+            // console.log(img_target);
+            var a_target = img_target.parentNode;
+            tagged_tip_a.href = a_target.href;
+            //console.log(111,a_target.href);
+            var li_target = a_target.parentNode;
+            //console.log(li_target)
+            li_target.appendChild(tagged_tip_div);
+        }
 
 
     }
