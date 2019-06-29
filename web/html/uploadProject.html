@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/uploadProject.css">
     <link rel="stylesheet" href="../css/requestorUtil.css">
 
+    <link rel="stylesheet" href="../css/element-ui.css">
 </head>
 <body>
     <!--导航栏-->
@@ -38,14 +39,20 @@
                         </a>
                     </li>
                     <li class="_29OpZ xLon9" >
+                        <a class="_3t5Ep _1CBrG active" href="#">
+                            发布项目
+                        </a>
+                    </li>
+                    <li class="_29OpZ xLon9" >
                         <a class="_3t5Ep _1CBrG" href="requestorProject.html">
                             全部项目
                         </a>
                     </li>
                     <li class="_29OpZ xLon9" >
-                        <!--<a class="_3t5Ep _1CBrG" href="requestorHome.html/#analysis">-->
+                        <!--<a class="_3t5Ep _1CBrG" href="#analysis">-->
                         <a class="_3t5Ep _1CBrG" href="requestorZone.html">
-                            个人空间/历史数据
+                            <!--个人空间/历史数据-->
+                            历史数据
                         </a>
                     </li>
                     <li class="_29OpZ xLon9" >
@@ -72,228 +79,381 @@
         <div class="_1g4h6" data-reactid="133"></div>
     </header>
     <!--填写表单-->
-    <!-- multistep form -->
-    <form id="msform">
-        <!-- progressbar -->
-        <ul id="progressbar">
-            <li class="active">选择文件</li>
-            <li>项目基本信息</li>
-            <li>项目要求</li>
-        </ul>
-        <!-- fieldsets -->
-        <fieldset>
-            <h2 class="fs-title">选择一个文件</h2>
-            <h3 class="fs-subtitle">项目文件需要为*.zip格式</h3>
-            <div>
-                <label class="label">文件：</label>
-                <input type="text" name="filename" id="filename" class="inputArea" placeholder=" 点击选择一个文件" readonly="true" @click="clickFile" required/>
-            </div>
-            <input type="file" name="file" id="file" style="display: none" accept=".zip"/>
-            <div>
-                <label class="label">项目名称：</label>
-                <input type="text" id="projectName" class="inputArea" placeholder="请输入项目名称" required/>
-            </div>
-            <div>
-                <label class="label">项目类型：</label>
-                <select name="projectType" id="projectType" class="inputArea" @change="selectType" required>
-                    <option value="" disabled selected hidden>请选择项目类型</option>
-                    <option value="1" >整体标注</option>
-                    <option value="2" >标框标注</option>
-                    <option value="3" >边界标注</option>
-                </select>
-            </div>
-            <div>
-                <label class="label">内容分类：</label>
-                <select id="contentCategory" class="inputArea" v-model="selectedCategory" @change="selectCategory" required>
-                    <option value="" disabled selected hidden>请选择添加内容分类</option>
-                    <option v-for="item in categories" v-bind:value="item">{{item}}</option>
-                </select>
-            </div>
-            <div>
-                <span class="label">已选分类：</span>
-                <div class="category_list">
-                    <template v-for="(item, index) in selectedCategoryList"><a class="category_chose">{{item}}</a><a class="category_chose wrong" @click="deleteCategory(index)"></a></template>
-                </div>
-                <!--<div class="category_list">-->
-                    <!--<a class="category_chose">风景</a><a class="category_chose wrong"></a>-->
-                <!--</div>-->
-            </div>
-            <div>
-                <label class="label">图片数量：</label>
-                <input type="number" id="numOfPicture" class="inputArea" placeholder="该项目大概有多少图片" title="该项目大概有多少图片" required/>
-            </div>
-            <!--<div>-->
-                <!--<label class="label">预计时间：</label>-->
-            <!--</div>-->
-            <!--<input type="text" name="filename" id="filename" class="inputArea" placeholder=" 点击选择一个文件" readonly="true" @click="clickFile" required/>-->
-            <!--&lt;!&ndash;<input type="file" name="file" accept="application/zip"/>&ndash;&gt;-->
-            <!--<input type="file" name="file" id="file" style="display: none" accept=".zip"/>-->
-            <!--<select name="projectType" id="projectType" class="inputArea" @change="selectType" required>-->
-                <!--<option value="" disabled selected hidden>项目类型</option>-->
-                <!--<option value="1" >整体标注</option>-->
-                <!--<option value="2" >标框标注</option>-->
-                <!--<option value="3" >边界标注</option>-->
-            <!--</select>-->
-            <!--<select name="projectSize" class="inputArea" required>-->
-                <!--<option value="" disabled selected hidden>项目规模</option>-->
-                <!--<option value="S" >小：0~30</option>-->
-                <!--<option value="M" >中：30~60</option>-->
-                <!--<option value="L" >大：60以上</option>-->
-            <!--</select>-->
-            <!--<div style="text-align: left;">-->
-                <!--<label class="scheduledTime">预计时间：</label>-->
-            <!--</div>-->
-            <input type="button" name="next" class="next action-button" value="Next" />
-        </fieldset>
-        <fieldset>
-            <h2 class="fs-title">项目基本信息</h2>
-            <h3 class="fs-subtitle"></h3>
-            <div>
-                <label class="label">工作人数 /人：</label>
-                <input type="number" name="numOfWorker" id="numOfWorker" class="inputArea" placeholder="希望这个项目由多少个标注者来做" required/>
-            </div>
-            <!--<div>-->
-                <!--<label class="label">平台分成 /%：</label>-->
-                <!--<input type="number" name="divide" id="divide" class="inputArea" placeholder="平台分成越多，项目的优先度越高" required/>-->
-            <!--</div>-->
-            <div class="suggestPoint" id="suggestPoint" hidden>
-                <h4 style="text-align: center;">推荐积分</h4>
-                <label class="suggestPoint_label">最小值：</label><a>{{suggestCredits.minCredits}}</a>
-                <label class="suggestPoint_label">最大值：</label><a>{{suggestCredits.maxCredits}}</a>
-                <label class="suggestPoint_label">平均值：</label><a>{{suggestCredits.avgCredits}}</a>
-                <label class="suggestPoint_label">推荐：</label><a>{{suggestCredits.recommandcredits}}</a>
-            </div>
-            <div>
-                <label class="label">标注者积分：</label>
-                <input type="number" name="point" id="point" class="inputArea" placeholder="点击获取标注者积分的推荐值" title="标注者通过这个项目可以获取到多少积分" @click="clickPointToCalc" required/>
-            </div>
-            <div style="text-align: center;">
-                <label class="label">项目描述：</label>
-                <textarea name="projectDescription" id="projectDescription" rows="3" class="inputArea" placeholder="对这个项目的描述" required></textarea>
-            </div>
-
-            <input type="button" name="previous" class="previous action-button" value="Previous" />
-            <input type="button" name="next" class="next action-button" value="Next" />
-            <!--<input type="number" name="numOfWorker" id="numOfWorker" class="inputArea" placeholder="工作人数 /人" title="希望这个项目由多少个标注者来做" required/>-->
-            <!--<input type="number" name="divide" id="divide" class="inputArea" placeholder="平台分成 /%" title="平台分成越多，项目的优先度越高" required/>-->
-            <!--<input type="number" name="point" id="point" class="inputArea" placeholder="标注者积分 " title="标注者通过这个项目可以获得的奖励" required/>-->
-            <!--<textarea name="projectDescription" id="projectDescription" rows="3" class="inputArea" placeholder="项目描述"-->
-                      <!--title="对这个项目的描述" required></textarea>-->
-            <!--<input type="button" name="previous" class="previous action-button" value="Previous" />-->
-            <!--<input type="button" name="next" class="next action-button" value="Next" />-->
-        </fieldset>
-        <fieldset id="requirement">
-            <!--<h2 class="fs-title">项目要求</h2>-->
-            <!--<h3 class="fs-subtitle">希望标注者做些什么</h3>-->
-            <!--<input type="text" name="fname" placeholder="First Name" />-->
-            <!--<input type="text" name="lname" placeholder="Last Name" />-->
-            <!--<input type="text" name="phone" placeholder="Phone" />-->
-            <!--<textarea name="address" placeholder="Address"></textarea>-->
-            <!--<input type="button" name="previous" class="previous action-button" value="Previous" />-->
-            <!--<input type="submit" name="submit" class="submit action-button" value="Submit" />-->
-            <template v-if="projectType === 'null' ">
-                <div>
-                    请先选择项目类型
-                </div>
-            </template>
-            <template v-else-if="projectType === '1' ">
-                <h2 class="fs-title">项目要求-整体标注</h2>
-                <h3 class="fs-subtitle">希望标注者标注什么属性</h3>
-                <div>
-                    <textarea id="tag_category" rows="4" class="inputArea" placeholder="标注要求&#10请用中文分号；分隔每个要求"
-                              title="请用中文分号；分隔每个要求" key="tag_border1"></textarea>
-                </div>
-                <!--<textarea name="tag_category" id="tag_category" rows="4" class="inputArea" placeholder="标注要求&#10请用中文分号；分隔每个要求"-->
-                          <!--title="请用中文分号；分隔每个要求" key="tag_category"></textarea>-->
-            </template>
-            <template v-else-if="projectType === '2' ">
-                <h2 class="fs-title">项目要求-标框标注</h2>
-                <h3 class="fs-subtitle">颜色对应内容</h3>
-                <div>
-                    <input type="color" class="colorPicker" id="colorPicker" key="color_rectangle"/>
-                    <input type="text" class="colorDescription" id="colorDescription" placeholder="对应标注内容" title="该种颜色对应的标注内容（对象）" key="description_rectangle"/>
-                    <!--<button class="colorAddButton" @click="clickAddColor">Add</button>-->
-                    <button type="button" class="colorAddButton" @click="clickAddColor">Add</button>
-                </div>
-                <!--<ul>-->
-                    <!--<li v-for="item in colorData">-->
-                        <!--{{item.data}}-->
-                    <!--</li>-->
-                <!--</ul>-->
-                <table class="colorDataTable" key="colorData_rectangle">
-                    <tr>
-                        <th>颜色</th>
-                        <th>对应内容</th>
-                        <th>删除</th>
-                    </tr>
-                    <tr v-for="(item,index) in colorData">
-                        <td>{{item.color}}</td>
-                        <td>{{item.description}}</td>
-                        <td><button type="button" @click="deleteData(index)">X</button></td>
-                    </tr>
-                </table>
-            </template>
-            <template v-else>
-                <h2 class="fs-title">项目要求-边界标注</h2>
-                <h3 class="fs-subtitle">标注属性或颜色对应内容</h3>
-                <div>
-                    <select id="tagState" class="inputArea" @change="selectTagState" >
-                        <option value="0" disabled selected hidden>想让标注者做什么</option>
-                        <option value="0" >什么都不干</option>
-                        <option value="1" >标注属性</option>
-                        <option value="2" >对标注进行描述</option>
-                    </select>
-                </div>
-                <template v-if="tagState === '0'"></template>
-                <template v-else-if="tagState === '1'">
-                    <div>
-                        <textarea id="tag_border1" rows="4" class="inputArea" placeholder="标注要求&#10请用中文分号；分隔每个要求"
-                                  title="请用中文分号；分隔每个要求" key="tag_border1"></textarea>
-                    </div>
+    <div id="uploadProject" style="">
+<!--        <div style="width: 80%; position: fixed; transform: translateX(-50%); left: 50%; background: #f5f6f7; z-index: 100;">-->
+<!--            <el-steps :active="active_step" finish-status="success" simple style="margin-top: 20px;">-->
+<!--                <el-step title="选择项目文件" icon="el-icon-upload"></el-step>-->
+<!--                <el-step title="填写项目基本信息" icon="el-icon-edit"></el-step>-->
+<!--                <el-step title="填写项目要求" icon="el-icon-edit"></el-step>-->
+<!--            </el-steps>-->
+<!--        </div>-->
+<!--        <div style="padding-top: 100px; margin: 0 200px;">-->
+        <div style="margin: 0 200px;">
+            <h1 style="text-align: center;">
+                <i class="el-icon-upload"></i>
+                发布图片众包标注项目
+                <el-button
+                        style="border:none;background-color: #f5f6f7;font-size: 15px; float: left; height: 100%;"
+                        icon = "el-icon-d-arrow-left" circle onclick="javascript:history.back();">返回</el-button>
+            </h1>
+<!--            <el-form ref="form" :model="form" label-width="100px" >-->
+            <el-form ref="form" status-icon :model="form" label-width="100px" :rules="rules" label-position="left">
+                <el-form-item label="项目文件" prop="filename">
+                    <input type="file" name="file" id="file" style="display: none" accept=".zip"/>
+                    <input class="el-input__inner" v-model="form.filename" placeholder="点击选择一个图片项目文件" :readonly="true" @click="clickFile"/>
+                </el-form-item>
+                <el-form-item label="项目名称" prop="projectName">
+                    <el-input text="text" v-model="form.projectName" placeholder="请输入项目名称" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="项目类型" prop="type">
+                    <el-select v-model="form.type" placeholder="请选择项目类型">
+                        <el-option label="整体标注" value="1"></el-option>
+                        <el-option label="标框标注" value="2"></el-option>
+                        <el-option label="边界标注" value="3"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="内容分类" prop="selectedCategories">
+<!--                    <el-transfer-->
+<!--                            filterable-->
+<!--                            :filter-method="filterCategoryMethod"-->
+<!--                            filter-placeholder="输入分类进行筛选"-->
+<!--                            :titles="['全部分类', '已选分类']"-->
+<!--                            :button-texts="['删除分类', '选择分类']"-->
+<!--                            v-model="form.selectedCategories"-->
+<!--                            :data="categories">-->
+                    <el-transfer
+                            :titles="['全部分类', '已选分类']"
+                            :button-texts="['删除分类', '选择分类']"
+                            v-model="form.selectedCategories"
+                            :data="categories">
+                    </el-transfer>
+                </el-form-item>
+                <el-form-item label="图片数量" prop="numOfPicture">
+                    <el-input text="number" v-model.number="form.numOfPicture" placeholder="该项目大概有多少图片" min="1" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="工作人数" prop="numOfWorker">
+                    <el-input text="number" v-model.number="form.numOfWorker" placeholder="希望这个项目由多少个标注者来做" min="1" clearable>
+                        <template slot="append">人</template>
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="推荐积分">
+                    <el-card class="box-card" shadow="never" body-style="padding: 0px 20px;">
+                        <div class="text item" style="color:#C0C4CC;">
+                            向您推荐应该为标注者设置多少积分
+                        </div>
+                        <div class="text item">
+                            <template v-if="suggestCredit.toShow === 0">
+                                选择项目类型、内容分类和填写图片数量后显示推荐积分
+                            </template>
+                            <template v-else>
+                                <span>推荐：{{suggestCredit.suggest}}</span>
+                                <el-divider direction="vertical"></el-divider>
+                                <span>最小值：{{suggestCredit.min}}</span>
+                                <el-divider direction="vertical"></el-divider>
+                                <span>最大值：{{suggestCredit.max}}</span>
+                                <el-divider direction="vertical"></el-divider>
+                                <span>平均值：{{suggestCredit.avg}}</span>
+                            </template>
+                        </div>
+                    </el-card>
+                </el-form-item>
+                <el-form-item label="标注者积分" prop="point">
+                    <el-input text="number" v-model.number="form.point" placeholder="每个标注者能获取的积分" min="0" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="项目描述" prop="projectDescription">
+                    <el-input type="textarea" :rows="3" text="text" v-model="form.projectDescription" placeholder="对这个项目的描述" min="0" clearable></el-input>
+                </el-form-item>
+                <!--     整体标注           -->
+                <template v-if="form.type === '1'">
+                    <el-form-item label="标注要求">
+                        <el-input text="text" v-model="tag_category" placeholder="希望标注者标注什么属性 按回车（Enter）添加" @keyup.enter.native="addToCategoryTags" clearable></el-input>
+                        <el-tag v-for="(tag, index) in tags_category" :key="index" closable @close="handleCategoryTagClose(index)" style="margin: 10px 10px 0 0">
+                            {{tag}}
+                        </el-tag>
+                    </el-form-item>
                 </template>
-                <!--<template v-else-if="tagState === '2'">-->
-                    <!--<textarea id="tag_border2" rows="4" class="inputArea" placeholder="希望标注者对边界描述什么"-->
-                              <!--title="边界的描述" key="tag_border2"></textarea>-->
-                <!--</template>-->
-            </template>
+                <!--     标框标注           -->
+                <template v-else-if="form.type === '2'">
+                    <el-form-item label="标注要求">
+                        <el-input text="text" v-model="tag_rect"
+                                  placeholder="标框标注的要求 颜色对应内容 按回车（Enter）添加"
+                                  @keyup.enter.native="addToRectTags" clearable>
+                            <el-color-picker
+                                    slot="prepend"
+                                    v-model="color_rect"
+                                    size="mini" :predefine="predefineColors"></el-color-picker>
+                        </el-input>
+                        <div style="line-height: initial;">
+                            <div v-for="(tag, index) in tags_rect" :key="index" style="display: inline-block;">
+                                <el-tag closable @close="handleRectTagClose(index)"
+                                        style="margin: 10px 10px 0 0; display: table; ">
+                                    <div style="display: table-cell;">
+                                        <div style="display: inline-block; vertical-align: middle; height: 15px; width: 15px; margin-right: 3px;"
+                                             :style="{background: tag.color}"></div>
+                                    </div>
+                                    <span style="display: table-cell;">{{tag.desc}}</span>
+                                </el-tag>
+                            </div>
+                        </div>
+<!--                        <el-tag v-for="(tag, index) in tags_rect" :key="index" closable-->
+<!--                                style="margin: 10px 10px 0 0; position: relative; padding-left: 20px;">-->
+<!--                            <div style="display: inline-block; height: 15px; width: 15px; position: absolute; left: 5px; top: 50%; transform: translateY(-50%)"-->
+<!--                                 :style="{background: tag.color}"></div>-->
+<!--                            {{tag}}-->
+<!--                        </el-tag>-->
+                    </el-form-item>
+                </template>
+                <!--     边界标注           -->
+                <template v-else-if="form.type === '3'">
+                    <el-form-item label="标注要求" required>
+                        <el-select v-model="form.tagState" placeholder="标注者在标注完边界后需要干什么" style="width: 100%;">
+                            <el-option label="仅标注边界即可" value="0"></el-option>
+                            <el-option label="还需标注出属性" value="1"></el-option>
+                            <el-option label="对标注进行描述" value="2"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <template v-if="form.tagState === '1'">
+                        <el-form-item label="标注属性">
+                            <el-input text="text" v-model="tag_border" placeholder="希望标注者标注什么属性 按回车（Enter）添加" @keyup.enter.native="addToBorderTags" clearable></el-input>
+                            <el-tag v-for="(tag, index) in tags_border" :key="index" closable @close="handleBorderTagClose(index)" style="margin: 10px 10px 0 0">
+                                {{tag}}
+                            </el-tag>
+                        </el-form-item>
+                    </template>
+                </template>
+                <!-- 提交-->
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit('form')">立即发布</el-button>
+                    <el-button onclick=" history.back();">取消</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
 
-            <input type="button" name="previous" class="previous action-button" value="Previous" />
-            <input type="button" name="submit" id="submit" class="submit action-button" value="Submit" disabled="true" @click="clickSubmit"/>
-            <!--<input type="submit" name="submit" id="submit" class="submit action-button" value="Submit" disabled="true" />-->
+    </div>
+    <!-- multistep form -->
+<!--    <form id="msform">-->
+<!--        &lt;!&ndash; progressbar &ndash;&gt;-->
+<!--        <ul id="progressbar">-->
+<!--            <li class="active">选择文件</li>-->
+<!--            <li>项目基本信息</li>-->
+<!--            <li>项目要求</li>-->
+<!--        </ul>-->
+<!--        &lt;!&ndash; fieldsets &ndash;&gt;-->
+<!--        <fieldset>-->
+<!--            <h2 class="fs-title">选择一个文件</h2>-->
+<!--            <h3 class="fs-subtitle">项目文件需要为*.zip格式</h3>-->
+<!--&lt;!&ndash;            <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <label class="label">文件：</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="text" name="filename" id="filename" class="inputArea" placeholder=" 点击选择一个文件" readonly="true" @click="clickFile" required/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="file" name="file" id="file" style="display: none" accept=".zip"/>&ndash;&gt;-->
+<!--            <div>-->
+<!--                <label class="label">项目名称：</label>-->
+<!--                <input type="text" id="projectName" class="inputArea" placeholder="请输入项目名称" required/>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label class="label">项目类型：</label>-->
+<!--                <select name="projectType" id="projectType" class="inputArea" @change="selectType" required>-->
+<!--                    <option value="" disabled selected hidden>请选择项目类型</option>-->
+<!--                    <option value="1" >整体标注</option>-->
+<!--                    <option value="2" >标框标注</option>-->
+<!--                    <option value="3" >边界标注</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label class="label">内容分类：</label>-->
+<!--                <select id="contentCategory" class="inputArea" v-model="selectedCategory" @change="selectCategory" required>-->
+<!--                    <option value="" disabled selected hidden>请选择添加内容分类</option>-->
+<!--                    <option v-for="item in categories" v-bind:value="item">{{item}}</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <span class="label">已选分类：</span>-->
+<!--                <div class="category_list">-->
+<!--                    <template v-for="(item, index) in selectedCategoryList"><a class="category_chose">{{item}}</a><a class="category_chose wrong" @click="deleteCategory(index)"></a></template>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;<div class="category_list">&ndash;&gt;-->
+<!--                    &lt;!&ndash;<a class="category_chose">风景</a><a class="category_chose wrong"></a>&ndash;&gt;-->
+<!--                &lt;!&ndash;</div>&ndash;&gt;-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label class="label">图片数量：</label>-->
+<!--                <input type="number" id="numOfPicture" class="inputArea" placeholder="该项目大概有多少图片" title="该项目大概有多少图片" required/>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;<div>&ndash;&gt;-->
+<!--                &lt;!&ndash;<label class="label">预计时间：</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;</div>&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="text" name="filename" id="filename" class="inputArea" placeholder=" 点击选择一个文件" readonly="true" @click="clickFile" required/>&ndash;&gt;-->
+<!--            &lt;!&ndash;&lt;!&ndash;<input type="file" name="file" accept="application/zip"/>&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="file" name="file" id="file" style="display: none" accept=".zip"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;<select name="projectType" id="projectType" class="inputArea" @change="selectType" required>&ndash;&gt;-->
+<!--                &lt;!&ndash;<option value="" disabled selected hidden>项目类型</option>&ndash;&gt;-->
+<!--                &lt;!&ndash;<option value="1" >整体标注</option>&ndash;&gt;-->
+<!--                &lt;!&ndash;<option value="2" >标框标注</option>&ndash;&gt;-->
+<!--                &lt;!&ndash;<option value="3" >边界标注</option>&ndash;&gt;-->
+<!--            &lt;!&ndash;</select>&ndash;&gt;-->
+<!--            &lt;!&ndash;<select name="projectSize" class="inputArea" required>&ndash;&gt;-->
+<!--                &lt;!&ndash;<option value="" disabled selected hidden>项目规模</option>&ndash;&gt;-->
+<!--                &lt;!&ndash;<option value="S" >小：0~30</option>&ndash;&gt;-->
+<!--                &lt;!&ndash;<option value="M" >中：30~60</option>&ndash;&gt;-->
+<!--                &lt;!&ndash;<option value="L" >大：60以上</option>&ndash;&gt;-->
+<!--            &lt;!&ndash;</select>&ndash;&gt;-->
+<!--            &lt;!&ndash;<div style="text-align: left;">&ndash;&gt;-->
+<!--                &lt;!&ndash;<label class="scheduledTime">预计时间：</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;</div>&ndash;&gt;-->
+<!--            <input type="button" name="next" class="next action-button" value="Next" />-->
+<!--        </fieldset>-->
+<!--        <fieldset>-->
+<!--            <h2 class="fs-title">项目基本信息</h2>-->
+<!--            <h3 class="fs-subtitle"></h3>-->
+<!--            <div>-->
+<!--                <label class="label">工作人数 /人：</label>-->
+<!--                <input type="number" name="numOfWorker" id="numOfWorker" class="inputArea" placeholder="希望这个项目由多少个标注者来做" required/>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;<div>&ndash;&gt;-->
+<!--                &lt;!&ndash;<label class="label">平台分成 /%：</label>&ndash;&gt;-->
+<!--                &lt;!&ndash;<input type="number" name="divide" id="divide" class="inputArea" placeholder="平台分成越多，项目的优先度越高" required/>&ndash;&gt;-->
+<!--            &lt;!&ndash;</div>&ndash;&gt;-->
+<!--            <div class="suggestPoint" id="suggestPoint" hidden>-->
+<!--                <h4 style="text-align: center;">推荐积分</h4>-->
+<!--                <label class="suggestPoint_label">最小值：</label><a>{{suggestCredits.minCredits}}</a>-->
+<!--                <label class="suggestPoint_label">最大值：</label><a>{{suggestCredits.maxCredits}}</a>-->
+<!--                <label class="suggestPoint_label">平均值：</label><a>{{suggestCredits.avgCredits}}</a>-->
+<!--                <label class="suggestPoint_label">推荐：</label><a>{{suggestCredits.recommandcredits}}</a>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label class="label">标注者积分：</label>-->
+<!--                <input type="number" name="point" id="point" class="inputArea" placeholder="点击获取标注者积分的推荐值" title="标注者通过这个项目可以获取到多少积分" @click="clickPointToCalc" required/>-->
+<!--            </div>-->
+<!--            <div style="text-align: center;">-->
+<!--                <label class="label">项目描述：</label>-->
+<!--                <textarea name="projectDescription" id="projectDescription" rows="3" class="inputArea" placeholder="对这个项目的描述" required></textarea>-->
+<!--            </div>-->
 
-            <!--<template v-else>-->
-                <!--<h2 class="fs-title">项目要求-边界标注</h2>-->
-                <!--<h3 class="fs-subtitle">标注属性或颜色对应内容</h3>-->
-                <!--<textarea name="tag_border" id="tag_border" rows="4" class="inputArea" placeholder="标注要求&#10请用中文分号；分隔每个要求" title="请用中文分号；分隔每个要求"></textarea>-->
-                <!--<div>-->
-                    <!--<input type="color" class="colorPicker" id="colorPicker_border" key="color_border"/>-->
-                    <!--<input type="text" class="colorDescription" id="colorDescription_border" placeholder="对应标注内容" title="该种颜色对应的标注内容（对象）" key="description_border"/>-->
-                    <!--&lt;!&ndash;<button class="colorAddButton" @click="clickAddColor">Add</button>&ndash;&gt;-->
-                    <!--<button type="button" class="colorAddButton" @click="clickAddColor_border">Add</button>-->
-                <!--</div>-->
-                <!--<table class="colorDataTable" key="colorData_border">-->
-                    <!--<tr>-->
-                        <!--<th>颜色</th>-->
-                        <!--<th>对应内容</th>-->
-                        <!--<th>删除</th>-->
-                    <!--</tr>-->
-                    <!--<tr v-for="(item,index) in colorData">-->
-                        <!--<td>{{item.color}}</td>-->
-                        <!--<td>{{item.description}}</td>-->
-                        <!--<td><button type="button" @click="deleteData_border(index)">X</button></td>-->
-                    <!--</tr>-->
-                <!--</table>-->
-                <!--<input type="button" name="previous" class="previous action-button" value="Previous" />-->
-                <!--&lt;!&ndash;<input type="submit" name="submit" class="submit action-button" value="Submit" @onclick="submit"/>&ndash;&gt;-->
-                <!--<input type="button" name="submit" class="submit action-button" value="Submit" @click="clickSubmit"/>-->
-            <!--</template>-->
-        </fieldset>
-    </form>
+<!--            <input type="button" name="previous" class="previous action-button" value="Previous" />-->
+<!--            <input type="button" name="next" class="next action-button" value="Next" />-->
+<!--            &lt;!&ndash;<input type="number" name="numOfWorker" id="numOfWorker" class="inputArea" placeholder="工作人数 /人" title="希望这个项目由多少个标注者来做" required/>&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="number" name="divide" id="divide" class="inputArea" placeholder="平台分成 /%" title="平台分成越多，项目的优先度越高" required/>&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="number" name="point" id="point" class="inputArea" placeholder="标注者积分 " title="标注者通过这个项目可以获得的奖励" required/>&ndash;&gt;-->
+<!--            &lt;!&ndash;<textarea name="projectDescription" id="projectDescription" rows="3" class="inputArea" placeholder="项目描述"&ndash;&gt;-->
+<!--                      &lt;!&ndash;title="对这个项目的描述" required></textarea>&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="button" name="previous" class="previous action-button" value="Previous" />&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="button" name="next" class="next action-button" value="Next" />&ndash;&gt;-->
+<!--        </fieldset>-->
+<!--        <fieldset id="requirement">-->
+<!--            &lt;!&ndash;<h2 class="fs-title">项目要求</h2>&ndash;&gt;-->
+<!--            &lt;!&ndash;<h3 class="fs-subtitle">希望标注者做些什么</h3>&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="text" name="fname" placeholder="First Name" />&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="text" name="lname" placeholder="Last Name" />&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="text" name="phone" placeholder="Phone" />&ndash;&gt;-->
+<!--            &lt;!&ndash;<textarea name="address" placeholder="Address"></textarea>&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="button" name="previous" class="previous action-button" value="Previous" />&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="submit" name="submit" class="submit action-button" value="Submit" />&ndash;&gt;-->
+<!--            <template v-if="projectType === 'null' ">-->
+<!--                <div>-->
+<!--                    请先选择项目类型-->
+<!--                </div>-->
+<!--            </template>-->
+<!--            <template v-else-if="projectType === '1' ">-->
+<!--                <h2 class="fs-title">项目要求-整体标注</h2>-->
+<!--                <h3 class="fs-subtitle">希望标注者标注什么属性</h3>-->
+<!--                <div>-->
+<!--                    <textarea id="tag_category" rows="4" class="inputArea" placeholder="标注要求&#10请用中文分号；分隔每个要求"-->
+<!--                              title="请用中文分号；分隔每个要求" key="tag_border1"></textarea>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;<textarea name="tag_category" id="tag_category" rows="4" class="inputArea" placeholder="标注要求&#10请用中文分号；分隔每个要求"&ndash;&gt;-->
+<!--                          &lt;!&ndash;title="请用中文分号；分隔每个要求" key="tag_category"></textarea>&ndash;&gt;-->
+<!--            </template>-->
+<!--            <template v-else-if="projectType === '2' ">-->
+<!--                <h2 class="fs-title">项目要求-标框标注</h2>-->
+<!--                <h3 class="fs-subtitle">颜色对应内容</h3>-->
+<!--                <div>-->
+<!--                    <input type="color" class="colorPicker" id="colorPicker" key="color_rectangle"/>-->
+<!--                    <input type="text" class="colorDescription" id="colorDescription" placeholder="对应标注内容" title="该种颜色对应的标注内容（对象）" key="description_rectangle"/>-->
+<!--                    &lt;!&ndash;<button class="colorAddButton" @click="clickAddColor">Add</button>&ndash;&gt;-->
+<!--                    <button type="button" class="colorAddButton" @click="clickAddColor">Add</button>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;<ul>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<li v-for="item in colorData">&ndash;&gt;-->
+<!--                        &lt;!&ndash;{{item.data}}&ndash;&gt;-->
+<!--                    &lt;!&ndash;</li>&ndash;&gt;-->
+<!--                &lt;!&ndash;</ul>&ndash;&gt;-->
+<!--                <table class="colorDataTable" key="colorData_rectangle">-->
+<!--                    <tr>-->
+<!--                        <th>颜色</th>-->
+<!--                        <th>对应内容</th>-->
+<!--                        <th>删除</th>-->
+<!--                    </tr>-->
+<!--                    <tr v-for="(item,index) in colorData">-->
+<!--                        <td>{{item.color}}</td>-->
+<!--                        <td>{{item.description}}</td>-->
+<!--                        <td><button type="button" @click="deleteData(index)">X</button></td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            </template>-->
+<!--            <template v-else>-->
+<!--                <h2 class="fs-title">项目要求-边界标注</h2>-->
+<!--                <h3 class="fs-subtitle">标注属性或颜色对应内容</h3>-->
+<!--                <div>-->
+<!--                    <select id="tagState" class="inputArea" @change="selectTagState" >-->
+<!--                        <option value="0" disabled selected hidden>想让标注者做什么</option>-->
+<!--                        <option value="0" >什么都不干</option>-->
+<!--                        <option value="1" >标注属性</option>-->
+<!--                        <option value="2" >对标注进行描述</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <template v-if="tagState === '0'"></template>-->
+<!--                <template v-else-if="tagState === '1'">-->
+<!--                    <div>-->
+<!--                        <textarea id="tag_border1" rows="4" class="inputArea" placeholder="标注要求&#10请用中文分号；分隔每个要求"-->
+<!--                                  title="请用中文分号；分隔每个要求" key="tag_border1"></textarea>-->
+<!--                    </div>-->
+<!--                </template>-->
+<!--                &lt;!&ndash;<template v-else-if="tagState === '2'">&ndash;&gt;-->
+<!--                    &lt;!&ndash;<textarea id="tag_border2" rows="4" class="inputArea" placeholder="希望标注者对边界描述什么"&ndash;&gt;-->
+<!--                              &lt;!&ndash;title="边界的描述" key="tag_border2"></textarea>&ndash;&gt;-->
+<!--                &lt;!&ndash;</template>&ndash;&gt;-->
+<!--            </template>-->
+
+<!--            <input type="button" name="previous" class="previous action-button" value="Previous" />-->
+<!--            <input type="button" name="submit" id="submit" class="submit action-button" value="Submit" disabled="true" @click="clickSubmit"/>-->
+<!--            &lt;!&ndash;<input type="submit" name="submit" id="submit" class="submit action-button" value="Submit" disabled="true" />&ndash;&gt;-->
+
+<!--            &lt;!&ndash;<template v-else>&ndash;&gt;-->
+<!--                &lt;!&ndash;<h2 class="fs-title">项目要求-边界标注</h2>&ndash;&gt;-->
+<!--                &lt;!&ndash;<h3 class="fs-subtitle">标注属性或颜色对应内容</h3>&ndash;&gt;-->
+<!--                &lt;!&ndash;<textarea name="tag_border" id="tag_border" rows="4" class="inputArea" placeholder="标注要求&#10请用中文分号；分隔每个要求" title="请用中文分号；分隔每个要求"></textarea>&ndash;&gt;-->
+<!--                &lt;!&ndash;<div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<input type="color" class="colorPicker" id="colorPicker_border" key="color_border"/>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<input type="text" class="colorDescription" id="colorDescription_border" placeholder="对应标注内容" title="该种颜色对应的标注内容（对象）" key="description_border"/>&ndash;&gt;-->
+<!--                    &lt;!&ndash;&lt;!&ndash;<button class="colorAddButton" @click="clickAddColor">Add</button>&ndash;&gt;&ndash;&gt;-->
+<!--                    &lt;!&ndash;<button type="button" class="colorAddButton" @click="clickAddColor_border">Add</button>&ndash;&gt;-->
+<!--                &lt;!&ndash;</div>&ndash;&gt;-->
+<!--                &lt;!&ndash;<table class="colorDataTable" key="colorData_border">&ndash;&gt;-->
+<!--                    &lt;!&ndash;<tr>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<th>颜色</th>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<th>对应内容</th>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<th>删除</th>&ndash;&gt;-->
+<!--                    &lt;!&ndash;</tr>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<tr v-for="(item,index) in colorData">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<td>{{item.color}}</td>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<td>{{item.description}}</td>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<td><button type="button" @click="deleteData_border(index)">X</button></td>&ndash;&gt;-->
+<!--                    &lt;!&ndash;</tr>&ndash;&gt;-->
+<!--                &lt;!&ndash;</table>&ndash;&gt;-->
+<!--                &lt;!&ndash;<input type="button" name="previous" class="previous action-button" value="Previous" />&ndash;&gt;-->
+<!--                &lt;!&ndash;&lt;!&ndash;<input type="submit" name="submit" class="submit action-button" value="Submit" @onclick="submit"/>&ndash;&gt;&ndash;&gt;-->
+<!--                &lt;!&ndash;<input type="button" name="submit" class="submit action-button" value="Submit" @click="clickSubmit"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;</template>&ndash;&gt;-->
+<!--        </fieldset>-->
+<!--    </form>-->
     <script src='../js/jquery.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
 
     <!--vue-->
     <script src="../js/vue.js"></script>
+    <script src="../js/element-ui.js"></script>
+
     <script src="../js/requestorUtil.js"></script>
     <script src="../js/util.js"></script>
 

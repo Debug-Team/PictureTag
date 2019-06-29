@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../css/filter.css">
     <link rel="stylesheet" href="../css/requestorUtil.css">
 
+    <link rel="stylesheet" href="../css/element-ui.css">
+
     <script src="../js/util.js"></script>
 </head>
 <body>
@@ -153,7 +155,8 @@
             <!--<h3><a v-bind:href="'requestorProjectInfo.html?id='+item.id">{{item.id}}</a></h3>-->
             <h3><a>{{item.name}}</a></h3>
             <canvas v-bind:id="'canvas'+item.id" width="150" height="150" style="background:#48dbfb;"></canvas>
-            <button type="button" class="closeButton" @click="closeProject(index)" v-if="!item.isEnded">关闭项目</button>
+<!--            <button type="button" class="closeButton" @click="closeProject(index)" v-if="!item.isEnded">关闭项目</button>-->
+            <el-button type="danger" class="closeButton" @click="closeProject(index)" v-if="!item.isEnded">关闭项目</el-button>
             <button type="button" class="closeButton evaluateButton" @click="evaluateProject(index)" v-else-if="!item.isEvaluated">评价项目</button>
             <button type="button" class="closeButton evaluateButton" @click="checkEvaluateProject(index)" v-else-if="item.isEvaluated">查看评价</button>
             <p></p><div class="d_label"><b>类型：</b>{{item.type}}</div><div class="d_label"><b>分类：</b>{{item.categories}}</div><p></p>
@@ -249,6 +252,7 @@
 <script src="../js/vue.js"></script>
 
 <script src="../js/jquery.min.js"></script>
+<script src="../js/element-ui.js"></script>
 
 <script src="../js/util.js"></script>
 <script src="../js/requestorUtil.js"></script>
