@@ -1,8 +1,9 @@
 /* project_list */
 .project_list {
-    padding: 0px 40px 0px 30px;
+    /*padding: 0px 40px 0px 30px;*/
+    padding: 0px 40px;
     margin-bottom: 10px;
-    float: left;
+    /*float: left;*/
     width: 100%;
 }
 
@@ -20,7 +21,7 @@
 }
 
 .project_list h3 a:hover {
-    color: #F68;
+    /*color: #409EFF;*/
 }
 
 .project_list h2, .project_list h3{
@@ -59,33 +60,34 @@
 
 .project_list dl {
     padding: 12px 7px;
-    margin: 12px 8px;
+    margin: 10px 15px;
     -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, .37);
     -moz-box-shadow: 0 0 7px rgba(0, 0, 0, .37);
     box-shadow: 0 0 7px rgba(0, 0, 0, .37);
     width: 100%;
-}
 
-.project_list dl{
     clear: both;
-    float: left;
-    display: block;
-}
-
-.project_list dl {
-    border-top: 2px dashed #e5e5e5;
+    /*float: left;*/
+    /*display: block;*/
+    display: inline-block;
+    width: 691px;
+    position: relative;
 }
 
 .project_list .imgDIv {
-    width: 265px;
-    height: 265px;
+    /*width: 265px;*/
+    /*height: 265px;*/
+    width: 200px;
+    height: 200px;
     float: left;
     display: block;
 }
 
 .project_list dt {
-    width: 265px;
-    height: 265px;
+    /*width: 265px;*/
+    /*height: 265px;*/
+    width: 200px;
+    height: 200px;
     float: left;
 }
 
@@ -96,9 +98,9 @@
     border-radius: 7px;
 }
 
-.project_list dt a img:hover {
-    border: 2px solid #f68;
-}
+/*.project_list dt a img:hover {*/
+/*    border: 2px solid #409EFF;*/
+/*}*/
 
 .project_list dd{
     padding-left: 20px;
@@ -115,15 +117,19 @@
 #project_list .closeButton{
     position: absolute;
     /*left: 85%;*/
-    right: 4%;
-    margin-top: 210px;
-    width: 150px;
-    background: #ff7675;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 3px;
-    padding: 12px;
+    /*right: 4%;*/
+    /*margin-top: 210px;*/
+    /*width: 150px;*/
+    /*background: #ff7675;*/
+    /*color: white;*/
+    /*border: 0 none;*/
+    /*font-weight: bold;*/
+    /*border-radius: 3px;*/
+    /*padding: 12px;*/
+
+    right: 12px;
+    bottom: 20px;
+    width: 126px;
 }
 /*评价项目按钮*/
 #project_list .evaluateButton{

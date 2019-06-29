@@ -138,11 +138,14 @@ var project_list = new Vue({
                 success: function (data) {
                     console.log(data);
                     var result = JSON.parse(data);
-                    alert(result.retMessage);
-                    window.location.reload();
+                    // alert(result.retMessage);
+                    // window.location.reload();
+                    project_list.$message.success("结束项目成功");
+                    setTimeout("window.location.reload()", 1000);
                 },
                 error: function () {
-                    alert("fail");
+                    // alert("fail");
+                    project_list.$message.error("结束项目失败");
                 }
             })
         },
@@ -190,25 +193,40 @@ var project_list = new Vue({
             for(var i = 0; i < filterItem.length; i++){
                 key.push(filterItem[i]);
             }
-            // console.log(key)
+            console.log(key)
 
             var after = [];
             for(var i = 0;i < key.length;i++){
                 var curKey = key[i];
+                if(i == 0 && key.length > 1){
+                    continue;
+                }
                 if(i != 0 && (curKey == null || curKey == "")){     //跳过最后多一个空格的情况
                     continue;
                 }
-                after = this.projectList.filter(function (item) {
-                        // console.log(item);
-                        // console.log("searchKey"+key)
-                        return item.id.indexOf(curKey) >= 0        //搜索id
-                            || item.name.indexOf(curKey) >= 0      //搜索name
-                            || item.categories.indexOf(curKey) >= 0     //搜索分类
-                            || item.type.indexOf(curKey) >= 0       //搜索类型
-                            || item.workers.indexOf(curKey) >= 0    //搜索参与者
-                            || item.description.indexOf(curKey) >= 0      //搜索描述
-                            || item.state.indexOf(curKey) >= 0     //搜索状态
-                    });
+                after.push.apply(after, this.projectList.filter(function (item) {
+                    // console.log(item);
+                    // console.log("searchKey"+key)
+                    return item.id.indexOf(curKey) >= 0        //搜索id
+                        || item.name.indexOf(curKey) >= 0      //搜索name
+                        || item.categories.indexOf(curKey) >= 0     //搜索分类
+                        || item.type.indexOf(curKey) >= 0       //搜索类型
+                        || item.workers.indexOf(curKey) >= 0    //搜索参与者
+                        || item.description.indexOf(curKey) >= 0      //搜索描述
+                        || item.state.indexOf(curKey) >= 0     //搜索状态
+                }));
+                after = Array.from(new Set(after));
+                // after = this.projectList.filter(function (item) {
+                //         // console.log(item);
+                //         // console.log("searchKey"+key)
+                //         return item.id.indexOf(curKey) >= 0        //搜索id
+                //             || item.name.indexOf(curKey) >= 0      //搜索name
+                //             || item.categories.indexOf(curKey) >= 0     //搜索分类
+                //             || item.type.indexOf(curKey) >= 0       //搜索类型
+                //             || item.workers.indexOf(curKey) >= 0    //搜索参与者
+                //             || item.description.indexOf(curKey) >= 0      //搜索描述
+                //             || item.state.indexOf(curKey) >= 0     //搜索状态
+                //     });
             }
 
             this.filterList = after;        //记录，方便刷新列表
@@ -293,11 +311,13 @@ var evaluateForm = new Vue({
                 success: function (data) {
                     console.log(data);
                     var result = JSON.parse(data);
-                    alert(result.retMessage);
+                    // alert(result.retMessage);
+                    evaluateForm.$message.success('提交评价成功');
                     evaluateForm.closeForm();
                 },
                 error: function () {
-                    alert("fail");
+                    // alert("fail");
+                    evaluateForm.$message.error('提交评价失败')
                 }
             })
         }
@@ -362,7 +382,8 @@ function getProjectList() {
             }
         },
         error: function () {
-            alert("fail");
+            // alert("fail");
+            project_list.$message.error("获取项目列表失败");
         }
     })
     return result;
@@ -388,7 +409,8 @@ function getProjectRate(projectId) {
             result = json.scorelist;
         },
         error: function () {
-            alert("获取项目评价失败");
+            // alert("获取项目评价失败");
+            evaluateForm.$message.error("获取项目评价失败");
         }
     })
     return result;

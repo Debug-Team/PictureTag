@@ -2651,7 +2651,8 @@ button[disabled]._1l4Hh:hover {
 .F5xv_ {
     background-color:#000;
     color:#fff;
-    margin-bottom:48px
+    /*margin-bottom:48px;*/
+    margin-bottom:15px;
 }
 .F5xv_ a {
     text-decoration:none

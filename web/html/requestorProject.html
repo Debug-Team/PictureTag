@@ -45,13 +45,18 @@
                 </li>
                 <li class="_29OpZ xLon9" >
                     <a class="_3t5Ep _1CBrG" href="uploadProject.html">
-                        发起项目
+                        发布项目
+                    </a>
+                </li>
+                <li class="_29OpZ xLon9" >
+                    <a class="_3t5Ep _1CBrG active" href="">
+                        全部项目
                     </a>
                 </li>
                 <li class="_29OpZ xLon9" >
                     <!--<a class="_3t5Ep _1CBrG" href="requestorHome.html/#analysis">-->
                     <a class="_3t5Ep _1CBrG" href="requestorZone.html">
-                        个人空间/历史数据
+                        历史数据
                     </a>
                 </li>
                 </li>
@@ -154,11 +159,16 @@
         <dd>
             <!--<h3><a v-bind:href="'requestorProjectInfo.html?id='+item.id">{{item.id}}</a></h3>-->
             <h3><a>{{item.name}}</a></h3>
-            <canvas v-bind:id="'canvas'+item.id" width="150" height="150" style="background:#48dbfb;"></canvas>
+<!--            <canvas v-bind:id="'canvas'+item.id" width="150" height="150" style="background:#48dbfb;"></canvas>-->
 <!--            <button type="button" class="closeButton" @click="closeProject(index)" v-if="!item.isEnded">关闭项目</button>-->
-            <el-button type="danger" class="closeButton" @click="closeProject(index)" v-if="!item.isEnded">关闭项目</el-button>
-            <button type="button" class="closeButton evaluateButton" @click="evaluateProject(index)" v-else-if="!item.isEvaluated">评价项目</button>
-            <button type="button" class="closeButton evaluateButton" @click="checkEvaluateProject(index)" v-else-if="item.isEvaluated">查看评价</button>
+<!--            <button type="button" class="closeButton evaluateButton" @click="evaluateProject(index)" v-else-if="!item.isEvaluated">评价项目</button>-->
+<!--            <button type="button" class="closeButton evaluateButton" @click="checkEvaluateProject(index)" v-else-if="item.isEvaluated">查看评价</button>-->
+            <el-progress type="circle" :percentage="Math.round(item.rate * 100)"
+                         :status="item.state === '已结束' ? 'success' : null" style="position: absolute; right: 12px;"></el-progress>
+            <el-button type="danger" class="closeButton" @click="closeProject(index)" v-if="!item.isEnded">结束项目</el-button>
+            <el-button type="primary" class="closeButton" @click="evaluateProject(index)" v-else-if="!item.isEvaluated">评价项目</el-button>
+            <el-button class="closeButton" @click="checkEvaluateProject(index)" v-else-if="item.isEvaluated">查看评价</el-button>
+
             <p></p><div class="d_label"><b>类型：</b>{{item.type}}</div><div class="d_label"><b>分类：</b>{{item.categories}}</div><p></p>
             <p></p><div class="d_label"><b>积分：</b>{{item.award + '/人'}}</div><p></p>
             <p></p><div class="d_label"><b>标注人数：</b>{{item.workerNum + '人'}}</div><div class="d_label"><b>参与标注：</b>{{item.workers}}</div><p></p>
@@ -166,7 +176,7 @@
             <p></p><div class="d_label"><b>项目描述：</b>{{item.description}}</div><p></p>
             <p></p><div class="d_label"><b>开始时间：</b>{{item.startTime}}</div><div class="d_label"><b>结束时间：</b>{{item.endTime}}</div><p></p>
             <p><b style="color:#F00">状态:</b> {{item.state}} </p>
-            <a v-bind:href="'../downloadTags/'+item.id">DOWNLOAD</a>
+            <a v-bind:href="'../downloadTags/'+item.id">下载数据集</a>
         </dd>
     </dl>
 </div>
