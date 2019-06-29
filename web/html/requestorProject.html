@@ -53,23 +53,23 @@
                         全部项目
                     </a>
                 </li>
-                <li class="_29OpZ xLon9" >
-                    <!--<a class="_3t5Ep _1CBrG" href="requestorHome.html/#analysis">-->
-                    <a class="_3t5Ep _1CBrG" href="requestorZone.html">
-                        历史数据
-                    </a>
-                </li>
+<!--                <li class="_29OpZ xLon9" >-->
+<!--                    &lt;!&ndash;<a class="_3t5Ep _1CBrG" href="requestorHome.html/#analysis">&ndash;&gt;-->
+<!--                    <a class="_3t5Ep _1CBrG" href="requestorZone.html">-->
+<!--                        历史数据-->
+<!--                    </a>-->
+<!--                </li>-->
                 </li>
                 <li class="_29OpZ xLon9" >
                     <a class="_3t5Ep _1CBrG" id="credits" href="requestorCreditDetail.html">
                         积分:
                     </a>
                 </li>
-                <li class="_29OpZ xLon9" >
-                    <a class="_3t5Ep _1CBrG" onclick="buyCredit()" style="cursor: pointer;">
-                        充值积分
-                    </a>
-                </li>
+<!--                <li class="_29OpZ xLon9" >-->
+<!--                    <a class="_3t5Ep _1CBrG" onclick="buyCredit()" style="cursor: pointer;">-->
+<!--                        充值积分-->
+<!--                    </a>-->
+<!--                </li>-->
                 <li class="_29OpZ xLon9" >
                     <a class="_3t5Ep _1CBrG" href="../?=logout" onclick="logout()" >
                         登出
@@ -165,9 +165,19 @@
 <!--            <button type="button" class="closeButton evaluateButton" @click="checkEvaluateProject(index)" v-else-if="item.isEvaluated">查看评价</button>-->
             <el-progress type="circle" :percentage="Math.round(item.rate * 100)"
                          :status="item.state === '已结束' ? 'success' : null" style="position: absolute; right: 12px;"></el-progress>
-            <el-button type="danger" class="closeButton" @click="closeProject(index)" v-if="!item.isEnded">结束项目</el-button>
-            <el-button type="primary" class="closeButton" @click="evaluateProject(index)" v-else-if="!item.isEvaluated">评价项目</el-button>
-            <el-button class="closeButton" @click="checkEvaluateProject(index)" v-else-if="item.isEvaluated">查看评价</el-button>
+            <el-popover
+                    v-if="!item.isEnded"
+                    placement="top"
+                    title="结束项目"
+                    width="200"
+                    trigger="hover"
+                    content="您可以提前结束项目。当项目完成时，系统会自动结束项目">
+                <el-button slot="reference" type="danger" class="closeButton" @click="closeProject(index)">结束项目</el-button>
+            </el-popover>
+<!--            <el-button type="danger" class="closeButton" @click="closeProject(index)" v-if="!item.isEnded">结束项目</el-button>-->
+            <el-button class="closeButton" @click="closeProject(index)" disabled v-else>项目已结束</el-button>
+<!--            <el-button type="primary" class="closeButton" @click="evaluateProject(index)" v-else-if="!item.isEvaluated">评价项目</el-button>-->
+<!--            <el-button class="closeButton" @click="checkEvaluateProject(index)" v-else-if="item.isEvaluated">查看评价</el-button>-->
 
             <p></p><div class="d_label"><b>类型：</b>{{item.type}}</div><div class="d_label"><b>分类：</b>{{item.categories}}</div><p></p>
             <p></p><div class="d_label"><b>积分：</b>{{item.award + '/人'}}</div><p></p>
