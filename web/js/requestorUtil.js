@@ -23,7 +23,8 @@ function getUserInfo() {
             // credits = temp.credits;
         },
         error: function () {
-            alert("fail");
+            // alert("fail");
+            window.location.href = "/";
         }
     })
     return res;

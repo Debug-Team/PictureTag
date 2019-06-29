@@ -43,6 +43,12 @@ function getCookie(type) {
         }
     }
 
+    // console.log(window.location.href)
+    // console.log(window.location.host)
+    // if(res == "" && (window.location.href.indexOf("/#home") < 0 || window.location.href != window.location.host)){
+    if(res == "" && (window.location.href.indexOf("/#home") < 0)){
+        window.location.href = "/";
+    }
     return res;
 }
 /**
@@ -52,7 +58,7 @@ function getCookie(type) {
  */
 function setCookie(type, value){
     var expires = new Date();
-    expires.setMinutes(expires.getMinutes()+60);
+    expires.setMinutes(expires.getMinutes()+120);
     // console.log(expires.toUTCString());
     document.cookie = type + "=" + value + "; expires=" + expires.toUTCString();
     // var cookie = document.cookie;
@@ -123,20 +129,24 @@ function checkCookie() {
  * @returns {Array<string>}
  */
 function getCategoriesList() {
-    var res = "";
-    $.ajax({
-        url:'/getClassification',
-        type:'post',
-        async:false,
-        data:{},
-        success: function (data) {
-            console.log(data);
-            res = JSON.parse(data);
-            // credits = temp.credits;
-        },
-        error: function () {
-            alert("fail");
-        }
-    })
-    return res.categories;
+    return ["人物","食品/饮料","体育","行业/工艺","商业/金融",
+        "建筑","旅游/度假","自然/风景","科学/技术",
+        "美容/时尚","交通/运输","宗教","动植物","健康/医疗",
+        "计算机/通信","生活百科","地点/地标","背景/素材","教育","情感","音乐","其他"];
+    // var res = "";
+    // $.ajax({
+    //     url:'/getClassification',
+    //     type:'post',
+    //     async:false,
+    //     data:{},
+    //     success: function (data) {
+    //         console.log(data);
+    //         res = JSON.parse(data);
+    //         // credits = temp.credits;
+    //     },
+    //     error: function () {
+    //         alert("fail");
+    //     }
+    // })
+    // return res.categories;
 }
