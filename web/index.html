@@ -117,50 +117,50 @@
         <div class="user_options-container">
             <div class="user_options-text">
                 <div class="user_options-unregistered">
-                    <h2 class="user_unregistered-title">Don't have an account?</h2>
-                    <p class="user_unregistered-text">Upload project. Add tags. There's going to be something for everybody.</p>
-                    <button class="user_unregistered-signup" id="signup-button">Sign up</button>
+                    <h2 class="user_unregistered-title">没有账户?</h2>
+                    <p class="user_unregistered-text">上传项目，参与标注，每个人在PictureTag上都能做些事。</p>
+                    <button class="user_unregistered-signup" id="signup-button">注册</button>
                 </div>
 
                 <div class="user_options-registered">
-                    <h2 class="user_registered-title">Have an account?</h2>
-                    <p class="user_registered-text">How about starting working right now?</p>
-                    <button class="user_registered-login" id="login-button">Login</button>
+                    <h2 class="user_registered-title">已有账户?</h2>
+                    <p class="user_registered-text">现在工作怎么样?</p>
+                    <button class="user_registered-login" id="login-button">登录</button>
                 </div>
             </div>
 
             <div class="user_options-forms" id="user_options-forms">
                 <div class="user_forms-login">
-                    <h2 class="forms_title">Login</h2>
+                    <h2 class="forms_title">登录</h2>
                     <!--<form class="forms_form" action="/login" method="post">-->
                     <form class="forms_form" id="login_form">
                         <fieldset class="forms_fieldset">
                             <div class="forms_field">
-                                <input type="text" placeholder="PhoneNumber" class="forms_field-input" name="userphone" id="userPhone_login" required />
+                                <input type="text" placeholder="账号" class="forms_field-input" name="userphone" id="userPhone_login" required />
                             </div>
                             <div class="forms_field">
-                                <input type="password" placeholder="Password" class="forms_field-input" name="password" id="password_login" required />
+                                <input type="password" placeholder="密码" class="forms_field-input" name="password" id="password_login" required />
                             </div>
                         </fieldset>
                         <div  id = "logininID">
-                            <button type="button" class="forms_buttons-forgot">Forgot password?</button>
-                            <input type="submit" value="Log In" class="forms_buttons-action" >
+                            <button type="button" class="forms_buttons-forgot"></button>
+                            <input type="submit" value="登录" class="forms_buttons-action" >
                             <!--<input type="button" value="Log In" class="forms_buttons-action" onclick="clickLogin()">-->
                         </div>
                     </form>
                 </div>
                 <div class="user_forms-signup">
-                    <h2 class="forms_title">Sign Up</h2>
+                    <h2 class="forms_title">注册</h2>
                     <form class="forms_form" id="signup_form">
                         <fieldset class="forms_fieldset">
                             <div class="forms_field">
-                                <input type="text" placeholder="Name" class="forms_field-input" id="name_signUp" required />
+                                <input type="text" placeholder="姓名" class="forms_field-input" id="name_signUp" required />
                             </div>
                             <div class="forms_field">
-                                <input type="number" placeholder="PhoneNumber" class="forms_field-input" id="userPhone_signUp" required />
+                                <input type="number" placeholder="账号" class="forms_field-input" id="userPhone_signUp" required />
                             </div>
                             <div class="forms_field">
-                                <input type="password" placeholder="Password" class="forms_field-input" id="password_signUp" required />
+                                <input type="password" placeholder="密码" class="forms_field-input" id="password_signUp" required />
                             </div>
                             <div class="forms_field">
                                 <select class="forms_field-input" id="type_signUp" required>

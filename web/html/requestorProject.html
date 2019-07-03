@@ -179,13 +179,13 @@
 <!--            <el-button type="primary" class="closeButton" @click="evaluateProject(index)" v-else-if="!item.isEvaluated">评价项目</el-button>-->
 <!--            <el-button class="closeButton" @click="checkEvaluateProject(index)" v-else-if="item.isEvaluated">查看评价</el-button>-->
 
-            <p></p><div class="d_label"><b>类型：</b>{{item.type}}</div><div class="d_label"><b>分类：</b>{{item.categories}}</div><p></p>
-            <p></p><div class="d_label"><b>积分：</b>{{item.award + '/人'}}</div><p></p>
-            <p></p><div class="d_label"><b>标注人数：</b>{{item.workerNum + '人'}}</div><div class="d_label"><b>参与标注：</b>{{item.workers}}</div><p></p>
+            <p></p><div class="d_label"><span>类型：</span>{{item.type}}</div><div class="d_label"><span>分类：</span>{{item.categories}}</div><p></p>
+            <p></p><div class="d_label"><span>积分：</span>{{item.award + '/人'}}</div><p></p>
+            <p></p><div class="d_label"><span>标注人数：</span>{{item.workerNum + '人'}}</div><div class="d_label"><span>参与标注：</span>{{item.workers}}</div><p></p>
             <!--<p></p><div class="d_label"><b>开始时间：</b>{{item.startTime}}</div><p></p>-->
-            <p></p><div class="d_label"><b>项目描述：</b>{{item.description}}</div><p></p>
-            <p></p><div class="d_label"><b>开始时间：</b>{{item.startTime}}</div><div class="d_label"><b>结束时间：</b>{{item.endTime}}</div><p></p>
-            <p><b style="color:#F00">状态:</b> {{item.state}} </p>
+            <p></p><div class="d_label"><span>项目描述：</span>{{item.description}}</div><p></p>
+            <p></p><div class="d_label"><span>开始时间：</span>{{item.startTime}}</div><div class="d_label"><span>结束时间：</span>{{item.endTime}}</div><p></p>
+            <p><span style="color:#F00">状态:</span> {{item.state}} </p>
             <a v-bind:href="'../downloadTags/'+item.id">下载数据集</a>
         </dd>
     </dl>

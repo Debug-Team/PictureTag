@@ -63,6 +63,7 @@ var loadPicture = function (hot_x,hot_y,length_x,length_y) {
         // canvas_img_ctx.rect(hot_x,hot_y,length_x,length_y);
         // canvas_img_ctx.fill();
         // canvas_img_ctx.closePath();
+        console.log(project_detail);
         if(project_detail.type==1){
             loadMarkedHotArea(picname);
         }
@@ -311,6 +312,7 @@ var loadMarksInfo = function () {
 
         document.getElementById("pro_type").innerHTML = "标框标注";
 
+        buttonData.$data.isRevert = true;
         // var parent_div = document.getElementById("tools");
         // var revoke_div1 = document.createElement("div");
         // revoke_div1.classList.add("like-button");
@@ -785,10 +787,13 @@ function loadMarkedHotArea(picname) {
 var buttonData = new Vue({
     el: '#details',
     data: {
-
+        isRevert:false
 
     },
     methods:{
+        revert:function(){
+
+        },
         lastPi:function () {
             var res = previousPic();
             if(res=="first") {

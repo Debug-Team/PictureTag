@@ -475,11 +475,16 @@ var project_list = new Vue({
          * @param index
          */
         openProject: function (index) {
-            if(this.projectList[index].state == "已结束" || this.projectList[index].state == "已完成"){       //已完成或者已结束的项目不能再打开
+            if(this.filterProjectList[index].state == "已结束" || this.filterProjectList[index].state == "已完成"){       //已完成或者已结束的项目不能再打开
                 this.$message.warning("项目已完成，无法编辑！")
                 return;
             }
-            window.location.href = "projectOverview.html?"+this.projectList[index].id;
+            window.location.href = "projectOverview.html?"+this.filterProjectList[index].id;
+            // if(this.projectList[index].state == "已结束" || this.projectList[index].state == "已完成"){       //已完成或者已结束的项目不能再打开
+            //     this.$message.warning("项目已完成，无法编辑！")
+            //     return;
+            // }
+            // window.location.href = "projectOverview.html?"+this.projectList[index].id;
         }
     },
     watch: {

@@ -308,6 +308,7 @@ var uploadProject = new Vue({
                 enctype:'multipart/form-data',
                 success: function (data) {
                     uploadProject.$message.success('发布项目成功');
+                    setTimeout("window.location.href = '/html/requestorProject.html'", 1000);
                 },
                 error: function(error) {
                     uploadProject.$message.error('上传项目失败' + error);
